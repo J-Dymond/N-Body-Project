@@ -10,12 +10,16 @@ DOUBLE PRECISION :: G,AU,AbsD,Yr,KE_i,PE_i,PE,KE,E_i,E
 DOUBLE PRECISION :: CA,MP,VP
 
 DOUBLE PRECISION :: COM(0:2),COV(0:2),a(0:2,0:9),ai(0:2,0:9),da(0:2,0:9),m(0:9),v(0:2,0:9),D(0:2)
+
 !RandomisingPositions
 DOUBLE PRECISION :: Abs(0:9),AbsVel(0:9),Val,RN
 INTEGER :: Parity(0:1),ParityVel(0:1)
 
 !For getting eccentricity
-DOUBLE PRECISION :: r(0:2,0:9),Apihelion(1:9),Perihelion(1:9),ecc(1:9)
+DOUBLE PRECISION :: Apihelion(1:9),Perihelion(1:9),ecc(1:9)
+
+!Position vector
+DOUBLE PRECISION :: r(0:2,0:9)
 
  
 !Open data files
