@@ -175,7 +175,6 @@ do i=0,n-1
 		PE_i = PE_i - (G*m(i)*m(j))/(AbsD*AU)
 	end do
 end do
-PE_i = 0.5*PE_i	
 
 !Total Initial Energy
 E_i = PE_i + KE_i
@@ -249,17 +248,13 @@ do
 		
 			!Get PE
 			PE = 0
-			do i=0,n
-				do j=0,n
-					if (i==j) then
-						cycle
-					end if 
+			do i=0,n-1
+				do j=i+1,n 
 					D = r(0:2,i) - r(0:2,j)	
 					AbsD = SQRT(SUM(D**2))
 					PE = PE - (G*m(i)*m(j))/(AbsD*AU)
 				end do
 			end do
-			PE = 0.5*PE	
 		
 			!Total Energy
 			E = KE + PE
