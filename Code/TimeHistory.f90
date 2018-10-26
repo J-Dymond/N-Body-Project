@@ -21,8 +21,9 @@ DOUBLE PRECISION :: Apihelion(1:9),Perihelion(1:9),ecc(1:9)
 !Position vector
 DOUBLE PRECISION :: r(0:2,0:9)
 
-!Time History of position vector (Will delete original r vector later)
-DOUBLE PRECISION :: rHist(0:2,0:9,0:9)
+!Time History of velocity and acceleration vectors (Will delete original vectors later)
+DOUBLE PRECISION :: vHist(0:2,0:9,0:9)
+DOUBLE PRECISION :: aHist(0:2,0:9,0:9)
 
  
 !Open data files
@@ -55,12 +56,12 @@ m(6) = 102e24
 
 !Initialising Positions 
 !Sun
-r(0:2,0) = 0
+r(0:2,0) = 0.
 
 !Planets
-r(1:2,:) = 0
+r(1:2,:) = 0.
 
-rhist = 0
+vHist = 0.
 
 !Orbital radii in AU 
 abs(1) = 1.
@@ -192,12 +193,14 @@ print *, ''
 do
 	t = 0
 	do
-		!rHist(0:2,0:9,0:9)
-		!Fill time history vector
+		!vHist(0:2,0:9,0:9)
+		!Fill time history vectors
 		do i=9,1,-1
-			rhist(0:2,0:n,i) = rhist(0:2,0:n,i-1)
+			vHist(0:2,0:n,i) = vHist(0:2,0:n,i-1)
+			!aHist(0:2,0:n,i) = aHist(0:2,0:n,i-1)
 		end do
-		rhist(0:2,0:n,0) = r(0:2,0:n)
+		vHist(0:2,0:n,0) = v(0:2,0:n)
+		!aHist(0:2,0:n,0) = a(0:2,0:n)
 
 		!Calculating individual accelerations
 		!To get direction multiply by the distance vector which stores a plus/minus
