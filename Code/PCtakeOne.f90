@@ -1,4 +1,4 @@
-PROGRAM PC Attempt
+PROGRAM PCAttempt
 IMPLICIT NONE
 !-------------------------Declaring Variables----------------------------!
 
@@ -14,9 +14,10 @@ DOUBLE PRECISION :: COM(0:2),COV(0:2),a(0:2,0:9),ai(0:2,0:9),da(0:2,0:9),m(0:9),
 !For getting eccentricity
 DOUBLE PRECISION :: Apihelion(1:9),Perihelion(1:9),ecc(1:9)
 
-!Time History of velocity and acceleration vectors (Will delete original vectors later)
-DOUBLE PRECISION :: vHist(0:2,0:9,0:9)
-DOUBLE PRECISION :: aHist(0:2,0:9,0:9)
+!Time History of position, velocity, and acceleration vectors (Will delete original vectors later)
+DOUBLE PRECISION :: rHist(0:2,0:9,0:8)
+DOUBLE PRECISION :: vHist(0:2,0:9,0:8)
+DOUBLE PRECISION :: aHist(0:2,0:9,0:8)
 
 !Variables for Randomising Initial Positions and Velocities
 DOUBLE PRECISION :: Abs(0:9),AbsVel(0:9),Val,RN
@@ -36,11 +37,12 @@ OPEN(1,file="../Data/Eccentricities.txt",STATUS = 'REPLACE')!This is for orbital
 AU = 1.496e11	!AU in metres
 G = 6.67e-11	!G in SI
 Yr = 3.154e7	!YR in seconds
-n=7 			!number of planets in simulation
+n=6			!number of planets in simulation
 
-!1000 seconds timestep,
-dt = 1000		!1000 second timesteps
-tcount = 1000 	!Timestep counter, initialised at 1000 so first values are written
+!1000 seconds timestep
+t = 0			!global time value
+dt = 100		!10 second timesteps
+tcount = 0 		!Timestep counter
 Fifty = 0		!50Yr Counter, for command line output (Every 50 years) 
 
 !Initialising Body parameters Sun to Neptune
@@ -53,8 +55,14 @@ m(4) = 568e24
 m(5) = 86.8e24
 m(6) = 102e24
 
-!Positions initially set as 0
-r(0:2,0:n) = 0.
+!Positions,Velocity, and accelerations initially set as 0 - hardcode to length of array rather than using n
+r = 0.
+v = 0.
+a = 0.
+
+vhist = 0.		!initialise time histories as 0
+ahist = 0.		
+rhist = 0.
 
 !Absolute Values of Orbital Radii in AU 
 abs(1) = 1. 	!Earth
@@ -125,7 +133,7 @@ do i=0,2
 		COM(i) = COM(i) + m(j)*r(i,j)
 	end do
 end do 
-COM = COM/sum(m(:))
+COM = COM/sum(m(0:n))
 do i=0,n
 	r(0:2,i) = r(0:2,i) - COM(0:2)
 end do
@@ -136,7 +144,7 @@ do i=0,2
 		COV(i) = COV(i) + m(j)*v(i,j)
 	end do
 end do 
-COV = COV/sum(m(0:2))
+COV = COV/sum(m(0:n))
 do i=0,n
 	v(0:2,i) = v(0:2,i) - COV(0:2)
 end do
@@ -165,6 +173,88 @@ PE_i = 0.5*PE_i
 !Total Initial Energy
 E_i = PE_i + KE_i
 
+
+write(6,*) " " 
 !-------------------------------Bootstrap------------------------------------!
 
-END PROGRAM PC Attempt
+!Use second order method for 8 timesteps, so time history can be filled for acceleration and velocity
+
+!initial acceleration
+do i=0,n	!getting acceleration
+	do j=0,n
+		if (i==j) then
+			cycle
+		end if 
+		D = r(0:2,i) - r(0:2,j)	!Get distance between two objects		
+		AbsD = SQRT(SUM(D**2))	!Get absolute distance
+		a(0:2,i) = a(0:2,i) - ((G*m(j))/((AbsD*AU)**3))*(D*AU) !Make calculation
+	end do
+end do
+
+do
+	ai = a	!Previous acceleration
+	a = 0.	!Current acceleration
+	
+	do i=0,n	!getting acceleration
+		do j=0,n
+			if (i==j) then
+				cycle
+			end if 
+			D = r(0:2,i) - r(0:2,j)	!Get distance between two objects		
+			AbsD = SQRT(SUM(D**2))	!Get absolute distance
+			a(0:2,i) = a(0:2,i) - ((G*m(j))/((AbsD*AU)**3))*(D*AU) !Make calculation
+		end do
+	end do	
+	
+	da(0:2,0:n) = a(0:2,0:n) - ai(0:2,0:n) !Change in acceleration
+
+	!Change in r, and change in v, using the da in v calculation
+	do i=0,n
+		r(0:2,i) = r(0:2,i) + v(0:2,i)*(dt/AU) + 0.5*a(0:2,i)*((dt/AU)**2)
+		v(0:2,i) = v(0:2,i) + a(0:2,i)*dt + 0.5*da(0:2,i)*dt
+	end do
+		
+	do i=8,2,-1
+		rhist(0:2,0:n,i) = rhist(0:2,0:n,i-1)
+		vhist(0:2,0:n,i) = vhist(0:2,0:n,i-1)
+		ahist(0:2,0:n,i) = ahist(0:2,0:n,i-1)
+	end do
+	
+	rhist(0:2,1,1) = r(0:2,1)
+	vhist(0:2,1,1) = v(0:2,1)
+	ahist(0:2,1,1) = a(0:2,1)
+	
+	tcount = tcount + 1
+	
+	t = t + dt
+	
+	if (tcount >= 1000) then
+		write(3,*) (t/Yr + 50*Fifty), r(0:1,0:n)
+		tcount=0
+	end if 
+	
+	if (t>=50*Yr) then
+		exit
+	end if
+
+end do
+
+write(6,*) " " 	
+write(6,*) r(0:2,1)
+write(6,*) " " 	
+write(6,*) rhist(0:2,0,0:8)
+write(6,*) " " 	 
+write(6,*) v(0:2,1)
+write(6,*) " " 	
+write(6,*) vhist(0:2,0,0:8) 
+write(6,*) " " 
+write(6,*) a(0:2,1)
+write(6,*) " " 	
+write(6,*) ahist(0:2,0,0:8) 
+
+!-----------------------------Predictor Corrector Algorithm------------------------------------
+
+
+
+
+END PROGRAM PCAttempt
