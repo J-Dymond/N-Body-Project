@@ -9,7 +9,7 @@ INTEGER :: i,j,n
 n = 9
 dis = 0
 
-do i=0,9
+do i=0,n
 	abs(i) = i+1
 	dis(i,0) = abs(i)
 	absvel(i) = 10 - i

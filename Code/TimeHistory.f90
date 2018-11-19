@@ -41,7 +41,7 @@ n=7
 
 !1000 seconds timestep, initialise counter for data writing
 dt = 1000
-tcount = 1000
+tcount = 1000 !write values to file every 1000 timesteps, hence initialise as 1000, to catch initial values in the condition
 Fifty = 0
 
 !Initialising planets Sun to Neptune
