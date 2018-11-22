@@ -2,7 +2,7 @@ PROGRAM PCAttempt
 IMPLICIT NONE
 !-------------------------Declaring Variables----------------------------!
 
-!Integers for counting
+!Integers for loops and recording time
 INTEGER :: i,j,n,x,y,z,t,dt,tcount,fifty
 
 !One Dimension Variables/Constants
@@ -41,7 +41,7 @@ n=6			!number of planets in simulation
 
 !1000 seconds timestep
 t = 0			!global time value
-dt = 100		!10 second timesteps
+dt = 10		!10 second timesteps
 tcount = 0 		!Timestep counter
 Fifty = 0		!50Yr Counter, for command line output (Every 50 years) 
 
@@ -192,52 +192,92 @@ do i=0,n	!getting acceleration
 end do
 
 do
-	ai = a	!Previous acceleration
-	a = 0.	!Current acceleration
+	t = 0
+	do
+		ai = a	!Previous acceleration
+		a = 0.	!Current acceleration
 	
-	do i=0,n	!getting acceleration
-		do j=0,n
-			if (i==j) then
-				cycle
-			end if 
-			D = r(0:2,i) - r(0:2,j)	!Get distance between two objects		
-			AbsD = SQRT(SUM(D**2))	!Get absolute distance
-			a(0:2,i) = a(0:2,i) - ((G*m(j))/((AbsD*AU)**3))*(D*AU) !Make calculation
-		end do
-	end do	
+		do i=0,n	!getting acceleration
+			do j=0,n
+				if (i==j) then
+					cycle
+				end if 
+				D = r(0:2,i) - r(0:2,j)	!Get distance between two objects		
+				AbsD = SQRT(SUM(D**2))	!Get absolute distance
+				a(0:2,i) = a(0:2,i) - ((G*m(j))/((AbsD*AU)**3))*(D*AU) !Make calculation
+			end do
+		end do	
 	
-	da(0:2,0:n) = a(0:2,0:n) - ai(0:2,0:n) !Change in acceleration
+		da(0:2,0:n) = a(0:2,0:n) - ai(0:2,0:n) !Change in acceleration
 
-	!Change in r, and change in v, using the da in v calculation
-	do i=0,n
-		r(0:2,i) = r(0:2,i) + v(0:2,i)*(dt/AU) + 0.5*a(0:2,i)*((dt/AU)**2)
-		v(0:2,i) = v(0:2,i) + a(0:2,i)*dt + 0.5*da(0:2,i)*dt
-	end do
+		!Change in r, and change in v, using the da in v calculation
+		do i=0,n
+			r(0:2,i) = r(0:2,i) + v(0:2,i)*(dt/AU) + 0.5*a(0:2,i)*((dt/AU)**2)
+			v(0:2,i) = v(0:2,i) + a(0:2,i)*dt + 0.5*da(0:2,i)*dt
+		end do
+	
+		rhist(0:2,0:n,1) = r(0:2,0:n)
+		vhist(0:2,0:n,1) = v(0:2,0:n)
+		ahist(0:2,0:n,1) = a(0:2,0:n)
 		
-	do i=8,2,-1
-		rhist(0:2,0:n,i) = rhist(0:2,0:n,i-1)
-		vhist(0:2,0:n,i) = vhist(0:2,0:n,i-1)
-		ahist(0:2,0:n,i) = ahist(0:2,0:n,i-1)
+		do i=8,2,-1
+			rhist(0:2,0:n,i) = rhist(0:2,0:n,i-1)
+			vhist(0:2,0:n,i) = vhist(0:2,0:n,i-1)
+			ahist(0:2,0:n,i) = ahist(0:2,0:n,i-1)
+		end do
+	
+	
+	
+		tcount = tcount + 1
+	
+		t = t + dt
+	
+		if (tcount >= 100000) then
+			write(3,*) (t/Yr + 50*Fifty), r(0:1,0:n)
+			tcount=0
+		
+			!Get KE
+			KE=0.
+			do i=1,n
+				KE = KE + 0.5*m(i)*sum(v(0:2,i)**2)
+			end do
+	
+			!Get PE
+			PE = 0
+			do i=0,n
+				do j=0,n
+					if (i==j) then
+						cycle
+					end if 
+					D = r(0:2,i) - r(0:2,j)	
+					AbsD = SQRT(SUM(D**2))
+					PE = PE - (G*m(i)*m(j))/(AbsD*AU)
+				end do
+			end do
+			PE = 0.5*PE	
+	
+			!Total Energy
+			E = KE + PE
+			write(4,*) (t/Yr + 50*Fifty), (E-E_i)/E_i,(KE-KE_i)/KE_i,(PE-PE_i)/PE_i
+			!write(6,*) Perihelion(7)
+			write(1,*) (t/Yr + 50*Fifty), ecc(1:n)
+		end if 
+	
+		if (t>=50*Yr) then
+			exit
+		end if
+
 	end do
 	
-	rhist(0:2,1,1) = r(0:2,1)
-	vhist(0:2,1,1) = v(0:2,1)
-	ahist(0:2,1,1) = a(0:2,1)
+	fifty = fifty + 1
+	write(6,*) fifty
 	
-	tcount = tcount + 1
-	
-	t = t + dt
-	
-	if (tcount >= 1000) then
-		write(3,*) (t/Yr + 50*Fifty), r(0:1,0:n)
-		tcount=0
-	end if 
-	
-	if (t>=50*Yr) then
+	if (fifty>=20)then
 		exit
 	end if
-
+	
 end do
+
 
 write(6,*) " " 	
 write(6,*) r(0:2,1)
