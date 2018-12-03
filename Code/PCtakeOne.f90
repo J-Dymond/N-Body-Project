@@ -34,9 +34,10 @@ OPEN(1,file="../Data/Eccentricities.txt",STATUS = 'REPLACE')!This is for orbital
 
 !Initialise Arrays, Constants etc..
 !Constants
-AU = 1.496e11	!AU in metres
-G = 6.67e-11	!G in SI
-Yr = 3.154e7	!YR in seconds
+AU 	= 1.496e11	!AU in metres
+G 	= 6.67e-11	!G in SI
+Yr	= 3.154e7	!YR in seconds
+
 n=6			!number of planets in simulation
 
 !1000 seconds timestep
