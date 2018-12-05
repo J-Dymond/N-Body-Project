@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.5.2)  2 DEC 2018 22:35
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.5.2)  5 DEC 2018 18:56
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -664,9 +664,137 @@ Package: translator 2010/06/12 ver 1.10
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/beamer/translator/translator-lang
 uage-mappings.tex)))
+(/usr/local/texlive/2015/texmf-dist/tex/generic/mathabx/mathabx.sty
+Package: mathabx 2003/07/29 v0.0 Non-standard LaTeX package mathabx
+\symmatha=\mathgroup4
+\symmathb=\mathgroup5
+\symmathx=\mathgroup6
+
+(/usr/local/texlive/2015/texmf-dist/tex/generic/mathabx/mathabx.dcl
+LaTeX Font Info:    Redeclaring math symbol \cdotp on input line 25.
+LaTeX Font Info:    Redeclaring math symbol \times on input line 33.
+LaTeX Font Info:    Redeclaring math symbol \div on input line 34.
+LaTeX Font Info:    Redeclaring math symbol \cdot on input line 35.
+LaTeX Font Info:    Redeclaring math symbol \circ on input line 36.
+LaTeX Font Info:    Redeclaring math symbol \ast on input line 38.
+LaTeX Font Info:    Redeclaring math symbol \pm on input line 41.
+LaTeX Font Info:    Redeclaring math symbol \mp on input line 42.
+LaTeX Font Info:    Redeclaring math symbol \diamond on input line 45.
+LaTeX Font Info:    Redeclaring math symbol \bullet on input line 46.
+LaTeX Font Info:    Redeclaring math symbol \star on input line 47.
+LaTeX Font Info:    Redeclaring math symbol \amalg on input line 51.
+LaTeX Font Info:    Redeclaring math symbol \equiv on input line 83.
+LaTeX Font Info:    Redeclaring math symbol \sim on input line 84.
+LaTeX Font Info:    Redeclaring math symbol \approx on input line 85.
+LaTeX Font Info:    Redeclaring math symbol \simeq on input line 86.
+LaTeX Font Info:    Redeclaring math symbol \asymp on input line 89.
+LaTeX Font Info:    Redeclaring math symbol \neg on input line 134.
+LaTeX Font Info:    Redeclaring math symbol \ll on input line 136.
+LaTeX Font Info:    Redeclaring math symbol \gg on input line 137.
+LaTeX Font Info:    Redeclaring math symbol \vdash on input line 139.
+LaTeX Font Info:    Redeclaring math symbol \dashv on input line 140.
+LaTeX Font Info:    Redeclaring math symbol \flat on input line 158.
+LaTeX Font Info:    Redeclaring math symbol \natural on input line 159.
+LaTeX Font Info:    Redeclaring math symbol \sharp on input line 160.
+LaTeX Font Info:    Redeclaring math symbol \infty on input line 161.
+LaTeX Font Info:    Redeclaring math symbol \propto on input line 162.
+LaTeX Font Info:    Redeclaring math symbol \dagger on input line 163.
+LaTeX Font Info:    Redeclaring math symbol \ddagger on input line 164.
+LaTeX Font Info:    Redeclaring math symbol \smile on input line 171.
+LaTeX Font Info:    Redeclaring math symbol \frown on input line 172.
+LaTeX Font Info:    Redeclaring math symbol \setminus on input line 218.
+LaTeX Font Info:    Redeclaring math symbol \mid on input line 222.
+LaTeX Font Info:    Redeclaring math symbol \forall on input line 279.
+LaTeX Font Info:    Redeclaring math symbol \partial on input line 281.
+LaTeX Font Info:    Redeclaring math symbol \exists on input line 284.
+LaTeX Font Info:    Redeclaring math symbol \emptyset on input line 288.
+LaTeX Font Info:    Redeclaring math symbol \top on input line 290.
+LaTeX Font Info:    Redeclaring math symbol \bot on input line 291.
+LaTeX Font Info:    Redeclaring math symbol \perp on input line 292.
+LaTeX Font Info:    Redeclaring math symbol \in on input line 299.
+LaTeX Font Info:    Redeclaring math symbol \owns on input line 300.
+LaTeX Font Info:    Redeclaring math symbol \cap on input line 312.
+LaTeX Font Info:    Redeclaring math symbol \cup on input line 313.
+LaTeX Font Info:    Redeclaring math symbol \uplus on input line 314.
+LaTeX Font Info:    Redeclaring math symbol \sqcap on input line 315.
+LaTeX Font Info:    Redeclaring math symbol \sqcup on input line 316.
+LaTeX Font Info:    Redeclaring math symbol \wedge on input line 318.
+LaTeX Font Info:    Redeclaring math symbol \vee on input line 320.
+LaTeX Font Info:    Redeclaring math symbol \subset on input line 344.
+LaTeX Font Info:    Redeclaring math symbol \supset on input line 345.
+LaTeX Font Info:    Redeclaring math symbol \subseteq on input line 348.
+LaTeX Font Info:    Redeclaring math symbol \supseteq on input line 349.
+LaTeX Font Info:    Redeclaring math symbol \sqsubseteq on input line 380.
+LaTeX Font Info:    Redeclaring math symbol \sqsupseteq on input line 381.
+LaTeX Font Info:    Redeclaring math symbol \triangleleft on input line 407.
+LaTeX Font Info:    Redeclaring math symbol \triangleright on input line 409.
+LaTeX Font Info:    Redeclaring math symbol \leq on input line 439.
+LaTeX Font Info:    Redeclaring math symbol \geq on input line 441.
+LaTeX Font Info:    Redeclaring math symbol \prec on input line 498.
+LaTeX Font Info:    Redeclaring math symbol \succ on input line 499.
+LaTeX Font Info:    Redeclaring math symbol \preceq on input line 506.
+LaTeX Font Info:    Redeclaring math symbol \succeq on input line 507.
+LaTeX Font Info:    Redeclaring math symbol \leftarrow on input line 540.
+LaTeX Font Info:    Redeclaring math symbol \rightarrow on input line 542.
+LaTeX Font Info:    Redeclaring math symbol \nwarrow on input line 546.
+LaTeX Font Info:    Redeclaring math symbol \nearrow on input line 547.
+LaTeX Font Info:    Redeclaring math symbol \swarrow on input line 548.
+LaTeX Font Info:    Redeclaring math symbol \searrow on input line 549.
+LaTeX Font Info:    Redeclaring math symbol \leftrightarrow on input line 550.
+LaTeX Font Info:    Redeclaring math symbol \mapstochar on input line 557.
+LaTeX Font Info:    Redeclaring math symbol \leftharpoonup on input line 560.
+LaTeX Font Info:    Redeclaring math symbol \rightharpoonup on input line 561.
+LaTeX Font Info:    Redeclaring math symbol \leftharpoondown on input line 562.
+
+LaTeX Font Info:    Redeclaring math symbol \rightharpoondown on input line 563
+.
+LaTeX Font Info:    Redeclaring math symbol \Leftarrow on input line 575.
+LaTeX Font Info:    Redeclaring math symbol \Rightarrow on input line 576.
+LaTeX Font Info:    Redeclaring math symbol \Leftrightarrow on input line 579.
+LaTeX Font Info:    Redeclaring math symbol \rhook on input line 612.
+LaTeX Font Info:    Redeclaring math symbol \lhook on input line 613.
+LaTeX Font Info:    Redeclaring math symbol \oplus on input line 658.
+LaTeX Font Info:    Redeclaring math symbol \ominus on input line 659.
+LaTeX Font Info:    Redeclaring math symbol \otimes on input line 661.
+LaTeX Font Info:    Redeclaring math symbol \odot on input line 663.
+LaTeX Font Info:    Redeclaring math symbol \oslash on input line 675.
+\mayacnter=\count147
+\mayacnta=\count148
+\mayacntb=\count149
+\mayacntc=\count150
+\mayawidth=\dimen165
+LaTeX Font Info:    Redeclaring math symbol \intop on input line 753.
+LaTeX Font Info:    Redeclaring math symbol \ointop on input line 760.
+LaTeX Font Info:    Redeclaring math delimiter \lbrace on input line 842.
+LaTeX Info: Redefining \{ on input line 846.
+LaTeX Font Info:    Redeclaring math delimiter \rbrace on input line 848.
+LaTeX Info: Redefining \} on input line 852.
+LaTeX Font Info:    Redeclaring math delimiter \langle on input line 858.
+LaTeX Font Info:    Redeclaring math delimiter \rangle on input line 859.
+LaTeX Font Info:    Redeclaring math delimiter \vert on input line 863.
+LaTeX Font Info:    Redeclaring math delimiter \Vert on input line 865.
+LaTeX Font Info:    Redeclaring math delimiter \uparrow on input line 868.
+LaTeX Font Info:    Redeclaring math delimiter \downarrow on input line 869.
+LaTeX Font Info:    Redeclaring math delimiter \updownarrow on input line 870.
+LaTeX Font Info:    Redeclaring math delimiter \Uparrow on input line 871.
+LaTeX Font Info:    Redeclaring math delimiter \Downarrow on input line 872.
+LaTeX Font Info:    Redeclaring math delimiter \Updownarrow on input line 873.
+LaTeX Font Info:    Redeclaring math delimiter \lgroup on input line 880.
+LaTeX Font Info:    Redeclaring math delimiter \rgroup on input line 881.
+LaTeX Font Info:    Redeclaring math delimiter \lceil on input line 882.
+LaTeX Font Info:    Redeclaring math delimiter \rceil on input line 883.
+LaTeX Font Info:    Redeclaring math delimiter \lfloor on input line 884.
+LaTeX Font Info:    Redeclaring math delimiter \rfloor on input line 885.
+LaTeX Font Info:    Redeclaring math symbol \braceld on input line 903.
+LaTeX Font Info:    Redeclaring math symbol \bracerd on input line 905.
+LaTeX Font Info:    Redeclaring math symbol \bracelu on input line 907.
+LaTeX Font Info:    Redeclaring math symbol \braceru on input line 909.
+LaTeX Font Info:    Redeclaring math accent \widehat on input line 944.
+LaTeX Font Info:    Redeclaring math accent \widetilde on input line 946.
+))
 (/usr/local/texlive/2015/texmf-dist/tex/latex/float/float.sty
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
-\c@float@type=\count147
+\c@float@type=\count151
 \float@exts=\toks24
 \float@box=\box50
 \@float@everytoks=\toks25
@@ -681,34 +809,34 @@ Package: caption 2013/05/02 v3.3-89 Customizing captions (AR)
 (/usr/local/texlive/2015/texmf-dist/tex/latex/caption/caption3.sty
 Package: caption3 2013/05/02 v1.6-88 caption3 kernel (AR)
 Package caption3 Info: TeX engine: e-TeX on input line 57.
-\captionmargin=\dimen165
-\captionmargin@=\dimen166
-\captionwidth=\dimen167
-\caption@tempdima=\dimen168
-\caption@indent=\dimen169
-\caption@parindent=\dimen170
-\caption@hangindent=\dimen171
+\captionmargin=\dimen166
+\captionmargin@=\dimen167
+\captionwidth=\dimen168
+\caption@tempdima=\dimen169
+\caption@indent=\dimen170
+\caption@parindent=\dimen171
+\caption@hangindent=\dimen172
 )
-\c@ContinuedFloat=\count148
+\c@ContinuedFloat=\count152
 Package caption Info: float package is loaded.
 )
-\c@KVtest=\count149
+\c@KVtest=\count153
 \sf@farskip=\skip58
-\sf@captopadj=\dimen172
+\sf@captopadj=\dimen173
 \sf@capskip=\skip59
 \sf@nearskip=\skip60
-\c@subfigure=\count150
-\c@subfigure@save=\count151
-\c@lofdepth=\count152
-\c@subtable=\count153
-\c@subtable@save=\count154
-\c@lotdepth=\count155
+\c@subfigure=\count154
+\c@subfigure@save=\count155
+\c@lofdepth=\count156
+\c@subtable=\count157
+\c@subtable@save=\count158
+\c@lotdepth=\count159
 \sf@top=\skip61
 \sf@bottom=\skip62
 )
 (/usr/local/texlive/2015/texmf-dist/tex/latex/algorithm2e/algorithm2e.sty
 Package: algorithm2e 2013/01/06 v5.00 algorithms environments
-\c@AlgoLine=\count156
+\c@AlgoLine=\count160
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/base/ifthen.sty
 Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
@@ -734,12 +862,12 @@ subscribe by emailing sympa@lirmm.fr with 'subscribe <list> <firstname name>'
 \skiplength=\skip68
 \algomargin=\skip69
 \skipalgocfslide=\skip70
-\algowidth=\dimen173
-\inoutsize=\dimen174
-\inoutindent=\dimen175
-\interspacetitleruled=\dimen176
-\interspacealgoruled=\dimen177
-\interspacetitleboxruled=\dimen178
+\algowidth=\dimen174
+\inoutsize=\dimen175
+\inoutindent=\dimen176
+\interspacetitleruled=\dimen177
+\interspacealgoruled=\dimen178
+\interspacetitleboxruled=\dimen179
 \algocf@inoutbox=\box52
 \algocf@inputbox=\box53
 \AlCapSkip=\skip71
@@ -754,30 +882,30 @@ subscribe by emailing sympa@lirmm.fr with 'subscribe <list> <firstname name>'
 \algoheightrule=\skip76
 \algotitleheightruledefault=\skip77
 \algotitleheightrule=\skip78
-\c@algocfline=\count157
-\c@algocfproc=\count158
-\c@algocf=\count159
+\c@algocfline=\count161
+\c@algocfproc=\count162
+\c@algocf=\count163
 \algocf@algoframe=\box58
 \algocf@algobox=\box59
 ) (/usr/local/texlive/2015/texmf-dist/tex/latex/tools/multicol.sty
 Package: multicol 2015/03/31 v1.8m multicolumn formatting (FMi)
-\c@tracingmulticols=\count160
+\c@tracingmulticols=\count164
 \mult@box=\box60
-\multicol@leftmargin=\dimen179
-\c@unbalance=\count161
-\c@collectmore=\count162
-\doublecol@number=\count163
-\multicoltolerance=\count164
-\multicolpretolerance=\count165
-\full@width=\dimen180
-\page@free=\dimen181
-\premulticols=\dimen182
-\postmulticols=\dimen183
+\multicol@leftmargin=\dimen180
+\c@unbalance=\count165
+\c@collectmore=\count166
+\doublecol@number=\count167
+\multicoltolerance=\count168
+\multicolpretolerance=\count169
+\full@width=\dimen181
+\page@free=\dimen182
+\premulticols=\dimen183
+\postmulticols=\dimen184
 \multicolsep=\skip79
 \multicolbaselineskip=\skip80
 \partial@page=\box61
 \last@line=\box62
-\maxbalancingoverflow=\dimen184
+\maxbalancingoverflow=\dimen185
 \mult@rightbox=\box63
 \mult@grightbox=\box64
 \mult@gfirstbox=\box65
@@ -799,47 +927,47 @@ Package: multicol 2015/03/31 v1.8m multicolumn formatting (FMi)
 \@tempa=\box81
 \@tempa=\box82
 \@tempa=\box83
-\c@columnbadness=\count166
-\c@finalcolumnbadness=\count167
-\last@try=\dimen185
-\multicolovershoot=\dimen186
-\multicolundershoot=\dimen187
+\c@columnbadness=\count170
+\c@finalcolumnbadness=\count171
+\last@try=\dimen186
+\multicolovershoot=\dimen187
+\multicolundershoot=\dimen188
 \mult@nat@firstbox=\box84
 \colbreak@box=\box85
-\mc@col@check@num=\count168
+\mc@col@check@num=\count172
 )
 (/usr/local/texlive/2015/texmf-dist/tex/latex/etoolbox/etoolbox.sty
 Package: etoolbox 2015/05/04 v2.2 e-TeX tools for LaTeX (JAW)
-\etb@tempcnta=\count169
+\etb@tempcnta=\count173
 )
 (./First Sem Report.aux)
 \openout1 = `"First Sem Report.aux"'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 32.
-LaTeX Font Info:    ... okay on input line 32.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 32.
-LaTeX Font Info:    ... okay on input line 32.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 32.
-LaTeX Font Info:    ... okay on input line 32.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 32.
-LaTeX Font Info:    ... okay on input line 32.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 32.
-LaTeX Font Info:    ... okay on input line 32.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 32.
-LaTeX Font Info:    ... okay on input line 32.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 34.
+LaTeX Font Info:    ... okay on input line 34.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 34.
+LaTeX Font Info:    ... okay on input line 34.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 34.
+LaTeX Font Info:    ... okay on input line 34.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 34.
+LaTeX Font Info:    ... okay on input line 34.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 34.
+LaTeX Font Info:    ... okay on input line 34.
+LaTeX Font Info:    Checking defaults for U/mathx/m/n on input line 34.
+LaTeX Font Info:    ... okay on input line 34.
 
 (/usr/local/texlive/2015/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count170
-\scratchdimen=\dimen188
+\scratchcounter=\count174
+\scratchdimen=\dimen189
 \scratchbox=\box86
-\nofMPsegments=\count171
-\nofMParguments=\count172
+\nofMPsegments=\count175
+\nofMParguments=\count176
 \everyMPshowfont=\toks26
-\MPscratchCnt=\count173
-\MPscratchDim=\dimen189
-\MPnumerator=\count174
-\makeMPintoPDFobject=\count175
+\MPscratchCnt=\count177
+\MPscratchDim=\dimen190
+\MPnumerator=\count178
+\makeMPintoPDFobject=\count179
 \everyMPtoPDFconversion=\toks27
 ) (/usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
 Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
@@ -974,107 +1102,136 @@ File: siunitx-abbreviations.cfg 2015/01/21 v2.6e siunitx: Abbreviated units
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: subfig package v1.3 is loaded.
 Package caption Info: End \AtBeginDocument code.
-\c__siunitx_mathsf_int=\count176
-\c__siunitx_mathtt_int=\count177
+\c__siunitx_mathsf_int=\count180
+\c__siunitx_mathtt_int=\count181
  [1
 
 {/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-[2]
+<"/Users/JackDymond/Documents/Work/Physics Modules/Fourth Year/PHY480/Figures/N
+ice".png, id=16, 1015.795pt x 352.31625pt>
+File: "/Users/JackDymond/Documents/Work/Physics Modules/Fourth Year/PHY480/Figu
+res/Nice".png Graphic file (type png)
+
+<use "/Users/JackDymond/Documents/Work/Physics Modules/Fourth Year/PHY480/Figur
+es/Nice".png>
+Package pdftex.def Info: "/Users/JackDymond/Documents/Work/Physics Modules/Four
+th Year/PHY480/Figures/Nice".png used on input line 77.
+(pdftex.def)             Requested size: 426.79134pt x 148.02557pt.
+ [2 </Users/JackDymond/Documents/Work/Physics Modules/Fourth Year/PHY480/Figure
+s/Nice.png>] [3] [4]
 <"/Users/JackDymond/Documents/Work/Physics Modules/Fourth Year/PHY480/Figures/S
-econdOrderDis".png, id=25, 622.325pt x 490.83376pt>
+econdOrderDis".png, id=34, 622.325pt x 490.83376pt>
 File: "/Users/JackDymond/Documents/Work/Physics Modules/Fourth Year/PHY480/Figu
 res/SecondOrderDis".png Graphic file (type png)
 
 <use "/Users/JackDymond/Documents/Work/Physics Modules/Fourth Year/PHY480/Figur
 es/SecondOrderDis".png>
 Package pdftex.def Info: "/Users/JackDymond/Documents/Work/Physics Modules/Four
-th Year/PHY480/Figures/SecondOrderDis".png used on input line 115.
+th Year/PHY480/Figures/SecondOrderDis".png used on input line 162.
 (pdftex.def)             Requested size: 227.62204pt x 179.52356pt.
 
 <"/Users/JackDymond/Documents/Work/Physics Modules/Fourth Year/PHY480/Figures/S
-econdOrderOrbits".png, id=27, 620.3175pt x 608.2725pt>
+econdOrderOrbits".png, id=35, 620.3175pt x 608.2725pt>
 File: "/Users/JackDymond/Documents/Work/Physics Modules/Fourth Year/PHY480/Figu
 res/SecondOrderOrbits".png Graphic file (type png)
 
 <use "/Users/JackDymond/Documents/Work/Physics Modules/Fourth Year/PHY480/Figur
 es/SecondOrderOrbits".png>
 Package pdftex.def Info: "/Users/JackDymond/Documents/Work/Physics Modules/Four
-th Year/PHY480/Figures/SecondOrderOrbits".png used on input line 117.
+th Year/PHY480/Figures/SecondOrderOrbits".png used on input line 164.
 (pdftex.def)             Requested size: 199.16928pt x 195.30087pt.
 
 <"/Users/JackDymond/Documents/Work/Physics Modules/Fourth Year/PHY480/Figures/S
-econdOrderEnergyLoss".png, id=28, 643.40375pt x 490.83376pt>
+econdOrderEnergyLoss".png, id=36, 643.40375pt x 490.83376pt>
 File: "/Users/JackDymond/Documents/Work/Physics Modules/Fourth Year/PHY480/Figu
 res/SecondOrderEnergyLoss".png Graphic file (type png)
 
 <use "/Users/JackDymond/Documents/Work/Physics Modules/Fourth Year/PHY480/Figur
 es/SecondOrderEnergyLoss".png>
 Package pdftex.def Info: "/Users/JackDymond/Documents/Work/Physics Modules/Four
-th Year/PHY480/Figures/SecondOrderEnergyLoss".png used on input line 140.
+th Year/PHY480/Figures/SecondOrderEnergyLoss".png used on input line 187.
 (pdftex.def)             Requested size: 199.16928pt x 151.93968pt.
 
 <"/Users/JackDymond/Documents/Work/Physics Modules/Fourth Year/PHY480/Figures/S
-econdOrderEnergyLossTime".png, id=29, 636.3775pt x 495.8525pt>
+econdOrderEnergyLossTime".png, id=37, 636.3775pt x 495.8525pt>
 File: "/Users/JackDymond/Documents/Work/Physics Modules/Fourth Year/PHY480/Figu
 res/SecondOrderEnergyLossTime".png Graphic file (type png)
 
 <use "/Users/JackDymond/Documents/Work/Physics Modules/Fourth Year/PHY480/Figur
 es/SecondOrderEnergyLossTime".png>
 Package pdftex.def Info: "/Users/JackDymond/Documents/Work/Physics Modules/Four
-th Year/PHY480/Figures/SecondOrderEnergyLossTime".png used on input line 142.
+th Year/PHY480/Figures/SecondOrderEnergyLossTime".png used on input line 189.
 (pdftex.def)             Requested size: 199.16928pt x 155.18806pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[3 </Users/JackDymond/Documents/Work/Physics Modules/Fourth Year/PHY480/Figures
+[5 </Users/JackDymond/Documents/Work/Physics Modules/Fourth Year/PHY480/Figures
 /SecondOrderDis.png> </Users/JackDymond/Documents/Work/Physics Modules/Fourth Y
-ear/PHY480/Figures/SecondOrderOrbits.png>]
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[4 </Users/JackDymond/Documents/Work/Physics Modules/Fourth Year/PHY480/Figures
-/SecondOrderEnergyLoss.png> </Users/JackDymond/Documents/Work/Physics Modules/F
-ourth Year/PHY480/Figures/SecondOrderEnergyLossTime.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 216--220
+ear/PHY480/Figures/SecondOrderOrbits.png>] [6 </Users/JackDymond/Documents/Work
+/Physics Modules/Fourth Year/PHY480/Figures/SecondOrderEnergyLoss.png> </Users/
+JackDymond/Documents/Work/Physics Modules/Fourth Year/PHY480/Figures/SecondOrde
+rEnergyLossTime.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 263--267
 
  []
 
 
-Overfull \hbox (6.07292pt too wide) in paragraph at lines 222--225
+Underfull \hbox (badness 10000) in paragraph at lines 274--277
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 279--282
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 284--287
+
+ []
+
+
+Underfull \hbox (badness 6995) in paragraph at lines 289--292
+\OT1/cmr/m/n/10 mass-to-light ra-tios and intermediate-mass
+ []
+
+
+Overfull \hbox (6.07292pt too wide) in paragraph at lines 294--297
 \OT1/cmr/m/n/10 https://nssdc.gsfc.nasa.gov/planetary/factsheet/ 
  []
 
-[5] (./First Sem Report.aux) ) 
+[7] [8] (./First Sem Report.aux) ) 
 Here is how much of TeX's memory you used:
- 15949 strings out of 493089
- 318687 string characters out of 6134843
- 370082 words of memory out of 5000000
- 19294 multiletter control sequences out of 15000+600000
- 13800 words of font info for 52 fonts, out of 8000000 for 9000
+ 16513 strings out of 493089
+ 324820 string characters out of 6134843
+ 370940 words of memory out of 5000000
+ 19835 multiletter control sequences out of 15000+600000
+ 21126 words of font info for 73 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 44i,17n,47p,10403b,975s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/local/texlive/2015/texmf-dist/fonts/type1/p
-ublic/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/pu
-blic/amsfonts/cm/cmbx9.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/publ
-ic/amsfonts/cm/cmex10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/publi
-c/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public
-/amsfonts/cm/cmmi5.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/a
-msfonts/cm/cmmi7.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/ams
-fonts/cm/cmmi8.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfo
-nts/cm/cmr10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfont
-s/cm/cmr12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/
-cm/cmr17.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm
-/cmr6.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cm
-r7.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.
-pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb
-></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-</usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></
-usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb>
-Output written on "First Sem Report.pdf" (5 pages, 302144 bytes).
+ 44i,17n,47p,10405b,975s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/local/texlive/2015/texmf-dist/fonts/typ
+e1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type
+1/public/amsfonts/cm/cmbx9.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/
+public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/p
+ublic/amsfonts/cm/cmmi5.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/pub
+lic/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/publi
+c/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/
+amsfonts/cm/cmr10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/am
+sfonts/cm/cmr12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsf
+onts/cm/cmr17.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfon
+ts/cm/cmr6.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmr7.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/
+cmr8.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr
+9.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10
+.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/mathabx-type1/matha
+10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/mathabx-type1/mat
+ha7.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/mathabx-type1/ma
+thx10.pfb>
+Output written on "First Sem Report.pdf" (8 pages, 848491 bytes).
 PDF statistics:
- 97 PDF objects out of 1000 (max. 8388607)
- 64 compressed objects within 1 object stream
+ 110 PDF objects out of 1000 (max. 8388607)
+ 72 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 21 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 26 words of extra memory for PDF output out of 10000 (max. 10000000)
 

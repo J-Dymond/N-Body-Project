@@ -7,6 +7,7 @@
 \usepackage{cleveref}
 \usepackage{tabularx}
 \usepackage{siunitx}
+\usepackage{mathabx}
 \usepackage{float}
 \usepackage{subfig}
 \usepackage[]{algorithm2e}
@@ -22,6 +23,7 @@
 \setlength{\voffset}{-2.5cm}
 \setlength{\textwidth}{16cm}
 \setlength{\textheight}{25cm}
+\setlength{\parskip}{0.3em}
 
 \title{PHY480 Project Title}
 
@@ -54,15 +56,58 @@ To overcome this, the equations of motion governing the system are instead solve
 
 \subsection{The N-Body Problem in Astrophysics}
 
-In Astrophysics the distance scales being considered are often much greater than those at which the electrostatic forces act, let alone the nuclear. As a result, the gravitational force is often the one that needs to be considered. Hence, astrophysical problems, that analyse the dynamical effects of gravity dominated systems, are the ideal candidate for N-Body simulations.
+In Astrophysics the distance scales being considered are often much greater than those at which the electrostatic forces act, let alone the nuclear. As a result, the gravitational force is often the one that needs to be considered. Hence, astrophysical problems that analyse the dynamical effects of gravity dominated systems, are the ideal candidate for N-Body simulations.
 
 The latter stages of star formation is perhaps the smallest scale at which N-Body simulations become useful. In the former stages, particle sizes are very small, leaving millions of particles to account for, hence, fluid mechanics are a more computationally feasible way of modelling them. However, this changes once in the runaway and oligarchic growth stages: The onset of more significant gravitational forces, and decrease in number of bodies sees N-Body simulations become a much more effective method. 
 
-E. Kokubo and S. Ida were among the first to utilise showcase this, in their paper \textit{On Runaway Growth of Planetesimals}\cite{Runaway}. They performed 3-D N-body simulations of 3000 equally massive planetesimals. The simulations provided conclusive evidence of naturally occurring runaway growth, something only previously inferred by statistical analysis of the coagulation condition\cite{Statistics,Coagulation}. The results confirmed the validity of a statistical approach to demonstrate runaway growth. It also highlighted the disadvantages of the statistical approach in later stages of runaway growth, where the planetesimals are grouped spatially, as a statistical approach relies on a homogenous distribution of planetesimals.
+E. Kokubo and S. Ida were among the first to utilise showcase this, in their paper \textit{On Runaway Growth of Planetesimals}\cite{Runaway}. They performed 3-D N-body simulations of 3000 equally massive planetesimals, orbiting a central body. The simulations provided conclusive evidence of naturally occurring runaway growth, something only previously inferred by statistical analysis of the coagulation condition\cite{Statistics,Coagulation}. The results confirmed the validity of a statistical approach to demonstrate runaway growth. It also highlighted the disadvantages of the statistical approach in later stages of runaway growth, where the planetesimals are grouped spatially: A statistical approach assumes a homogenous distribution of planetesimals.
 
 Once planetary systems are formed they are far from stable, understanding these instabilities, and how they evolve dynamically are another use for N-body simulations. 
 
-One example of such instabilities is our early solar system. Studying the dynamicism of our early solar system is an active area of research, namely, in unravelling the mysteries of its structure.
+One example of such instabilities is our early solar system, and studying the dynamism of this system is an active area of research. Namely, unravelling the mysteries of its structure, such as the existence of the Kuiper Belt and Oort cloud. But also explaining its history, in events such as the Late heavy Bombardment. The Nice model solves all of these, and is an example of how N-body simulations can provide answers to problems requiring more specificity to solve. 
+
+The nice model, first hypothesised in 2005\cite{Nice}, describes an event in which the outer gas giants, Uranus and Neptune, undergo considerable migrations. The inner gas giants get into a 1:2 resonance, causing dynamical instabilities in the outer orbits. As a result Neptune is propelled past Uranus, as both planets move to their current positions. These migrations disband an early Kuiper belt, pushing asteroids and planetesimals both into the inner system, and out to its far reaches. Thereby explaining both the Oort Cloud, and the Late Heavy Bombardment. 
+
+The principal investigative method used in the 2005 paper was the N-Body simulations of an early solar System. K. Tsiganis et al. performed N-Body simulations of the system, including with it a circumstellar disk of planetesimals, truncated at 30 AU. They found orbital resonances in Jupiter and Saturn, would cause excitations in their orbits, and instabilities in those of Uranus and Neptune. Once relaxed, in 50\% of the simulations the system would diverge to its current architecture. Perhaps most importantly, the simulations also reproduced the current eccentricities found in the orbits of the Gas Giants, something previously unexplained by planet formation theories.
+
+This was a very high impact paper; since being published it's been cited 717 times. One of which was the extension of the model, namely, its initial conditions. 
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=15cm]{"/Users/JackDymond/Documents/Work/Physics Modules/Fourth Year/PHY480/Figures/Nice"}
+\caption{An illustration of the Nice model, with (a) through (c) showing the time evolution of the solar system. It is clear that Uranus (Light Blue) and Neptune (Dark Blue) switch positions in the simulation.}
+\label{NiceFig}
+\end{figure}
+
+The early solar system is inherently unobservable, hence its initial conditions will always remain a mystery. However, a paper by Batygin et al. aimed to put constraints on the early state of the solar system\cite{Initial}. They aimed to find \textit{fully resonant} initial conditions, that resulted in the architecture of our current system, post-evolution. Identifying which of these systems evolved in ways that corroborated with the Nice model, was also one of their aims. In their findings they found 4 fully resonant initial conditions that were compatible with the Nice model, and 4 that inferred different evolutions. Their paper explained the importance of multi-resonant in the migration of the planets, and made predictions of the eccentricity jumps and evolutionary paths that given resonances would infer. These hypotheses were then supported using N-Body simulations.
+
+With the Nice model being so well supported by subsequent work, it is now important for future developments to concur with this model. 
+
+One such development is the advent of `Planet 9', not to be confused with Pluto, Planet 9 refers to a planet several earth sizes in mass, orbiting in the far reaches of the solar system. There are many theories that allow for a 9th planet, such as an ejection early in the dynamical timescale of the solar system. A much simpler solution however, would be the capture of a 9th planet from the Sun's birth cluster.  
+
+The capture of a 9th planet would be congruent with current theories of the solar system, so long as certain criteria are met, these criteria are detailed at the beginning of a paper by Mustill et al.\cite{Planet 9}: The star--star encounter must be at a distance that would not disrupt the Kuiper belt ($\sim$150 AU); The other star must have a planet on a very wide orbit ($\geq$ 100 AU); Lastly, the planet must be captured onto a trajectory that allows for the current orbital distributions of the gas giants. The paper shows, through N-body simulations of star-star encounters, that all of these criteria could be satisfied in a capture event, albeit at a small probability. 
+
+In order for a planet to be captured from a foreign star, the sun would likely need to be in a star cluster at the time of capture. These are once again gravitationally dominated systems, and hence the study of their dynamics has been encapsulated by N-body simulations.
+
+The dynamics between stars in clusters, and that of the planets encompassing said stars, are often intertwined physically. This is true to such an extent, that the structure of a protoplanetary system can infer the dynamics of the cluster in which it was formed. 
+
+Perturbations will often effect the orbits of young planetary systems, and these perturbations will persist long after the parent cluster has evaporated. The outer orbits of these systems will relax very slowly, and can hence have the potential to carry signatures of their cluster environment. In a paper published by Cai and his colleagues, this hypotheses is supported in detail\cite{Signatures}. They carry out N-body simulations, 
+
+N-body simulations were performed of star clusters of varying stellar mass, between 0.04 M\textsubscript{\(\odot\)} and 25 M\textsubscript{\(\odot\)}. These stars hosted multi-planet systems using two different models, the distribution of semi-major axes remained consistent between these models, starting at 5.2 AU, and extending outwards to $\sim$200 AU. The planetary masses were different in each model, one used Jupiter mass planets, the other $\frac{1}{3}$ Earth mass planets. The dynamical simulations aimed to observe a departure from these initial conditions, these departures arising due to both perturbations from stars, and through planet-planet scattering.
+
+They found that the birth environment of a planetary system can be understood from observed orbital elements. They also suggested that the star clusters cause `natural selection' between the planetary systems formed within them, where only the most resilient systems would survive. Furthermore, the more dense stellar environments, such as deep inside the cluster, resulted in stronger signatures in the planetary orbits. With these statements they also provided quantitative relationships between the perturbation method, and the inclination and eccentricity of planetary orbits: They found that the inclination and eccentricity would rise systematically when subjected to external perturbations; Or if internal evolution dominated, the inclination would fluctuate in anti-phase with the eccentricity, this mechanism being dominated by the conservation of angular momentum. All of these findings were true regardless of which mass planet was used. These results also allowed the group to hypothesise the Sun's birth environment: The outskirts of a star cluster $\sim$1000 stars in size.
+
+It follows that the reverse is also true, perhaps by observing stars in clusters, you could infer properties of planetary systems encompassing them, by analysing their location in the cluster. 
+
+Photometric properties of clusters can be measured from observations, these properties are often used to predict physical parameters such as mass and radii. However, these are often estimations, and to obtain values with certainty, many parameters need to be measured to a high degree of accuracy.
+
+The N-body method sees another use in supporting values estimated using observations, this is shown by H. Baumgardt, in a paper published in 2016\cite{Baumgardt}. Baumgardt performs 900 N-body simulations of differently initialised star clusters, their concentration, size, and black hole mass fraction were varied between simulations. 
+
+By comparing data obtained from observations, against that provided through N-body simulations, the best fitting model was obtained for each cluster. With these models absolute masses could be derived, and hence their mass-light ratios. The presence of black holes in their simulations allowed predictions to be made, regarding the presence of black holes in the observed clusters. Furthermore, cluster distances could be ascertained for galaxies with more accurate velocity dispersion measurements.
+
+They found theoretically predicted mass-light ratios were in strong agreement with those predicted using N-body methods. For the majority of clusters, comparisons with N-body simulations didn't support the existence of black holes. One cluster however, $\omega$ Cen, strongly disagreed with N-body models that lacked a large black hole mass fraction, suggesting the cluster hosts a black hole at its centre, the paper suggesting a mass of $\sim$40,000 M\textsubscript{\(\odot\)}.
+
+
 
 
 \section{Progress on Project}
@@ -214,13 +259,38 @@ Icarus 1996, 123, 180--191.
 \bibitem{Statistics}
 Barge, P., and R. Pellat\\ 
 Mass spectrum and velocity dispersions during planetesimal accumulation. I. Accretion\\
-Icarus 1991 93, 270?287
+Icarus 1991 93, 270--287
 
 \bibitem{Coagulation}
 Philip J. Armitage\\
 Astrophysics of Planet Formation\\
 Sec. 4.5.1, Pg. 131\\
 10 Dec. 2009\\
+
+\bibitem{Nice}
+K. Tsiganis, R. Gomes, A. Morbidelli and H. F. Levison\\
+Origin of the orbital architecture of the giant planets of the Solar System\\ 
+Nature, Vol 435, P 469--451, 26 May 2005
+
+\bibitem{Initial}
+Konstantin Batygin and Michael E. Brown\\
+Early Dynamical Evolution of the Solar System: Pinning Down the Initial Conditions of the Nice Model\\
+ ApJ, 716:1323--1331, 2010 June 20\\
+
+\bibitem{Planet 9}
+Alexander J. Mustill, Sean N. Raymond, and Melvyn B. Davies\\
+Is there an exoplanet in the Solar System?\\
+MNRAS Issue 1, p.109-L113\\
+
+\bibitem{Signatures}
+Maxwell Xu Cai, Simon Portegies Zwart, and Arjen van Elteren\\ 
+The signatures of the parental cluster on field planetary systems\\
+MNRAS, V. 474, Issue 4, 11 March 2018, Pages 5114--5121\\
+
+\bibitem{Baumgardt}
+H. Baumgardt\\
+N-body modelling of globular clusters: masses, mass-to-light ratios and intermediate-mass black holes\\
+MNRAS, V. 464, Issue 2, 11 January 2017, P 2174--2202.
 
 \bibitem{PlanetFacts}
 Williams, David\\
