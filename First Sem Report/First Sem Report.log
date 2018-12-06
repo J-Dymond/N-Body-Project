@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.5.2)  5 DEC 2018 18:56
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.5.2)  6 DEC 2018 09:57
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -943,18 +943,18 @@ Package: etoolbox 2015/05/04 v2.2 e-TeX tools for LaTeX (JAW)
 (./First Sem Report.aux)
 \openout1 = `"First Sem Report.aux"'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 34.
-LaTeX Font Info:    ... okay on input line 34.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 34.
-LaTeX Font Info:    ... okay on input line 34.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 34.
-LaTeX Font Info:    ... okay on input line 34.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 34.
-LaTeX Font Info:    ... okay on input line 34.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 34.
-LaTeX Font Info:    ... okay on input line 34.
-LaTeX Font Info:    Checking defaults for U/mathx/m/n on input line 34.
-LaTeX Font Info:    ... okay on input line 34.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for U/mathx/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
 
 (/usr/local/texlive/2015/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -1115,123 +1115,118 @@ res/Nice".png Graphic file (type png)
 <use "/Users/JackDymond/Documents/Work/Physics Modules/Fourth Year/PHY480/Figur
 es/Nice".png>
 Package pdftex.def Info: "/Users/JackDymond/Documents/Work/Physics Modules/Four
-th Year/PHY480/Figures/Nice".png used on input line 77.
+th Year/PHY480/Figures/Nice".png used on input line 78.
 (pdftex.def)             Requested size: 426.79134pt x 148.02557pt.
  [2 </Users/JackDymond/Documents/Work/Physics Modules/Fourth Year/PHY480/Figure
-s/Nice.png>] [3] [4]
+s/Nice.png>] [3] [4] [5]
 <"/Users/JackDymond/Documents/Work/Physics Modules/Fourth Year/PHY480/Figures/S
-econdOrderDis".png, id=34, 622.325pt x 490.83376pt>
+econdOrderDis".png, id=37, 622.325pt x 490.83376pt>
 File: "/Users/JackDymond/Documents/Work/Physics Modules/Fourth Year/PHY480/Figu
 res/SecondOrderDis".png Graphic file (type png)
 
 <use "/Users/JackDymond/Documents/Work/Physics Modules/Fourth Year/PHY480/Figur
 es/SecondOrderDis".png>
 Package pdftex.def Info: "/Users/JackDymond/Documents/Work/Physics Modules/Four
-th Year/PHY480/Figures/SecondOrderDis".png used on input line 162.
+th Year/PHY480/Figures/SecondOrderDis".png used on input line 180.
 (pdftex.def)             Requested size: 227.62204pt x 179.52356pt.
 
 <"/Users/JackDymond/Documents/Work/Physics Modules/Fourth Year/PHY480/Figures/S
-econdOrderOrbits".png, id=35, 620.3175pt x 608.2725pt>
+econdOrderOrbits".png, id=38, 620.3175pt x 608.2725pt>
 File: "/Users/JackDymond/Documents/Work/Physics Modules/Fourth Year/PHY480/Figu
 res/SecondOrderOrbits".png Graphic file (type png)
 
 <use "/Users/JackDymond/Documents/Work/Physics Modules/Fourth Year/PHY480/Figur
 es/SecondOrderOrbits".png>
 Package pdftex.def Info: "/Users/JackDymond/Documents/Work/Physics Modules/Four
-th Year/PHY480/Figures/SecondOrderOrbits".png used on input line 164.
+th Year/PHY480/Figures/SecondOrderOrbits".png used on input line 182.
 (pdftex.def)             Requested size: 199.16928pt x 195.30087pt.
-
+ [6 </Users/JackDymond/Documents/Work/Physics Modules/Fourth Year/PHY480/Figure
+s/SecondOrderDis.png> </Users/JackDymond/Documents/Work/Physics Modules/Fourth 
+Year/PHY480/Figures/SecondOrderOrbits.png>]
 <"/Users/JackDymond/Documents/Work/Physics Modules/Fourth Year/PHY480/Figures/S
-econdOrderEnergyLoss".png, id=36, 643.40375pt x 490.83376pt>
+econdOrderEnergyLoss".png, id=45, 643.40375pt x 490.83376pt>
 File: "/Users/JackDymond/Documents/Work/Physics Modules/Fourth Year/PHY480/Figu
 res/SecondOrderEnergyLoss".png Graphic file (type png)
 
 <use "/Users/JackDymond/Documents/Work/Physics Modules/Fourth Year/PHY480/Figur
 es/SecondOrderEnergyLoss".png>
 Package pdftex.def Info: "/Users/JackDymond/Documents/Work/Physics Modules/Four
-th Year/PHY480/Figures/SecondOrderEnergyLoss".png used on input line 187.
+th Year/PHY480/Figures/SecondOrderEnergyLoss".png used on input line 205.
 (pdftex.def)             Requested size: 199.16928pt x 151.93968pt.
 
 <"/Users/JackDymond/Documents/Work/Physics Modules/Fourth Year/PHY480/Figures/S
-econdOrderEnergyLossTime".png, id=37, 636.3775pt x 495.8525pt>
+econdOrderEnergyLossTime".png, id=46, 636.3775pt x 495.8525pt>
 File: "/Users/JackDymond/Documents/Work/Physics Modules/Fourth Year/PHY480/Figu
 res/SecondOrderEnergyLossTime".png Graphic file (type png)
 
 <use "/Users/JackDymond/Documents/Work/Physics Modules/Fourth Year/PHY480/Figur
 es/SecondOrderEnergyLossTime".png>
 Package pdftex.def Info: "/Users/JackDymond/Documents/Work/Physics Modules/Four
-th Year/PHY480/Figures/SecondOrderEnergyLossTime".png used on input line 189.
+th Year/PHY480/Figures/SecondOrderEnergyLossTime".png used on input line 207.
 (pdftex.def)             Requested size: 199.16928pt x 155.18806pt.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[5 </Users/JackDymond/Documents/Work/Physics Modules/Fourth Year/PHY480/Figures
-/SecondOrderDis.png> </Users/JackDymond/Documents/Work/Physics Modules/Fourth Y
-ear/PHY480/Figures/SecondOrderOrbits.png>] [6 </Users/JackDymond/Documents/Work
-/Physics Modules/Fourth Year/PHY480/Figures/SecondOrderEnergyLoss.png> </Users/
-JackDymond/Documents/Work/Physics Modules/Fourth Year/PHY480/Figures/SecondOrde
-rEnergyLossTime.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 263--267
+ [7 </Users/JackDymond/Documents/Work/Physics Modules/Fourth Year/PHY480/Figure
+s/SecondOrderEnergyLoss.png> </Users/JackDymond/Documents/Work/Physics Modules/
+Fourth Year/PHY480/Figures/SecondOrderEnergyLossTime.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 281--285
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 274--277
+Underfull \hbox (badness 10000) in paragraph at lines 292--295
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 279--282
+Underfull \hbox (badness 10000) in paragraph at lines 297--300
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 284--287
+Underfull \hbox (badness 10000) in paragraph at lines 302--305
 
  []
 
-
-Underfull \hbox (badness 6995) in paragraph at lines 289--292
+[8]
+Underfull \hbox (badness 6995) in paragraph at lines 307--310
 \OT1/cmr/m/n/10 mass-to-light ra-tios and intermediate-mass
  []
 
 
-Overfull \hbox (6.07292pt too wide) in paragraph at lines 294--297
+Overfull \hbox (6.07292pt too wide) in paragraph at lines 322--325
 \OT1/cmr/m/n/10 https://nssdc.gsfc.nasa.gov/planetary/factsheet/ 
  []
 
-[7] [8] (./First Sem Report.aux) ) 
+[9] (./First Sem Report.aux) ) 
 Here is how much of TeX's memory you used:
- 16513 strings out of 493089
- 324820 string characters out of 6134843
- 370940 words of memory out of 5000000
- 19835 multiletter control sequences out of 15000+600000
+ 16515 strings out of 493089
+ 324845 string characters out of 6134843
+ 369950 words of memory out of 5000000
+ 19837 multiletter control sequences out of 15000+600000
  21126 words of font info for 73 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  44i,17n,47p,10405b,975s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/local/texlive/2015/texmf-dist/fonts/typ
-e1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type
-1/public/amsfonts/cm/cmbx9.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/
-public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/p
-ublic/amsfonts/cm/cmmi5.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/pub
-lic/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/publi
-c/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/
-amsfonts/cm/cmr10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/am
-sfonts/cm/cmr12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsf
-onts/cm/cmr17.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfon
-ts/cm/cmr6.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/
-cm/cmr7.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/
-cmr8.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr
-9.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10
-.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/mathabx-type1/matha
-10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/mathabx-type1/mat
-ha7.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/mathabx-type1/ma
-thx10.pfb>
-Output written on "First Sem Report.pdf" (8 pages, 848491 bytes).
+</usr/local/texlive/2015/texmf-dist/fonts/type1/p
+ublic/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/pu
+blic/amsfonts/cm/cmbx9.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/publ
+ic/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/publi
+c/amsfonts/cm/cmmi5.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/
+amsfonts/cm/cmmi7.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/am
+sfonts/cm/cmmi8.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsf
+onts/cm/cmr10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfon
+ts/cm/cmr12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmr17.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmr6.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/c
+mr7.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8
+.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pf
+b></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb
+></usr/local/texlive/2015/texmf-dist/fonts/type1/public/mathabx-type1/matha10.p
+fb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/mathabx-type1/matha7.
+pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/mathabx-type1/mathx1
+0.pfb>
+Output written on "First Sem Report.pdf" (9 pages, 854588 bytes).
 PDF statistics:
- 110 PDF objects out of 1000 (max. 8388607)
- 72 compressed objects within 1 object stream
+ 113 PDF objects out of 1000 (max. 8388607)
+ 74 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  26 words of extra memory for PDF output out of 10000 (max. 10000000)
 

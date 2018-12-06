@@ -23,7 +23,8 @@
 \setlength{\voffset}{-2.5cm}
 \setlength{\textwidth}{16cm}
 \setlength{\textheight}{25cm}
-\setlength{\parskip}{0.3em}
+\setlength{\parskip}{0.5em}
+\setlength{\parindent}{1.5em}
 
 \title{PHY480 Project Title}
 
@@ -68,7 +69,7 @@ One example of such instabilities is our early solar system, and studying the dy
 
 The nice model, first hypothesised in 2005\cite{Nice}, describes an event in which the outer gas giants, Uranus and Neptune, undergo considerable migrations. The inner gas giants get into a 1:2 resonance, causing dynamical instabilities in the outer orbits. As a result Neptune is propelled past Uranus, as both planets move to their current positions. These migrations disband an early Kuiper belt, pushing asteroids and planetesimals both into the inner system, and out to its far reaches. Thereby explaining both the Oort Cloud, and the Late Heavy Bombardment. 
 
-The principal investigative method used in the 2005 paper was the N-Body simulations of an early solar System. K. Tsiganis et al. performed N-Body simulations of the system, including with it a circumstellar disk of planetesimals, truncated at 30 AU. They found orbital resonances in Jupiter and Saturn, would cause excitations in their orbits, and instabilities in those of Uranus and Neptune. Once relaxed, in 50\% of the simulations the system would diverge to its current architecture. Perhaps most importantly, the simulations also reproduced the current eccentricities found in the orbits of the Gas Giants, something previously unexplained by planet formation theories.
+The principal investigative method used in the 2005 paper was the N-Body simulations of an early solar System. K. Tsiganis et al. performed N-Body simulations of the system, including with it a circumstellar disk of planetesimals, truncated at 30 AU. They found orbital resonances in Jupiter and Saturn would cause excitations in their own orbits, and instabilities in those of Uranus and Neptune. Once relaxed, in 50\% of the simulations the system would diverge to its current architecture. Perhaps most importantly, the simulations also reproduced the current eccentricities found in the orbits of the Gas Giants, something previously unexplained by planet formation theories.
 
 This was a very high impact paper; since being published it's been cited 717 times. One of which was the extension of the model, namely, its initial conditions. 
 
@@ -79,11 +80,11 @@ This was a very high impact paper; since being published it's been cited 717 tim
 \label{NiceFig}
 \end{figure}
 
-The early solar system is inherently unobservable, hence its initial conditions will always remain a mystery. However, a paper by Batygin et al. aimed to put constraints on the early state of the solar system\cite{Initial}. They aimed to find \textit{fully resonant} initial conditions, that resulted in the architecture of our current system, post-evolution. Identifying which of these systems evolved in ways that corroborated with the Nice model, was also one of their aims. In their findings they found 4 fully resonant initial conditions that were compatible with the Nice model, and 4 that inferred different evolutions. Their paper explained the importance of multi-resonant in the migration of the planets, and made predictions of the eccentricity jumps and evolutionary paths that given resonances would infer. These hypotheses were then supported using N-Body simulations.
+The early solar system is inherently unobservable, hence its initial conditions will always remain a mystery. However, a paper by Batygin et al. aimed to put constraints on the early state of the solar system\cite{Initial}. They aimed to find \textit{fully resonant} initial conditions, that resulted in the architecture of our current system, post-evolution. Identifying which of these systems evolved in ways that corroborated with the Nice model, was also one of their aims. In their findings they found 4 fully resonant initial conditions that were compatible with the Nice model, and 4 that inferred different evolutions. Their paper explained the importance of multi-resonant systems in the migration of the planets, and made predictions of the eccentricity jumps and evolutionary paths that given resonances would infer. These hypotheses were then supported using N-Body simulations of such fully resonant systems.
 
 With the Nice model being so well supported by subsequent work, it is now important for future developments to concur with this model. 
 
-One such development is the advent of `Planet 9', not to be confused with Pluto, Planet 9 refers to a planet several earth sizes in mass, orbiting in the far reaches of the solar system. There are many theories that allow for a 9th planet, such as an ejection early in the dynamical timescale of the solar system. A much simpler solution however, would be the capture of a 9th planet from the Sun's birth cluster.  
+One such development is the advent of `Planet 9', not to be confused with Pluto, Planet 9 refers to a planet several earth sizes in mass, orbiting in the far reaches of the solar system. There are many theories that allow for a 9th planet, such as an ejection, early in the dynamical timescale of the solar system. A much simpler solution however, would be the capture of a 9th planet from the Sun's birth cluster.  
 
 The capture of a 9th planet would be congruent with current theories of the solar system, so long as certain criteria are met, these criteria are detailed at the beginning of a paper by Mustill et al.\cite{Planet 9}: The star--star encounter must be at a distance that would not disrupt the Kuiper belt ($\sim$150 AU); The other star must have a planet on a very wide orbit ($\geq$ 100 AU); Lastly, the planet must be captured onto a trajectory that allows for the current orbital distributions of the gas giants. The paper shows, through N-body simulations of star-star encounters, that all of these criteria could be satisfied in a capture event, albeit at a small probability. 
 
@@ -107,7 +108,38 @@ By comparing data obtained from observations, against that provided through N-bo
 
 They found theoretically predicted mass-light ratios were in strong agreement with those predicted using N-body methods. For the majority of clusters, comparisons with N-body simulations didn't support the existence of black holes. One cluster however, $\omega$ Cen, strongly disagreed with N-body models that lacked a large black hole mass fraction, suggesting the cluster hosts a black hole at its centre, the paper suggesting a mass of $\sim$40,000 M\textsubscript{\(\odot\)}.
 
+While being very useful to support findings from observations, the N-body method is most powerful when being used to model the evolution of these environments. 
 
+An astrophysical body often under the spotlight is the binary star system, this interest is independent of the environment in which they are in. Clusters by definition have a dense star population, and hence carry the potential to host many binary systems. The binary systems seen in clusters are often in the form of \textit{intermediate} binaries, these are binaries with separations of 10s--100s AU. 
+
+The initial mass function in star formation is universal, but it is unclear as to whether this carries to stars found in binaries, as they are frequently separated in clusters due to their often high separations. Parker and Goodwin investigated this\cite{Binaries}.
+
+N-body simulations were performed of clusters with 100\% binary population, each with separations in the range of 62--620 AU, and with primary and secondary mass functions being derived from previous work in the field. They allowed these clusters to evolve dynamically over a period of $\num{e6}$ years, and then reassessed the binary populations. Two cluster morphologies were used, the more sub-structured fractal clusters, and the centrally dominated Plummer spheres. In each cluster environment ten simulations would be performed for a given initial binary population, whilst varying the positions and velocities of the individual binary systems. 
+
+After the simulations they found the binary population could decrease by a factor of 2 after 1 Myr, separation distances could also change to``statistically significant" values over this time: In the field these separation distances are sometimes used to infer dynamical history and initial conditions. This paper shows caution should be taken when doing this as even with the full knowledge of initial conditions, the dynamical evolution of clusters often created statistical outliers. That is to say, when observing binary separation distances, you cannot be sure if this is due to initial conditions, or due to a particularly unusual dynamical evolution.
+
+In particularly active environments, not only are stars seen in binaries, but also the clusters themselves. In fact $\sim$10\% of clusters are found in binary pairs, these are known as \textit{binary clusters}. 
+
+In a paper by B. Arnold et al. the formation of these systems is investigated\cite{ClusterBinary}. The group simulated systems of 1000 stars, to emulate star forming regions, over a period 20 Myr and analysed the structure of the cluster after its dynamical evolution. They varied the initial degree of sub-structuring, as to capture both smooth distributions, and the more hierarchical. Their viral ratios\footnote{This is the ratio of Kinetic to potential energy} were also varied, from relatively `cool' values of 0.3, to `hot' values of 0.7. The velocity distribution was such that stars were given velocities similar to that of stars spatially those close to them, known as `coherence'. As a method of analysing the resultant morphology, three different classifications were given: Binary Clusters, and Single clusters. The final class is less self evident: Binary Merger. In this paper, a binary merger specifies a cluster that was once a binary at some point throughout its evolution, but merged over the 20 Myr period, hence a merger.
+
+They found that binary clusters could form from these star forming regions, and that this would be the case much more frequently if the cluster was initially `hot' dynamically. However, they also noted this was a very stochastic mechanism, and that it was impossible to determine whether a binary would form, and indeed which stars occupy the two clusters, from the initial conditions alone. When binaries did form, they found that they'd often drift apart from one another, and that initial substructure would significantly influence the mass ratio of the binaries. They found high amounts of substructure gave high/low mass ratios, no substructure gave more equal mass ratios, and the most equal mass ratios came from regions with a small amount of initial substructure. In the event that clusters remained bound to one another, they'd recombine later in time, this was mostly the case in systems that began in virial equilibrium.
+
+Clusters are very interesting astrophysical objects, that can provide information about astrophysical problems, from the formation of planets, to the formation and evolution of galaxies. However these areas are often complicated by the dominance of turbulence, something N-body models haven't consider in the papers discussed.
+
+Galaxies are often dominated by dark matter, something which traditional N-body models can't simulate, due to its diffuse fluid like behaviour. Being so dominant in many large scale processes, dark matter cannot be ignored at the large scale. Hence, a model was developed to assist in simulations of galaxies, as well as those at the cosmological scale. 
+
+GADGET (\textbf{GA}laxies with \textbf{D}ark matter and \textbf{G}as int\textbf{E}rac\textbf{T}), is a tool, first developed in 2001, to allow N-body simulations to be performed while still considering dark matter and gas distributions. This was achieved by implementing smoothed particle hydrodynamics, a lagrangian technique which is effective in solving hydrodynamical problems, in conjunction with the simulation of individual particles. This could be used with collisionless particles, therefore capturing dark matter in the scope of the code's capabilities. 
+
+The code has seen prolific use in the field, quite recently a more advanced version of the code, GADGET-3, was used in simulations of the Milky Way. 
+
+The Milky way's disk shows scale warps, something seen in the all distributions of its constituent matter, this is highlighted at the beginning of a paper by M. Chequers et al. The paper presented a method of analysing wave like perturbations in the disk. They also hypothesised that these warps may be caused by inhomogeneities in the dark matter distribution in the halo. 
+
+They perform simulations of smoothly distributed halos, as well as those with more substructure.
+
+
+
+Use Unparalled 
+Cosmological to Planetary
 
 
 \section{Progress on Project}
@@ -280,7 +312,7 @@ Early Dynamical Evolution of the Solar System: Pinning Down the Initial Conditio
 \bibitem{Planet 9}
 Alexander J. Mustill, Sean N. Raymond, and Melvyn B. Davies\\
 Is there an exoplanet in the Solar System?\\
-MNRAS Issue 1, p.109-L113\\
+MNRAS Issue 1, p.109--113\\
 
 \bibitem{Signatures}
 Maxwell Xu Cai, Simon Portegies Zwart, and Arjen van Elteren\\ 
@@ -291,6 +323,16 @@ MNRAS, V. 474, Issue 4, 11 March 2018, Pages 5114--5121\\
 H. Baumgardt\\
 N-body modelling of globular clusters: masses, mass-to-light ratios and intermediate-mass black holes\\
 MNRAS, V. 464, Issue 2, 11 January 2017, P 2174--2202.
+
+\bibitem{Binaries}
+Richard J. Parker. and Simon P. Goodwin\\
+The same, but different: Stochasticity in binary destruction\\
+MNRAS, V. 424, Issue 1, 21 July 2012, P. 272--281
+
+\bibitem{ClusterBinary}
+Becky Arnold, Simon P. Goodwin, D. W. Griffiths and Richard. J. Parker\\
+How do binary clusters form?\\
+MNRAS, V. 471, Issue 2, 21 October 2017, P. 2498--2507
 
 \bibitem{PlanetFacts}
 Williams, David\\
