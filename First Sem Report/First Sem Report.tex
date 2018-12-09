@@ -26,9 +26,9 @@
 \setlength{\parskip}{0.5em}
 \setlength{\parindent}{1.5em}
 
-\title{PHY480 Project Title}
+\title{N-Body Simulations of the Solar System -- First Semester Report}
 
-\author{Your registration number}
+\author{Jack Dymond - 150194462}
 
 \date{\today}
 
@@ -36,14 +36,8 @@
 \maketitle
 
 \begin{abstract}
-This \LaTeX\ document serves as a template for the PHY480 Autumn Semester report, which is due for submission by the Friday of week 12. The report should have a short abstract, up to about 200 words long, which summarises the contents of the report.
+A literature search was performed, and progress made on creating a 4th order predictor corrector algorithm. The first steps were creating an efficient, and accurate second order N-body code, to help initialise the non-self-starting predictor corrector. A plan was also created, to help organise my time in the second semester. 
 \end{abstract}
-
-\section{Introduction}
-\label{sec:introduction}
-
-
-
 
 \section{Literature Review}
 
@@ -128,18 +122,24 @@ Clusters are very interesting astrophysical objects, that can provide informatio
 
 Galaxies are often dominated by dark matter, something which traditional N-body models can't simulate, due to its diffuse fluid like behaviour. Being so dominant in many large scale processes, dark matter cannot be ignored at the large scale. Hence, a model was developed to assist in simulations of galaxies, as well as those at the cosmological scale. 
 
-GADGET (\textbf{GA}laxies with \textbf{D}ark matter and \textbf{G}as int\textbf{E}rac\textbf{T}), is a tool, first developed in 2001, to allow N-body simulations to be performed while still considering dark matter and gas distributions. This was achieved by implementing smoothed particle hydrodynamics, a lagrangian technique which is effective in solving hydrodynamical problems, in conjunction with the simulation of individual particles. This could be used with collisionless particles, therefore capturing dark matter in the scope of the code's capabilities. 
+GADGET (\textbf{GA}laxies with \textbf{D}ark matter and \textbf{G}as int\textbf{E}rac\textbf{T}), is a tool, first developed in 2001\cite{Gadget}, to allow N-body simulations to be performed while still considering dark matter and gas distributions. This was achieved by implementing smoothed particle hydrodynamics, a lagrangian technique which is effective in solving hydrodynamical problems, in conjunction with the simulation of individual particles. This could be used with collisionless particles, therefore capturing dark matter in the scope of the code's capabilities. 
 
 The code has seen prolific use in the field, quite recently a more advanced version of the code, GADGET-3, was used in simulations of the Milky Way. 
 
-The Milky way's disk shows scale warps, something seen in the all distributions of its constituent matter, this is highlighted at the beginning of a paper by M. Chequers et al. The paper presented a method of analysing wave like perturbations in the disk. They also hypothesised that these warps may be caused by inhomogeneities in the dark matter distribution in the halo. 
+The Milky way's disk shows vertical warps, this is highlighted at the beginning of a paper by M. Chequers et al.\cite{Bendy}, and the paper presented a method of analysing wave like perturbations in the disk. They also hypothesised that these warps may be caused by inhomogeneities in the dark matter distribution in the halo. 
 
-They perform simulations of smoothly distributed halos, as well as those with more substructure.
+They perform simulations of smoothly distributed halos, as well as those with more substructure, in form of dark matter satellites, `sub-halos'. They found the bending of the disk was quantitatively similar in both halo distributions, albeit with amplified amplitudes produced when satellites were present in the halos. This is shown in \cref{Disk}, a figure lifted directly from the paper. It is clear the effect is more pronounced in the `satellites' simulation.
 
+\begin{figure}[h!]
+\centering
+\includegraphics[width=15cm]{"/Users/JackDymond/Documents/Work/Physics Modules/Fourth Year/PHY480/Figures/Disk"}
+\caption{The mean vertical displacement in each simulation is highlighted using a colour coded map of the galaxy.}
+\label{Disk}
+\end{figure}
 
+To better understand the linkage between the halo and the disk, they propose the simulations be used in conjunction with observations, as is so often the case in N-body research in astrophysics.
 
-Use Unparalled 
-Cosmological to Planetary
+It is clear from this literature survey that the N-body method is a very powerful tool, being prevalent from the planetary scale, to the cosmological, its scope is unparalleled in this field. The algorithmic complexity necessary to undertake these simulations efficiently is also very high, especially when hydrodynamic systems are implemented in parallel. Hence using these methods in this project will prove invaluable in the pursuit of a career in the academic and industrial environment alike. 
 
 
 \section{Progress on Project}
@@ -280,6 +280,7 @@ Hence, the project can continue towards the goal of creating a 4th Order Predict
 
 \section{Project Plan}
 
+I'll produce a gantt chart, and explain it in this section. Although, I've not got round to doing this yet!
 
 \begin{thebibliography}{9}
 
@@ -334,6 +335,16 @@ Becky Arnold, Simon P. Goodwin, D. W. Griffiths and Richard. J. Parker\\
 How do binary clusters form?\\
 MNRAS, V. 471, Issue 2, 21 October 2017, P. 2498--2507
 
+\bibitem{Gadget}
+Volker Springel, Naoki Yoshida, and Simon D. M. White\\
+GADGET: a code for collisionless and gasdynamical cosmological simulations\\
+New Astronomy, V. 6, Issue 2, April 2001, P. 79--117
+
+\bibitem{Bendy}
+Matthew H Chequers, Lawrence M Widrow, and Keir Darling\\
+Bending waves in the Milky Way?s disc from halo substructure\\
+MNRAS, V. 480, Issue 3, 1 November 2018, P. 4244--4258
+
 \bibitem{PlanetFacts}
 Williams, David\\
 TPlanetary Fact Sheet - Metric\\
@@ -359,7 +370,9 @@ Neptune & 102                                      & 5.4                        
 \end{table}
 
 \section{Relationship to previous projects}
-If you have already completed a project in the group where you are working, you should include a $\sim 1$-page statement indicating how the PHY480 project differs from previous work. This is especially important if you are building on previous work done, for example, during a summer project. You must state clearly the new work that you have done during this semester.
+In my second semester 3rd year project, I used the N-body method to analyse the fragility of the solar system to external perturbations. This used code very similar to that in the first half of this project. Hence, I focussed on streamlining the process, making it more efficient, and increasing its functionality. I also focussed on creating a framework to implement it with a 4th order corrector, rather than collecting and collating results from simulations. 
+
+Hence, while the projects overlap in the fundamental method used, my focus has been different in each project. With this 4th year project concentrating much more on the code itself, rather than implementing it to an astrophysical problem.
 
 \end{appendix}
 
