@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.5.2)  6 DEC 2018 13:28
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.5.2)  12 DEC 2018 16:38
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1115,7 +1115,7 @@ res/Nice".png Graphic file (type png)
 <use "/Users/JackDymond/Documents/Work/Physics Modules/Fourth Year/PHY480/Figur
 es/Nice".png>
 Package pdftex.def Info: "/Users/JackDymond/Documents/Work/Physics Modules/Four
-th Year/PHY480/Figures/Nice".png used on input line 72.
+th Year/PHY480/Figures/Nice".png used on input line 70.
 (pdftex.def)             Requested size: 426.79134pt x 148.02557pt.
  [2 </Users/JackDymond/Documents/Work/Physics Modules/Fourth Year/PHY480/Figure
 s/Nice.png>] [3] [4]
@@ -1127,7 +1127,7 @@ res/Disk".png Graphic file (type png)
 <use "/Users/JackDymond/Documents/Work/Physics Modules/Fourth Year/PHY480/Figur
 es/Disk".png>
 Package pdftex.def Info: "/Users/JackDymond/Documents/Work/Physics Modules/Four
-th Year/PHY480/Figures/Disk".png used on input line 135.
+th Year/PHY480/Figures/Disk".png used on input line 137.
 (pdftex.def)             Requested size: 426.79134pt x 153.4529pt.
  [5 </Users/JackDymond/Documents/Work/Physics Modules/Fourth Year/PHY480/Figure
 s/Disk.png>] [6]
@@ -1139,7 +1139,7 @@ res/SecondOrderDis".png Graphic file (type png)
 <use "/Users/JackDymond/Documents/Work/Physics Modules/Fourth Year/PHY480/Figur
 es/SecondOrderDis".png>
 Package pdftex.def Info: "/Users/JackDymond/Documents/Work/Physics Modules/Four
-th Year/PHY480/Figures/SecondOrderDis".png used on input line 196.
+th Year/PHY480/Figures/SecondOrderDis".png used on input line 198.
 (pdftex.def)             Requested size: 227.62204pt x 179.52356pt.
 
 <"/Users/JackDymond/Documents/Work/Physics Modules/Fourth Year/PHY480/Figures/S
@@ -1150,7 +1150,7 @@ res/SecondOrderOrbits".png Graphic file (type png)
 <use "/Users/JackDymond/Documents/Work/Physics Modules/Fourth Year/PHY480/Figur
 es/SecondOrderOrbits".png>
 Package pdftex.def Info: "/Users/JackDymond/Documents/Work/Physics Modules/Four
-th Year/PHY480/Figures/SecondOrderOrbits".png used on input line 198.
+th Year/PHY480/Figures/SecondOrderOrbits".png used on input line 200.
 (pdftex.def)             Requested size: 199.16928pt x 195.30087pt.
 
 <"/Users/JackDymond/Documents/Work/Physics Modules/Fourth Year/PHY480/Figures/S
@@ -1161,7 +1161,7 @@ res/SecondOrderEnergyLoss".png Graphic file (type png)
 <use "/Users/JackDymond/Documents/Work/Physics Modules/Fourth Year/PHY480/Figur
 es/SecondOrderEnergyLoss".png>
 Package pdftex.def Info: "/Users/JackDymond/Documents/Work/Physics Modules/Four
-th Year/PHY480/Figures/SecondOrderEnergyLoss".png used on input line 221.
+th Year/PHY480/Figures/SecondOrderEnergyLoss".png used on input line 223.
 (pdftex.def)             Requested size: 199.16928pt x 151.93968pt.
 
 <"/Users/JackDymond/Documents/Work/Physics Modules/Fourth Year/PHY480/Figures/S
@@ -1172,7 +1172,7 @@ res/SecondOrderEnergyLossTime".png Graphic file (type png)
 <use "/Users/JackDymond/Documents/Work/Physics Modules/Fourth Year/PHY480/Figur
 es/SecondOrderEnergyLossTime".png>
 Package pdftex.def Info: "/Users/JackDymond/Documents/Work/Physics Modules/Four
-th Year/PHY480/Figures/SecondOrderEnergyLossTime".png used on input line 223.
+th Year/PHY480/Figures/SecondOrderEnergyLossTime".png used on input line 225.
 (pdftex.def)             Requested size: 199.16928pt x 155.18806pt.
 
 
@@ -1187,32 +1187,32 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 [8 </Users/JackDymond/Documents/Work/Physics Modules/Fourth Year/PHY480/Figures
 /SecondOrderEnergyLoss.png> </Users/JackDymond/Documents/Work/Physics Modules/F
 ourth Year/PHY480/Figures/SecondOrderEnergyLossTime.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 298--302
+Underfull \hbox (badness 10000) in paragraph at lines 300--304
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 309--312
+Underfull \hbox (badness 10000) in paragraph at lines 311--314
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 314--317
+Underfull \hbox (badness 10000) in paragraph at lines 316--319
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 319--322
+Underfull \hbox (badness 10000) in paragraph at lines 321--324
 
  []
 
 
-Underfull \hbox (badness 6995) in paragraph at lines 324--327
+Underfull \hbox (badness 6995) in paragraph at lines 326--329
 \OT1/cmr/m/n/10 mass-to-light ra-tios and intermediate-mass
  []
 
 [9]
-Overfull \hbox (6.07292pt too wide) in paragraph at lines 349--352
+Overfull \hbox (6.07292pt too wide) in paragraph at lines 351--354
 \OT1/cmr/m/n/10 https://nssdc.gsfc.nasa.gov/planetary/factsheet/ 
  []
 
@@ -1244,7 +1244,7 @@ b></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb
 fb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/mathabx-type1/matha7.
 pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/mathabx-type1/mathx1
 0.pfb>
-Output written on "First Sem Report.pdf" (10 pages, 2527508 bytes).
+Output written on "First Sem Report.pdf" (10 pages, 2527566 bytes).
 PDF statistics:
  122 PDF objects out of 1000 (max. 8388607)
  79 compressed objects within 1 object stream
