@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.5.2)  13 DEC 2018 14:42
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.5.2)  13 DEC 2018 22:05
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1120,7 +1120,7 @@ th Year/PHY480/Figures/Nice".png used on input line 72.
  [2 </Users/JackDymond/Documents/Work/Physics Modules/Fourth Year/PHY480/Figure
 s/Nice.png>] [3] [4]
 <"/Users/JackDymond/Documents/Work/Physics Modules/Fourth Year/PHY480/Figures/D
-isk".png, id=33, 1097.09875pt x 394.47375pt>
+isk".png, id=32, 1097.09875pt x 394.47375pt>
 File: "/Users/JackDymond/Documents/Work/Physics Modules/Fourth Year/PHY480/Figu
 res/Disk".png Graphic file (type png)
 
@@ -1196,32 +1196,32 @@ th Year/PHY480/Figures/Gantt".png used on input line 298.
 (pdftex.def)             Requested size: 455.24408pt x 307.52896pt.
  [10 </Users/JackDymond/Documents/Work/Physics Modules/Fourth Year/PHY480/Figur
 es/Gantt.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 332--336
+Underfull \hbox (badness 10000) in paragraph at lines 331--335
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 343--346
+Underfull \hbox (badness 10000) in paragraph at lines 342--345
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 348--351
+Underfull \hbox (badness 10000) in paragraph at lines 347--350
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 353--356
+Underfull \hbox (badness 10000) in paragraph at lines 352--355
 
  []
 
 
-Underfull \hbox (badness 6995) in paragraph at lines 358--361
+Underfull \hbox (badness 6995) in paragraph at lines 357--360
 \OT1/cmr/m/n/10 mass-to-light ra-tios and intermediate-mass
  []
 
 
-Overfull \hbox (6.07292pt too wide) in paragraph at lines 383--386
+Overfull \hbox (6.07292pt too wide) in paragraph at lines 382--385
 \OT1/cmr/m/n/10 https://nssdc.gsfc.nasa.gov/planetary/factsheet/ 
  []
 
@@ -1254,7 +1254,7 @@ pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/mathabx-type1/matha1
 0.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/mathabx-type1/math
 a7.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/mathabx-type1/mat
 hx10.pfb>
-Output written on "First Sem Report.pdf" (12 pages, 2615026 bytes).
+Output written on "First Sem Report.pdf" (12 pages, 2615020 bytes).
 PDF statistics:
  134 PDF objects out of 1000 (max. 8388607)
  86 compressed objects within 1 object stream
