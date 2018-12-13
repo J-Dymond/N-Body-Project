@@ -47,17 +47,17 @@ In order to undertake the project it was necessary to first inform myself of the
 
 \subsection{The N-Body Problem}
 
-Consider a system of particles, or Bodies, in a dynamic system. In order to understand how the system will behave, the forces acting on each particle need to be understood, as well as how these forces vary with time. In very simple systems, namely those involving only two particles, there is often an analytical solution to understand how it will behave. Such as the Bohr model of an atom. However, when multiple particles are introduced, more than three to be specific, the problem is impossible to solve analytically, without making simplifying assumptions.\footnote{Such a Rydberg atom in atomic Physics that makes the assumption of a `Hydrogenic' atom, simplifying the problem to the Bohr model.} Hence, the N-Body Problem.  
+Consider a system of particles, or Bodies, in a dynamic system. In order to understand how the system will behave, the forces acting on each particle need to be understood, as well as how these forces vary with time. In very simple systems, namely those involving only two particles, there is often an analytical solution to understand how it will behave. Such as the Bohr model of an atom. However, when multiple particles are introduced, more than three to be specific, the problem is impossible to solve analytically without making simplifying assumptions.\footnote{Such a Rydberg atom in atomic Physics that makes the assumption of a `Hydrogenic' atom, simplifying the problem to the Bohr model.} Hence, the N-Body Problem.  
 
-To overcome this, the equations of motion governing the system are instead solved numerically. When the problem was first identified In the early 17th century, solving these equations to obtain long term dynamical behaviour was unfeasible. This is because the number of interactions that need to be computed will scale quadratically with N. Consequently, it wasn't until the advent of computers that N-body simulations began to proliferate in the Astrophysics community.
+To overcome this, the equations of motion governing the system are solved numerically instead. When the problem was first identified In the early 17th century, solving these equations to obtain long term dynamical behaviour was unfeasible. This is because the number of interactions that need to be computed will scale quadratically with the number of bodies, N. Consequently, it wasn't until the advent of computers that N-body simulations began to see use in the Astrophysics community.
 
 \subsection{The N-Body Problem in Astrophysics}
 
-In Astrophysics the distance scales being considered are often so great, that gravity is the only force that contributes to a system's behaviour. Hence, astrophysical problems that analyse the dynamics of gravity dominated systems, are the ideal candidate for N-Body simulations.
+In Astrophysics the distance scales being considered are often so great that gravity is the only force that contributes to a system's behaviour. This makes the equations of motion relatively simple. Hence, astrophysical problems that analyse the dynamics of gravity dominated systems, are the ideal candidate for N-Body simulations.
 
-The latter stages of planet formation is perhaps the smallest scale at which N-Body simulations become useful. In the former stages, particle sizes are very small, leaving millions of particles to account for. Hence, fluid mechanics are a more computationally feasible way of modelling them. However, this changes once in the runaway and oligarchic growth stages: There is an onset of more significant gravitational forces, and decrease in number of bodies. This sees N-Body simulations become a much more effective method. 
+The latter stages of planet formation is perhaps the smallest scale at which N-Body simulations become useful. In the former stages, particle sizes are very small, leaving millions of particles to account for. Hence, the use of fluid mechanics is a more computationally feasible way of modelling them. However, this changes once in the runaway and oligarchic growth stages: There is an onset of more significant gravitational forces, and decrease in number of bodies. This sees N-Body simulations become a much more effective method. 
 
-E. Kokubo and S. Ida were among the first to show this, in their paper \textit{On Runaway Growth of Planetesimals}\cite{Runaway}. They performed 3-Dimensional N-body simulations of 3000 equally massive planetesimals, orbiting a central body. The simulations provided conclusive evidence of naturally occurring runaway growth. This is something only previously inferred by statistical analysis of the coagulation condition\cite{Statistics,Coagulation}. The results thereby confirmed the validity of a statistical approach to demonstrate runaway growth. It also highlighted the disadvantages of the statistical approach in later stages of runaway growth, where the planetesimals are clustered together: A statistical approach assumes a homogenous distribution of planetesimals.
+E. Kokubo and S. Ida were among the first to show this, in their paper \textit{On Runaway Growth of Planetesimals}\cite{Runaway}. They performed 3-Dimensional N-body simulations of 3000 equally massive planetesimals, orbiting a central body. The simulations provided conclusive evidence of naturally occurring runaway growth. This is something only previously inferred by statistical analysis of the coagulation condition\cite{Statistics,Coagulation}. The results thereby confirmed the validity of a statistical approach to demonstrate runaway growth. It also highlighted the disadvantages of the statistical approach in later stages of runaway growth, where the planetesimals are clustered together: The statistical approach assumes a homogenous distribution of planetesimals.
 
 Once planetary systems are formed they are far from stable, understanding these instabilities, and how they evolve dynamically are another use for N-body simulations. 
 
@@ -65,12 +65,12 @@ One example of such instabilities is our early solar system, and studying its dy
 
 The nice model, first hypothesised in 2005\cite{Nice}, describes an event in which the outer gas giants, Uranus and Neptune, undergo considerable migrations. The inner gas giants get into a 1:2 resonance, causing dynamical instabilities in the outer orbits. Consequently, Neptune is propelled past Uranus, as both planets moved to their current positions. These migrations disband an early Kuiper belt, pushing asteroids and planetesimals into the inner system, as well as out to its far reaches. Thereby explaining both the Oort Cloud, and the Late Heavy Bombardment. 
 
-The principal investigative method used in the 2005 paper was the N-Body simulations of an early solar System. K. Tsiganis et al. performed N-Body simulations of the system, including with it a circumstellar disk of planetesimals, which was truncated at 30 AU. They found orbital resonances in Jupiter and Saturn would cause excitations in their own orbits, and instabilities in those of Uranus and Neptune. Once relaxed, in 50\% of the simulations the system would diverge to its current architecture. Perhaps most importantly, the simulations also reproduced the current eccentricities found in the orbits of the Gas Giants, something previously unexplained by planet formation theories.
+The main method used in the 2005 paper was the N-Body simulations of an early solar System. K. Tsiganis et al. performed N-Body simulations of the system, including with it a circumstellar disk of planetesimals, which was truncated at 30 AU. They found orbital resonances in Jupiter and Saturn would cause excitations in their own orbits, and instabilities in those of Uranus and Neptune. Once relaxed, in 50\% of the simulations the system would diverge to its current architecture. Perhaps most importantly, the simulations also reproduced the current eccentricities found in the orbits of the Gas Giants, something previously unexplained by planet formation theories.
 
 \begin{figure}[h!]
 \centering
 \includegraphics[width=15cm]{"/Users/JackDymond/Documents/Work/Physics Modules/Fourth Year/PHY480/Figures/Nice"}
-\caption{An illustration of the Nice model, it shows orbital distance on each exis (Given in AU). (a) through (c) shows the time evolution of the solar system. It is clear that Uranus (Light Blue) and Neptune (Dark Blue) switch positions in the simulation.}
+\caption{An illustration of the Nice model, each plot shows orbital distance on each axis (Given in AU). Subplots (a) through (c) show the time evolution of the solar system. It is clear that Uranus (Light Blue) and Neptune (Dark Blue) switch positions in the simulation.}
 \label{NiceFig}
 \end{figure}
 
@@ -118,7 +118,7 @@ After the simulations they found the binary population could decrease by a facto
 
 In particularly active environments, not only are stars seen in binaries, but also the clusters themselves. In fact $\sim$10\% of clusters are found in binary pairs, these are known as \textit{binary clusters}. 
 
-In a paper by B. Arnold et al. the formation of these systems is investigated\cite{ClusterBinary}. The group simulated systems of 1000 stars, to emulate star forming regions. This was done over a period 20 Myr, the structure of the cluster was analysed during, and after its dynamical evolution. They varied the initial degree of sub-structuring, as to capture both smooth, and more hierarchical distributions. Their viral ratios\footnote{This is the ratio of Kinetic to potential energy} were also varied, from relatively `cool' values of 0.3, to `hot' values of 0.7. The velocity distribution was such that stars were given velocities similar to that of stars close to them spatially, known as `coherence'. As a method of analysing the resultant morphology, three different classifications were given: \textit{Binary Clusters}, and \textit{Single clusters}, these being self evident. The final class was less so: \textit{Binary Merger}. In this paper, a binary merger specifies a cluster that was once a binary at some point throughout its evolution, but merged over the 20 Myr period.
+In a paper by B. Arnold et al. the formation of these systems is investigated\cite{ClusterBinary}. The group simulated systems of 1000 stars, to emulate star forming regions. This was done over a period 20 Myr, the structure of the cluster was analysed during, and after its dynamical evolution. They varied the initial degree of sub-structuring, as to capture both smooth, and more hierarchical distributions. Their viral ratios\footnote{This is the ratio of Kinetic to potential energy} were also varied, from relatively `cool' values of 0.3, to `hot' values of 0.7. The velocity distribution was such that stars were given velocities similar to that of stars close to them spatially, known as `coherence'. As a method of analysing the resultant morphology, three different classifications were given: \textit{Binary Clusters}, and \textit{Single clusters}, these being self explanatory. The final class was less so: \textit{Binary Merger}. In this paper, a binary merger specifies a cluster that was a binary at some point throughout its evolution, but merged over the 20 Myr period.
 
 They found that binary clusters could form from these star forming regions, and that this would be the case more frequently if the cluster was initially `hot' dynamically. However, they also noted this was a very stochastic mechanism: It was impossible to determine whether a binary would form, and indeed which stars occupy the two clusters, from the initial conditions alone. When binaries did form, they found that they'd often drift apart from one another, and that initial substructure would significantly influence the mass ratio of the binaries. They found high amounts of substructure gave high/low mass ratios, no substructure gave more equal mass ratios. The most equal mass ratios came from regions with a small amount of initial substructure. In the event that clusters remained bound to one another, they would usually recombine later in time, this was mostly the case in systems that began in virial equilibrium.
 
@@ -290,12 +290,32 @@ Hence, the project can continue towards the goal of creating a 4th Order Predict
 
 \section{Project Plan}
 
-The Gantt chart is an effective method of visualising a project, its steps, milestones, and timescales over which they should be achieved. A Gantt chart for this project is presented below.
+The Gantt chart is an effective method of visualising a project, its steps, milestones, and timescales over which they should be achieved. A Gantt chart for this project is presented below, along with more detailed explanations of its components.
 
 
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=16cm]{"/Users/JackDymond/Documents/Work/Physics Modules/Fourth Year/PHY480/Figures/Gantt"}
+    \caption{A Gantt Chart visualising the proposed second semester plan. The date is given along the $x$-axis, and key events are shown on the $y$-axis.}
+    \label{Gantt}
+\end{figure}
+
+In \cref{Gantt}, key parts of the project are included, as well as key events along the semester, as to provide context. These key events include the standard term date, the Easter break, and the exam period. Time has also been allocated to exam revision. These events will effect the timescales of the steps included below. For example, the Easter break will allow lots of progress to be made on the report, hence a short timescale. However, this progress will slow when exam revision needs to be considered.
+
+There are two distinct parts to project itself, the \textit{programming} and \textit{write-up}. However these can be broken down further to their constituent parts.
+
+The Programming stage includes 3 main components that are integral to the project: Writing code, Testing/Debugging, and Results/Analysis. The 4th component describes additional tasks that can be completed, if time allows.
+
+Writing code, will include creating a predictor-corrector, and then giving it a variable time-step to improve efficiency. This should take about 5 weeks. Then the code can be tested, if this code is accurate enough it should be able to recreate the Milankovitch cycles. It should also be able to specific 3 body problems, such as producing a figure of 8 path, shared between all 3 bodies. Then the data should be collated from these and presented using figures.
+
+If time allows, additional features can be applied to the code, or the code can be applied to astrophysical problems. Examples of additional features, include: Variable time-steps between bodies, and Parallelisation. An astrophysical problem has a wide range of possibilities, as shown in the literature survey. However, with the computational resources available, a smaller scale problem should be chosen. As shown in the Gantt chart, the current plan predicts ample time will be available to carry out additional tasks, this may change however.
+
+The Write-up stage includes 3 main components: Obtaining figures, Writing the first draft, and Improving on the first draft. Obtaining the figures is imperative, as to show the code works, or to explain its astrophysical application, figures will be a vital visualisation tool. This will overlap with the results/analysis stage, as the figures will be obtained from the analysis code. The first draft is self explanatory, as is the improvement stage. Having a first draft completed in the later stages of the semester will absorb a lot of pressure: Only minor improvements will need to be made to report, as exam revision begins to take precedence.
 
 
-\pagebreak[4]
+There is also an overlap between key tasks in the project, this is to allow for unforeseen circumstances that increase the time taken to complete certain tasks. But, this is also to allow for tasks to be completed in parallel, for example, writing code and debugging are more naturally done in tandem. Furthermore a provisional submission deadline is included, placed at the end of the standard term date. This presents a `hard' deadline for the write-up stage, in contrast to the somewhat `softer' deadline in the programming stage.
+
+
 \begin{thebibliography}{9}
 
 \bibitem{Runaway}
@@ -356,7 +376,7 @@ New Astronomy, V. 6, Issue 2, April 2001, P. 79--117
 
 \bibitem{Bendy}
 Matthew H Chequers, Lawrence M Widrow, and Keir Darling\\
-Bending waves in the Milky Way?s disc from halo substructure\\
+Bending waves in the Milky Way's disc from halo substructure\\
 MNRAS, V. 480, Issue 3, 1 November 2018, P. 4244--4258
 
 \bibitem{PlanetFacts}
@@ -366,6 +386,7 @@ https://nssdc.gsfc.nasa.gov/planetary/factsheet/\\ As of: \today
 
 \end{thebibliography}
 
+\pagebreak[4]
 
 \begin{appendix}
 
