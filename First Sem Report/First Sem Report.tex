@@ -26,6 +26,8 @@
 \setlength{\parskip}{0.5em}
 \setlength{\parindent}{1.5em}
 
+\usepackage[font=footnotesize,labelfont=bf]{caption}
+
 \title{N-Body Simulations of the Solar System -- First Semester Report}
 
 \author{Jack Dymond - 150194462}
@@ -116,57 +118,60 @@ After the simulations they found the binary population could decrease by a facto
 
 In particularly active environments, not only are stars seen in binaries, but also the clusters themselves. In fact $\sim$10\% of clusters are found in binary pairs, these are known as \textit{binary clusters}. 
 
-In a paper by B. Arnold et al. the formation of these systems is investigated\cite{ClusterBinary}. The group simulated systems of 1000 stars, to emulate star forming regions, over a period 20 Myr and analysed the structure of the cluster after its dynamical evolution. They varied the initial degree of sub-structuring, as to capture both smooth distributions, and the more hierarchical. Their viral ratios\footnote{This is the ratio of Kinetic to potential energy} were also varied, from relatively `cool' values of 0.3, to `hot' values of 0.7. The velocity distribution was such that stars were given velocities similar to that of stars spatially those close to them, known as `coherence'. As a method of analysing the resultant morphology, three different classifications were given: Binary Clusters, and Single clusters. The final class is less self evident: Binary Merger. In this paper, a binary merger specifies a cluster that was once a binary at some point throughout its evolution, but merged over the 20 Myr period, hence a merger.
+In a paper by B. Arnold et al. the formation of these systems is investigated\cite{ClusterBinary}. The group simulated systems of 1000 stars, to emulate star forming regions. This was done over a period 20 Myr, the structure of the cluster was analysed during, and after its dynamical evolution. They varied the initial degree of sub-structuring, as to capture both smooth, and more hierarchical distributions. Their viral ratios\footnote{This is the ratio of Kinetic to potential energy} were also varied, from relatively `cool' values of 0.3, to `hot' values of 0.7. The velocity distribution was such that stars were given velocities similar to that of stars close to them spatially, known as `coherence'. As a method of analysing the resultant morphology, three different classifications were given: \textit{Binary Clusters}, and \textit{Single clusters}, these being self evident. The final class was less so: \textit{Binary Merger}. In this paper, a binary merger specifies a cluster that was once a binary at some point throughout its evolution, but merged over the 20 Myr period.
 
-They found that binary clusters could form from these star forming regions, and that this would be the case much more frequently if the cluster was initially `hot' dynamically. However, they also noted this was a very stochastic mechanism, and that it was impossible to determine whether a binary would form, and indeed which stars occupy the two clusters, from the initial conditions alone. When binaries did form, they found that they'd often drift apart from one another, and that initial substructure would significantly influence the mass ratio of the binaries. They found high amounts of substructure gave high/low mass ratios, no substructure gave more equal mass ratios, and the most equal mass ratios came from regions with a small amount of initial substructure. In the event that clusters remained bound to one another, they'd recombine later in time, this was mostly the case in systems that began in virial equilibrium.
+They found that binary clusters could form from these star forming regions, and that this would be the case more frequently if the cluster was initially `hot' dynamically. However, they also noted this was a very stochastic mechanism: It was impossible to determine whether a binary would form, and indeed which stars occupy the two clusters, from the initial conditions alone. When binaries did form, they found that they'd often drift apart from one another, and that initial substructure would significantly influence the mass ratio of the binaries. They found high amounts of substructure gave high/low mass ratios, no substructure gave more equal mass ratios. The most equal mass ratios came from regions with a small amount of initial substructure. In the event that clusters remained bound to one another, they would usually recombine later in time, this was mostly the case in systems that began in virial equilibrium.
 
-Clusters are very interesting astrophysical objects, that can provide information about astrophysical problems, from the formation of planets, to the formation and evolution of galaxies. However these areas are often complicated by the dominance of turbulence, something N-body models haven't consider in the papers discussed.
+Clusters are very interesting astrophysical objects, that can provide information about astrophysical problems, from the formation of planets, to the formation and evolution of galaxies. However these areas are often complicated by the dominance of turbulence, something the N-body models haven't considered in the papers discussed.
 
-Galaxies are often dominated by dark matter, something which traditional N-body models can't simulate, due to its diffuse fluid like behaviour. Being so dominant in many large scale processes, dark matter cannot be ignored at the large scale. Hence, a model was developed to assist in simulations of galaxies, as well as those at the cosmological scale. 
+Galaxies are often dominated by dark matter, something which traditional N-body models can't simulate, due to its diffuse, fluid like behaviour. Being so dominant in many large scale processes, dark matter cannot be ignored at the large scale. Hence, a model was developed to assist in simulations of galaxies, as well as those at the cosmological scale. 
 
-GADGET (\textbf{GA}laxies with \textbf{D}ark matter and \textbf{G}as int\textbf{E}rac\textbf{T}), is a tool, first developed in 2001\cite{Gadget}, to allow N-body simulations to be performed while still considering dark matter and gas distributions. This was achieved by implementing smoothed particle hydrodynamics, a lagrangian technique which is effective in solving hydrodynamical problems, in conjunction with the simulation of individual particles. This could be used with collisionless particles, therefore capturing dark matter in the scope of the code's capabilities. 
+GADGET (\textbf{GA}laxies with \textbf{D}ark matter and \textbf{G}as int\textbf{E}rac\textbf{T}), is a tool, first developed in 2001\cite{Gadget}, to allow N-body simulations to be performed while still considering dark matter and gas distributions. This was achieved by implementing smoothed particle hydrodynamics, a lagrangian technique which is effective in solving hydrodynamical problems. Which was used in conjunction with the simulation of individual particles. This could be used with collisionless particles, therefore capturing dark matter in the scope of the code's capabilities. 
 
 The code has seen prolific use in the field, quite recently a more advanced version of the code, GADGET-3, was used in simulations of the Milky Way. 
 
-The Milky way's disk shows vertical warps, this is highlighted at the beginning of a paper by M. Chequers et al.\cite{Bendy}, and the paper presented a method of analysing wave like perturbations in the disk. They also hypothesised that these warps may be caused by inhomogeneities in the dark matter distribution in the halo. 
+The Milky way's disk shows vertical warps, this is highlighted at the beginning of a paper by M. Chequers et al.\cite{Bendy}. The paper presented a method of analysing wave like perturbations in the disk. They also hypothesised that these warps may be caused by inhomogeneities in the dark matter distribution in the halo. 
 
-They perform simulations of smoothly distributed halos, as well as those with more substructure, in form of dark matter satellites, `sub-halos'. They found the bending of the disk was quantitatively similar in both halo distributions, albeit with amplified amplitudes produced when satellites were present in the halos. This is shown in \cref{Disk}, a figure lifted directly from the paper. It is clear the effect is more pronounced in the `satellites' simulation.
+They perform simulations of smoothly distributed halos, as well as those with more substructure, in form of dark matter satellites, `sub-halos'. They found the bending of the disk was quantitatively similar in both halo distributions. Although the amplitudes were amplified when satellites were present in the halos. This is shown in \cref{Disk}, a figure lifted directly from the paper. It is clear the effect is more pronounced in the `satellites' simulation.
 
 \begin{figure}[h!]
 \centering
 \includegraphics[width=15cm]{"/Users/JackDymond/Documents/Work/Physics Modules/Fourth Year/PHY480/Figures/Disk"}
-\caption{The mean vertical displacement in each simulation is highlighted using a colour coded map of the galaxy.}
+\caption{The evolution of the disk is shown over a period of 10 Gyr. This is presented in two simulations, `Isolated' and `satellites', these labels indicating the presence of dark matter halos. The radial position is marked at 5 kpc increments with dotted concentric circles. The mean vertical displacement in each simulation is highlighted using a colour coded shading on the galaxy maps. With the colour legend shown to the right.}
 \label{Disk}
 \end{figure}
 
 To better understand the linkage between the halo and the disk, they propose the simulations be used in conjunction with observations, as is so often the case in N-body research in astrophysics.
 
-It is clear from this literature survey that the N-body method is a very powerful tool, being prevalent from the planetary scale, to the cosmological, its scope is unparalleled in this field. The algorithmic complexity necessary to undertake these simulations efficiently is also very high, especially when hydrodynamic systems are implemented in parallel. Hence using these methods in this project will prove invaluable in the pursuit of a career in the academic and industrial environment alike. 
+It is clear from this literature survey that the N-body method is a very powerful tool in astrophysics, being prevalent from the planetary scale, to the cosmological, its scope is unparalleled in the field. The algorithmic complexity necessary to efficiently run these simulations is also very high, especially when hydrodynamic systems are implemented in parallel. Hence using these methods in this project will prove invaluable in the pursuit of a career in the academic and industrial environment alike. \pagebreak[4]
 
 
 \section{Progress on Project}
 
-There are a many ways to approach the N-Body problem to the 4th order. More accurate methods are predictor-correctors, in particular the Hermite Polynomial, and the Adams-Bashforth-Moulton model. The former tries to predict the higher order kinematic components, the aptly named Jerk, Snap, Crack, and Pop. This is computationally expensive, as crossproducts between velocity and acceleration vectors are needed, something relatively inefficient for computer processors to calculate. The Adams-Bashforth-Moulton method predicts future values by fitting a polynomial to previous values, this requires storing previous values of the quantity that needs predicting. 
+There are a many ways to approach the N-Body problem to the 4th order. More accurate methods are predictor-correctors, in particular the Hermite Polynomial, and the Adams-Bashforth-Moulton model. The former tries to predict the higher order kinematic components, the aptly named Jerk, Snap, Crackle, and Pop. This is computationally expensive, as crossproducts between velocity and acceleration vectors are needed. This is something relatively inefficient for computer processors to calculate. The Adams-Bashforth-Moulton method predicts future values by fitting a polynomial to previous values. This is less expensive computationally, but requires storing previous values of the quantity that needs predicting, 8 values to be exact. 
 
-At low values of N, storing these values is more computationally feasible hence, the method is more efficient than the Hermite Method, hence, this project is going to implement the Adams-Bashforth-Moulton model. This method is not self starting, meaning in order to function it requires time-history of the velocity and acceleration vectors. In order to do this, a second order method is necessary to initialise the values used for a time history, in a method known as `Bootstrapping'. Hence, the first part of the project required implementing an accurate 2nd order N-Body. 
+At low values of N, storing these values is more computationally feasible hence, the method is more efficient than the Hermite Method. For this reason, this project is going to implement the Adams-Bashforth-Moulton model. This method is not self starting, meaning in order to function it requires time-history of the velocity and acceleration vectors. In order to do this, a second order method is necessary to initialise the values used for a time history. This a process known as `bootstrapping'. The first part of the project required implementing an accurate 2nd order N-body code, to be used for bootstrapping. 
 
 \subsection{Second order Kinematics}
 
-In order to calculate a body's changes in velocity and position over a given time-step, the acceleration vector acting on it must first be calculated. In a system dominated by gravitational forces, this requires knowledge of every body's position in a consistent coordinate system. For a given body, $n$, its interaction with another body $m$, can be calculated using Newton's Law of gravitation, provided the distance between them, $\vec{r_{nm}}$, is known. By summing over all interactions the body will have, its total acceleration vector can be calculated as shown in \cref{Sum_a}.
+In order to calculate a body's changes in velocity and position over a given time-step, the acceleration vector acting on it must first be calculated. In a system dominated by gravitational forces, this requires knowledge of every body's position in a consistent coordinate system. For a given body, $\alpha$, its interaction with another body $\beta$, can be calculated using Newton's Law of gravitation, provided the distance between them, $\vec{r_{\alpha\beta}}$, is known. By summing over all interactions the body will have, its total acceleration vector can be calculated as shown in \cref{Sum_a}.
 
 \begin{equation} \label{Sum_a}
-    \vec{a_n} =  \sum\limits_{m\neq n}^{N} \frac{G m_m}{\left|\vec{r_{nm}}\right|^3}\vec{r_{nm}}
+    \vec{a_\alpha} =  \sum\limits_{\beta\neq \alpha}^{N} \frac{G m_\beta}{\left|\vec{r_{\alpha\beta}}\right|^3}\vec{r_{\alpha\beta}}
 \end{equation}
 
-Given a discrete time-step over which to apply this acceleration, the changes in distance and velocity can be determined using the kinematic equations. These are shown below, where the subscripts $i$ and $f$ denote the initial and final positions respectively, $\delta t$ represents the time-step, and $\vec r$,$\vec v$ and $\vec a$, the position, velocity and acceleration. %\cref{PositionFD} and \cref{VelocityFD}
+Here, $N$ denotes the total number of particles, $m$ the mass, and $G$ the Gravitational constant. A factor of $\vec{r_{\alpha\beta}}$ is applied, along with the cube of the absolute distance in the denominator. This acts as a unit vector in the direction of the acceleration.\newline  
+
+
+Given a discrete time-step over which to apply this acceleration, the changes in distance and velocity can be determined using the kinematic equations. These are shown below, where the subscripts $i$ and $f$ denote the initial and final positions respectively, $\delta t$ represents the time-step, and $\vec r$, $\vec v$ and $\vec a$, the position, velocity and acceleration. %\cref{PositionFD} and \cref{VelocityFD}
 
 \noindent\begin{tabularx}{\textwidth}{@{}XX@{}}
   \begin{equation*}
-   \vec{r}_{n,f} =  \vec{r}_{n,i} + \vec{v}_{n} \delta t
+   \vec{r}_{\alpha,f} =  \vec{r}_{\alpha,i} + \vec{v}_{\alpha} \delta t
     \label{PositionFD}
   \end{equation*} &
   \begin{equation*}
- \vec{v}_{n,f} =  \vec{v}_{n,i} + \vec{a}_{n} \delta t
+ \vec{v}_{\alpha,f} =  \vec{v}_{\alpha,i} + \vec{a}_{\alpha} \delta t
     \label{VelocityFD}
   \end{equation*}
 \end{tabularx}
@@ -174,38 +179,40 @@ Given a discrete time-step over which to apply this acceleration, the changes in
 For the position, this can easily be extended to the second order, by including the current acceleration. This is shown in \cref{PositionSD}.
 
 \begin{equation} \label{PositionSD}
-    \vec{r}_{n,f} =  \vec{r}_{n,i} + \vec{v}_{n} \delta t + \frac{1}{2}\vec{a}_{n}\delta t^2
+    \vec{r}_{\alpha,f} =  \vec{r}_{\alpha,i} + \vec{v}_{\alpha} \delta t + \frac{1}{2}\vec{a}_{\alpha}\delta t^2
 \end{equation}
 
-To calculate the velocity to the second order, the rate of change of the acceleration is required, the jerk. This is not a simple calculation, and is computationally expensive, hence, an approximation should be made: $\frac{da}{dt} \approx \frac{a_i - a_f}{\delta t}$. Given a small change in acceleration this in a valid assumption. Programatically, this requires storing the previous value of acceleration, $a_p$. Then by using it in conjunction with the current acceleration, $a_c$, the second order equation for the velocity can now be taken as \cref{VelocitySD}.
+To calculate the velocity to the second order, the rate of change of the acceleration is required, the jerk. This is not a simple calculation, and is computationally expensive. Hence, an approximation should be made instead: $\frac{da}{dt} \approx \frac{a_i - a_f}{\delta t}$. Given a small change in acceleration this in a valid assumption. Programatically, this requires storing the previous value of acceleration, $a_p$. By using it in conjunction with the current acceleration, $a_c$, the second order equation for the velocity can now be taken as \cref{VelocitySD}.
 
 \begin{equation} \label{VelocitySD}
-     \vec{v}_{n,f} \;\; =  \;\; \vec{v}_{n,i} + \vec{a}_{n} \delta t + \frac{1}{2}\frac{d\vec{a_n}}{dt}\delta t^2 \;\; = \;\; \vec{v}_{n,i} + \vec{a}_{n,c} \delta t + \frac{1}{2}(\vec{a}_{n,p} - \vec{a}_{n,c})\delta t
+     \vec{v}_{\alpha,f} \;\; =  \;\; \vec{v}_{\alpha,i} + \vec{a}_{\alpha} \delta t + \frac{1}{2}\frac{d\vec{a_\alpha}}{dt}\delta t^2 \;\; = \;\; \vec{v}_{\alpha,i} + \vec{a}_{\alpha,c} \delta t + \frac{1}{2}(\vec{a}_{\alpha,p} - \vec{a}_{\alpha,c})\delta t
 \end{equation}
 
 \subsection{Recreating the Solar System accurately}
 
-To undertake N-Body simulations, these are the only equations necessary. However, to start the process, initial conditions should be given to each body, namely a mass, position, and velocity. These were taken from a NASA database\cite{PlanetFacts}, see \cref{cond} for the values pertinent in this project.  
+To undertake N-Body simulations, these are the only equations necessary. However, to start the process, initial conditions should be given to each body, namely a mass, position, and velocity. These were taken from a NASA database\cite{PlanetFacts}, see \cref{cond} for the values used in this project.  
 
 To initialise the simulation, the planets were positioned on the $x$ axis at their orbital radii, and at $y=0$. Their respective orbital velocities were then applied along the $y$ axis, with $v_x = 0$. Hence, when the simulation was run they would orbit on the $x$--$y$ plane. 
 
-At the beginning of each time-step, the acceleration acting on each body was calculated using \cref{Sum_a}, this value was then applied to the kinematic equations, \cref{PositionSD}, and \cref{VelocitySD}. The planets were moved to these positions, and given the corresponding velocities. New accelerations were calculated, and the process was repeated. Since no time history was given, initially the change in acceleration couldn't be calculated in \cref{VelocitySD}. Hence, only the first derivative of velocity was used in the calculation of $\vec v_{n,2}$, this was done by manually setting the change in acceleration to zero.
+At the beginning of each time-step, the acceleration acting on each body was calculated using \cref{Sum_a}, this value was then applied to the kinematic equations, \cref{PositionSD}, and \cref{VelocitySD}. The changes in position and velocity were then applied to each body, new accelerations were calculated, and the process was repeated. Since no time history was given, initially the change in acceleration couldn't be calculated in \cref{VelocitySD}. For this reason, only the first derivative of velocity was used in the calculation of the second value of velocity, $\vec v_{\alpha,2}$. This was done by manually setting the change in acceleration to zero, for the first timestep.
 
-To demonstrate the accuracy of this second order code, a 1000 year simulation of the solar system was carried out with 10 second time-steps. The resulting simulation produced a system with stable orbits, this is reflected in \cref{Distance}. \Cref{Distance} (a) shows the log of orbital distance against time, it is clear the orbits remain at a consistent distance with only Earth drifting very slightly. The oscillations in the distances of Saturn, Uranus, and Neptune, are due to the elliptical nature of their orbits, the eccentricities were reasonable: $\sim$0.02, $\sim$0.04, and $\sim$0.03 respectively. \Cref{Distance} (b) shows the orbits in the $x$--$y$ plane, demonstrating their circular nature.
+To demonstrate the accuracy of this second order code, a 1000 year simulation of the solar system was carried out with 10 second time-steps. The resulting simulation produced a system with stable orbits, this is reflected in \cref{Distance}. \Cref{Distance} (a) shows the log of orbital distance against time, it is clear the orbits remain at a consistent distance with only Earth drifting very slightly. The oscillations in the distances of Saturn, Uranus, and Neptune, are due to the elliptical nature of their orbits, the eccentricities were reasonable: $\sim$0.02, $\sim$0.04, and $\sim$0.03 respectively. \Cref{Distance} (b) shows the orbits in the $x$--$y$ plane, demonstrating their circular nature. 
 
 \begin{figure}[h!]
     \centering
-    \subfloat[Orbital distances against time]{{\includegraphics[width=8cm]{"/Users/JackDymond/Documents/Work/Physics Modules/Fourth Year/PHY480/Figures/SecondOrderDis"} }}%
+    \subfloat[Orbital distances against time. Elapsed time is given on the $x$ axis, and the log of the distance is presented on the $y$ axis. These are given in Years and AU respectively.]{{\includegraphics[width=8cm]{"/Users/JackDymond/Documents/Work/Physics Modules/Fourth Year/PHY480/Figures/SecondOrderDis"} }}%
     \qquad
-    \subfloat[$x$-$y$ position of orbits]{{\includegraphics[width=7cm]{"/Users/JackDymond/Documents/Work/Physics Modules/Fourth Year/PHY480/Figures/SecondOrderOrbits"} }}%
+    \subfloat[Face-on map of the system. This shows the $x$-$y$ position of the orbits, given in AU.]{{\includegraphics[width=7cm]{"/Users/JackDymond/Documents/Work/Physics Modules/Fourth Year/PHY480/Figures/SecondOrderOrbits"} }}%
     \caption{Plots of orbital position throughout the simulation.}%
     \label{Distance}%
 \end{figure}
 
-To further ensure the model's accuracy, energy conservation was considered. The total energy was calculated when the system was initialised to obtain $E_i$, this was simply the sum of the kinetic and potential energies, as shown in \cref{E_tot}. A factor of a half was applied to the potential energy, as in this summation it would be calculated twice for a given interaction $n \leftrightarrow m$. 
+It should be noted, Venus and Mercury are rejected at this stage, as simulating them accurately is not computationally feasible. A much smaller time-step would be necessary to accurately recreate Venus' orbit, even smaller for that of Mercury. However, later in the project they will be put into the model, once the desired level of accuracy is achieved. \pagebreak
+
+To further ensure the model's accuracy, energy conservation was considered. The total energy was calculated when the system was initialised to obtain $E_i$, this was simply the sum of the kinetic and potential energies, as shown in \cref{E_tot}. A factor of a half was applied to the potential energy, as in this summation it would be calculated twice for a given interaction $\alpha \leftrightarrow \beta$. 
 
 \begin{equation} \label{E_tot}
-    E_{tot}  \;\; =  \;\;  \sum\limits_{n=1}^{N} \bigg[ \frac{1}{2}m_n\left|v_n\right|^2 - \sum\limits_{m\neq n}^{N}\frac{G m_m m_n}{2 \left|r_{nm}\right|}\bigg]  \;\; = \;\; \frac{1}{2} \sum\limits_{n=1}^{N}m_n \bigg[\left|v_n\right|^2 - \sum\limits_{m\neq n}^{N}\frac{G m_m}{\left|r_{nm}\right|}\bigg] 
+    E_{tot}  \;\; =  \;\;  \sum\limits_{\alpha=1}^{N} \bigg[ \frac{1}{2}m_{\alpha}\left|v_{\alpha}\right|^2 - \sum\limits_{\beta\neq \alpha}^{N}\frac{G m_\beta m_\alpha}{2 \left|r_{\alpha\beta}\right|}\bigg]  \;\; = \;\; \frac{1}{2} \sum\limits_{\alpha=1}^{N}m_{\alpha} \bigg[\left|v_{\alpha}\right|^2 - \sum\limits_{\beta \neq \alpha}^{N}\frac{G m_\beta}{\left|r_{\alpha \beta}\right|}\bigg] 
  \end{equation}
  
  This value was recalculated throughout the simulation, and compared against the initial value, using \cref{compare}. Where $ \Delta E$, represents the fractional energy loss, and the subscript $t$ denoting the time-step at which the value is calculated.
@@ -216,46 +223,46 @@ To further ensure the model's accuracy, energy conservation was considered. The 
 
 This fractional energy loss was plotted against time, to see how it varied throughout the simulation. This is shown in \cref{Energy}. \Cref{Energy} (a) shows the variation across the entire simulation, whereas \cref{Energy} (b) shows the value over a 100 year time period. 
 
-Over the whole simulation, the average energy loss remains close to zero, only lowering slightly, mainly due to the drift of Earth. However, there are clearly oscillatory fluctuations in the value, these oscillations are due to interactions of Jupiter with Saturn. Upon increasing the time-resolution of this graph, \cref{Energy} (b), smaller scale oscillations can be seen. These are presumably a result of interactions between the other planets in the system. Nonetheless, the energy losses (and its fluctuation) proved to be minor in this simulation; the large scale oscillation having an amplitude of $\sim 0.0003$, and only lowering by $\sim 0.0002$.
+Over the whole simulation, the average energy loss remains close to zero, only lowering slightly, mainly due to the drift of Earth. However, there are clearly oscillatory effects in the value, these oscillations are due to interactions of Jupiter with Saturn. Upon increasing the time-resolution of this graph, \cref{Energy} (b), smaller scale oscillations can be seen. These are presumably a result of interactions between the other planets in the system. Nonetheless, the energy losses (and its fluctuation) proved to be minor in this simulation; the large scale oscillation having an amplitude of $\sim 0.0003$, and the average value only lowering by $\sim 0.0002$.
 
 \begin{figure}[h!]
     \centering
-    \subfloat[Energy loss over simulation]{{\includegraphics[width=7cm]{"/Users/JackDymond/Documents/Work/Physics Modules/Fourth Year/PHY480/Figures/SecondOrderEnergyLoss"} }}%
+    \subfloat[Energy loss over entire simulation. With time on the $x$ axis, and $\delta E$ on the y axis.]{{\includegraphics[width=7cm]{"/Users/JackDymond/Documents/Work/Physics Modules/Fourth Year/PHY480/Figures/SecondOrderEnergyLoss"} }}%
     \qquad
-    \subfloat[Energy loss over 100 year period]{{\includegraphics[width=7cm]{"/Users/JackDymond/Documents/Work/Physics Modules/Fourth Year/PHY480/Figures/SecondOrderEnergyLossTime"} }}%
+    \subfloat[Energy loss over 100 year period. Again with time on the $x$ axis, and $\delta E$ on the y axis.]{{\includegraphics[width=7cm]{"/Users/JackDymond/Documents/Work/Physics Modules/Fourth Year/PHY480/Figures/SecondOrderEnergyLossTime"} }}%
     \caption{Plots showing the Energy loss throughout the simulation.}%
     \label{Energy}%
 \end{figure}
 
 \subsection{Suitability for Bootstrapping}\label{Suitable}
 
-The previous section demonstrates the code's ability to accurately recreate the orbits of the Solar System, to a reasonable degree of accuracy. However, if a simulation is to run for millions of years, the discrepancies seen in the 2nd order system will manifest as large inaccuracies. Hence, the 4th order Adams-Bashforth-Moulton will be preferred.
+The previous section demonstrates the code's ability to accurately recreate the orbits of the Solar System, to a reasonable degree of accuracy. However, if a simulation is to run for millions of years, the discrepancies seen in the 2nd order system will manifest as large inaccuracies. Hence, the 4th order Adams-Bashforth-Moulton method will be preferred.
 
-As a method of producing the initial time history, the 2nd order code is more than sufficient; over a small timescale, $<80$ seconds, the errors seen at long timescales will be infinitesimal. Accordingly, this code will be used initially in the `bootstrapping' phase.   
+As a method of producing the initial time history, the 2nd order code is more than sufficient; over a small timescale, $<80$ seconds, the errors seen at long timescales will be very small. Accordingly, this code will be used initially in the bootstrapping phase.   \pagebreak
 
 \subsection{Randomising Initial Positions Along Orbit}
 
-If the simulation is to be run more than once, it will be beneficial to randomise the initial positions of the planets along their orbit. Should the code be applied to astrophysical problems, this would prevent any deterministic results from arising, thereby producing more natural behaviour. 
+If the simulation is run multiple times, it will be beneficial to randomise the initial positions of the planets along their orbits. Should the code be applied to astrophysical problems, this would prevent any deterministic results from arising, thereby producing more natural behaviour. 
 
-There are many ways to approach this, some requiring more knowledge of the orbital paths than others. However, with knowledge of the mean orbital radius and velocity, the planet can be placed at any position at a radius equal to the orbital radius. Provided the velocity vector is both perpendicular to the radial vector, and equal to the mean orbital velocity. 
+There are many ways to approach this, some requiring more knowledge of the orbital paths than others. However, with knowledge of the mean orbital radius, $R$, and velocity, $v_T$, the planet can be placed at any position along a ring of radius $R$. Provided the velocity vector is perpendicular to the radial vector, and has a magnitude equal to the mean orbital velocity. 
 
-Consider the positive quadrant of a planet's orbit (see \cref{Distance} (b)). On a given axis, the position will take a value between 0 and $R$, and the velocity will take a value between 0 and $v_T$, where $R$ and $v_T$ denote the orbital radius and velocity respectively. The component on the other axis can then be calculated using trigonometry. This is represented mathematically as shown in \cref{Random}, where $X_n$ represents the random number between 0 and 1, assigned to the body, $n$.
+Consider the positive quadrant of a planet's orbit (see \cref{Distance} (b)). On a given axis, the position will take a value between 0 and $R$, and the velocity will take a value between 0 and $v_T$. The component on the other axis can then be calculated using trigonometry. This is represented mathematically as shown in \cref{Random}, where $X_{\alpha}$ represents the random number between 0 and 1, assigned to the body, $\alpha$.
 
 \begin{align}\label{Random}
-&r_{x,n} = X_n R_n&
+&r_{x,\alpha} = X_{\alpha} R_{\alpha}&
 &\text{and}&
-&v_{y,n} = X_n v_{T,n}
+&v_{y,\alpha} = X_{\alpha} v_{T,\alpha}
 \end{align}
-Then by using Trigonometry, the components along the other axes can be calculated, as shown in \cref{Trig}. Note the opposite axis on $r_n$, and $v_n$ respectively in \cref{Random}, this is due to the velocity vector being perpendicular to the radius vector.
+Then by using Trigonometry, the components along the other axes can be calculated, as shown in \cref{Trig}. Note the opposite axis on $r_{\alpha}$, and $v_{\alpha}$ respectively in \cref{Random}, this is due to the velocity vector being perpendicular to the radius vector.
 \begin{align}\label{Trig}
-&r_{y,n} = R_n^2 - r_{x,n}^2&
+&r_{y,\alpha} = R_{\alpha}^2 - r_{x,\alpha}^2&
 &\text{and}&
-&v_{x,n} = v_{T,n}^2 - v_{y,n}^2
+&v_{x,\alpha} = v_{T,\alpha}^2 - v_{y,\alpha}^2
 \end{align}
 
 To allow for the other three quadrants, a random factor of $\pm 1$ should be applied to each component of the position. The value applied to the velocity will depend on the value applied to the radius vector. That is to say, the quadrant allocated by the random factors of $\pm1$ will determine the value of $\pm1$ applied to the velocity components. 
 
-This was achieved programatically by first randomly assigning a value of $\pm 1$ to each position vector component, a parity. Then, using a simple series of \textit{IF} statements, the velocity components were allocated parities, thus creating two $1\times 2$ arrays for each quantity. The conditions for the algorithm are illustrated in \cref{Algorithm}.
+This was achieved programatically by first randomly assigning a value of $\pm 1$ to each position vector component, a parity. Then, using a simple series of \textit{IF} statements, the velocity components were allocated corresponding parities. Thus creating two $1\times 2$ arrays for each quantity. The conditions for the algorithm are illustrated in \cref{Algorithm}.
 
 \begin{table}[h!]
 \centering
@@ -272,17 +279,18 @@ This was achieved programatically by first randomly assigning a value of $\pm 1$
 
 Regardless of which quadrant they're in, the same trigonometric relations in \cref{Trig} exist between the quantities, and their components. Hence, with a random number allocated to each position component, the planet can be randomly positioned in any quadrant, and in any position along its orbit.
 
-This functionality was added to the code, and the resultant behaviour was identical to that seen in \cref{Distance} and \cref{Energy}.
+This functionality was added to the code, and the resultant behaviour was similar to that seen in \cref{Distance} and \cref{Energy}.
 
 \subsection{Moving Forward}
 
-As \cref{Suitable} states, this code will be more than sufficient for initialising the first 8 time-steps of a predictor-corrector. Furthermore, with planets being positioned at completely random positions along their orbit, there is no chance of a deterministic effects arising from the initial setup of the system. 
+As \cref{Suitable} states, this code will be more than sufficient for initialising the first 8 time-steps of a predictor-corrector. Furthermore, with planets positioned at random positions along their orbit, there is no possibility of a deterministic effects arising from the initial setup of the system. 
 
 Hence, the project can continue towards the goal of creating a 4th Order Predictor Corrector. The logistics of this are detailed in the next section.
+\pagebreak[4]
 
 \section{Project Plan}
 
-I'll produce a gantt chart, and explain it in this section. Although, I've not got round to doing this yet!
+The Gantt chart is an effective method of visualising a project, its steps, milestones, and timescales over which they should be achieved. A Gantt chart for this project is presented below.
 
 \begin{thebibliography}{9}
 
@@ -320,7 +328,7 @@ MNRAS Issue 1, p.109--113\\
 \bibitem{Signatures}
 Maxwell Xu Cai, Simon Portegies Zwart, and Arjen van Elteren\\ 
 The signatures of the parental cluster on field planetary systems\\
-MNRAS, V. 474, Issue 4, 11 March 2018, Pages 5114--5121\\
+MNRAS, V. 474, Issue 4, 11 03 2018, P 5114--5121\\
 
 \bibitem{Baumgardt}
 H. Baumgardt\\
