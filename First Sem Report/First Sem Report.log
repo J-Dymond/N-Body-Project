@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.5.2)  12 DEC 2018 18:25
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.5.2)  13 DEC 2018 02:36
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1183,37 +1183,37 @@ th Year/PHY480/Figures/SecondOrderEnergyLossTime".png used on input line 232.
 (pdftex.def)             Requested size: 199.16928pt x 155.18806pt.
  [8 </Users/JackDymond/Documents/Work/Physics Modules/Fourth Year/PHY480/Figure
 s/SecondOrderEnergyLoss.png> </Users/JackDymond/Documents/Work/Physics Modules/
-Fourth Year/PHY480/Figures/SecondOrderEnergyLossTime.png>] [9]
-Underfull \hbox (badness 10000) in paragraph at lines 308--312
+Fourth Year/PHY480/Figures/SecondOrderEnergyLossTime.png>] [9] [10]
+Underfull \hbox (badness 10000) in paragraph at lines 312--316
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 319--322
+Underfull \hbox (badness 10000) in paragraph at lines 323--326
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 324--327
+Underfull \hbox (badness 10000) in paragraph at lines 328--331
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 329--332
+Underfull \hbox (badness 10000) in paragraph at lines 333--336
 
  []
 
 
-Underfull \hbox (badness 6995) in paragraph at lines 334--337
+Underfull \hbox (badness 6995) in paragraph at lines 338--341
 \OT1/cmr/m/n/10 mass-to-light ra-tios and intermediate-mass
  []
 
 
-Overfull \hbox (6.07292pt too wide) in paragraph at lines 359--362
+Overfull \hbox (6.07292pt too wide) in paragraph at lines 363--366
 \OT1/cmr/m/n/10 https://nssdc.gsfc.nasa.gov/planetary/factsheet/ 
  []
 
-[10] [11] (./First Sem Report.aux) ) 
+[11] [12] (./First Sem Report.aux) ) 
 Here is how much of TeX's memory you used:
  16511 strings out of 493089
  325101 string characters out of 6134843
@@ -1221,7 +1221,7 @@ Here is how much of TeX's memory you used:
  19837 multiletter control sequences out of 15000+600000
  19385 words of font info for 67 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 44i,17n,47p,10405b,975s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 44i,17n,47p,10405b,977s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2015/texmf-dist/fonts/t
 ype1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2015/texmf-dist/fonts/ty
 pe1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2015/texmf-dist/fonts/typ
@@ -1242,10 +1242,10 @@ pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/mathabx-type1/matha1
 0.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/mathabx-type1/math
 a7.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/mathabx-type1/mat
 hx10.pfb>
-Output written on "First Sem Report.pdf" (11 pages, 2545478 bytes).
+Output written on "First Sem Report.pdf" (12 pages, 2545396 bytes).
 PDF statistics:
- 129 PDF objects out of 1000 (max. 8388607)
- 84 compressed objects within 1 object stream
+ 132 PDF objects out of 1000 (max. 8388607)
+ 86 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  31 words of extra memory for PDF output out of 10000 (max. 10000000)
 
