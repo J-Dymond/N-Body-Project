@@ -321,8 +321,8 @@ do
 			end do
 		end do
 
-		r(0:2,0:n) = r(0:2,0:n) + (dt/(AU*24))*(-(9*vhist(0:2,0:n,3))+(37*vhist(0:2,0:n,2))-(59*vhist(0:2,0:n,1))+(55*v(0:2,0:n)))
-		v(0:2,0:n) = v(0:2,0:n) + (dt/24)*(-(9*ahist(0:2,0:n,3))+(37*ahist(0:2,0:n,2))-(59*ahist(0:2,0:n,1))+(55*a(0:2,0:n)))
+		r(0:2,0:n) = r(0:2,0:n) + (dt/AU*24)*(-(9*vhist(0:2,0:n,4))+(37*vhist(0:2,0:n,3))-(59*vhist(0:2,0:n,2))+(55*v(0:2,0:n)))
+		v(0:2,0:n) = v(0:2,0:n) + (dt/24)*(-(9*ahist(0:2,0:n,4))+(37*ahist(0:2,0:n,3))-(59*ahist(0:2,0:n,2))+(55*a(0:2,0:n)))
 		
 		ahist(0:2,0:n,1) = a(0:2,0:n)
 		rhist(0:2,0:n,1) = r(0:2,0:n)
@@ -336,32 +336,6 @@ do
 		if (tcount >= 100000) then
 			write(3,*) (t/Yr + 50*Fifty), rhist(0:1,0:n,1)
 			tcount=0
-
-			!Get KE
-			KE=0.
-			do i=1,n
-				KE = KE + 0.5*m(i)*sum(v(0:2,i)**2)
-			end do
-
-			!Get PE
-			PE = 0
-			do i=0,n
-				do j=0,n
-					if (i==j) then
-						cycle
-					end if 
-					D = r(0:2,i) - r(0:2,j)	
-					AbsD = SQRT(SUM(D**2))
-					PE = PE - (G*m(i)*m(j))/(AbsD*AU)
-				end do
-			end do
-			PE = 0.5*PE	
-
-			!Total Energy
-			E = KE + PE
-			write(4,*) (t/Yr + 50*Fifty), (E-E_i)/E_i,(KE-KE_i)/KE_i,(PE-PE_i)/PE_i
-			!write(6,*) Perihelion(7)
-			write(1,*) (t/Yr + 50*Fifty), ecc(1:n)
 		end if
 
 		if (t>=50*Yr) then
