@@ -101,7 +101,7 @@ do j=1,n 		!Required For Earth to Final planet in system
 	
 	!Apply Random number along one axis - produces corresponding distance on other axis - using Trigonometry
 	r(0,j) = parity(0)*RN*abs(j)
-	r(1,j) = parity(1)*(SQRT(abs(j)**2 - r(0,j)**2))
+	r(1,j) = parity(1)*abs(j)*SQRT(1-RN)
 	
 	!Algorithm to work out what parities velocities should take in corresponding positions - uses parity vector used for position
 	if (parity(0)==parity(1)) then 
@@ -120,7 +120,7 @@ do j=1,n 		!Required For Earth to Final planet in system
 	
 	!Same multiplicative factor (RN) required for velocity vector, but on opposite axis
 	v(1,j) = parityVel(1)*RN*absvel(j)
-	v(0,j) = parityvel(0)*(SQRT(absvel(j)**2 - v(1,j)**2))	!Trigonometry to calculate the other axis
+	v(0,j) = parityvel(0)*absvel(j)*SQRT(1-RN)	!Trigonometry to calculate the other axis
 	
 end do
 
@@ -217,11 +217,11 @@ do
 				a(0:2,i) = a(0:2,i) - ((G*m(j))/((AbsD*AU)**3))*(D*AU) !Make calculation
 			end do
 		end do	
-	
-		da(0:2,0:n) = a(0:2,0:n) - ai(0:2,0:n) !Change in acceleration
 
 		!Change in r, and change in v, using the da in v calculation
 		r(0:2,0:n) = r(0:2,0:n) + v(0:2,0:n)*(dt/AU) + 0.5*a(0:2,0:n)*((dt/AU)**2)
+		
+		da(0:2,0:n) = a(0:2,0:n) - ai(0:2,0:n) !Change in acceleration
 		v(0:2,0:n) = v(0:2,0:n) + a(0:2,0:n)*dt + 0.5*da(0:2,0:n)*dt
 		
 		rhist(0:2,0:n,1) = r(0:2,0:n)
@@ -293,7 +293,7 @@ write(6,*) " "
 write(6,*) ahist(0:2,1,0:8) 
 write(6,*) " " 	
 
-!-----------------------------Predictor-Corrector Algorithm------------------------------------
+!-----------------------------Predictor-Corrector Algorithm------------------------------------!
 tcount = 0
 dt=10
 

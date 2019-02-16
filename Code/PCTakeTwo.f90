@@ -109,7 +109,7 @@ do j=1,n 		!Required For Earth to Final planet in system
 	
 	!Same multiplicative factor (RN) required for velocity vector, but on opposite axis
 	v(1,j,0) = parityVel(1)*RN*absvel(j)
-	v(0,j,0) = parityvel(0)*(SQRT(absvel(j)**2 - v(1,j,0)**2))	!Trigonometry to calculate the other axis
+	v(0,j,0) = parityvel(0)*absvel(j)*SQRT(1 - RN)	!Trigonometry to calculate the other axis
 	
 end do
 
@@ -151,7 +151,7 @@ do i=0,n	!getting acceleration
 	end do
 end do  
 
-do tcount=0,8
+do tcount=0,100000
 
 	ai = a(0:2,0:n,0)
 
@@ -179,10 +179,51 @@ do tcount=0,8
 	da(0:2,0:n) = a(0:2,0:n,0) - ai(0:2,0:n) !Change in acceleration
 	v(0:2,0:n,0) = v(0:2,0:n,0) + a(0:2,0:n,0)*dt + 0.5*da(0:2,0:n)*dt
 	
+	write(3,*) (t/Yr), r(0:1,0:n,0)/AU
+	
 	t = t + dt
 end do
 
-write(6,*) " " 	 	
+!----------------------Predictor-----------------------!
+
+do tcount=0,0
+	
+	r(0:2,0:n,1) = r(0:2,0:n,0) + (dt/24)*(-(9*v(0:2,0:n,-3))+(37*v(0:2,0:n,-2))-(59*v(0:2,0:n,-1))+(55*v(0:2,0:n,0)))
+	v(0:2,0:n,1) = v(0:2,0:n,0) + (dt/24)*(-(9*a(0:2,0:n,-3))+(37*a(0:2,0:n,-2))-(59*a(0:2,0:n,-1))+(55*a(0:2,0:n,0)))
+	
+	do i=0,n	!getting acceleration
+		do j=0,n
+			if (i==j) then
+				cycle
+			end if 
+			D = r(0:2,i,1) - r(0:2,j,1)	!Get distance between two objects		
+			AbsD = SQRT(SUM(D**2))	!Get absolute distance
+			a(0:2,i,1) = a(0:2,i,1) - ((G*m(j))/((AbsD)**3))*(D) !Make calculation
+		end do
+	end do
+	
+	
+	if (a(0,1,1) == a(0,1,0)) then
+		write (6,*) tcount
+		exit
+	end if
+	
+	write(3,*) (t/Yr), r(0:1,0:n,0)
+	
+	do i=-8,0,1
+		r(0:2,0:n,i) = r(0:2,0:n,i+1)
+		v(0:2,0:n,i) = v(0:2,0:n,i+1)
+		a(0:2,0:n,i) = a(0:2,0:n,i+1)
+	end do
+
+	t = t + dt
+
+end do
+	
+	
+write(6,*) " " 
+write(6,*) tcount
+write(6,*) " " 	
 write(6,*) r(0:2,1,-8:1)/AU
 write(6,*) " " 	 
 write(6,*) v(0:2,1,-8:1) 
