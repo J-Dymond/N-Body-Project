@@ -151,15 +151,15 @@ do i=0,n	!getting acceleration
 	end do
 end do  
 
-do tcount=0,100000
-
-	ai = a(0:2,0:n,0)
+do tcount=0,8
 
 	do i=-8,-1,1
 		r(0:2,0:n,i) = r(0:2,0:n,i+1)
 		v(0:2,0:n,i) = v(0:2,0:n,i+1)
 		a(0:2,0:n,i) = a(0:2,0:n,i+1)
 	end do
+
+	ai = a(0:2,0:n,0)
 
 	!Change in r
 	
@@ -176,7 +176,7 @@ do tcount=0,100000
 		end do
 	end do
 	
-	da(0:2,0:n) = a(0:2,0:n,0) - ai(0:2,0:n) !Change in acceleration
+	da(0:2,0:n)  = a(0:2,0:n,0) - ai(0:2,0:n) !Change in acceleration
 	v(0:2,0:n,0) = v(0:2,0:n,0) + a(0:2,0:n,0)*dt + 0.5*da(0:2,0:n)*dt
 	
 	write(3,*) (t/Yr), r(0:1,0:n,0)/AU
@@ -187,6 +187,7 @@ end do
 !----------------------Predictor-----------------------!
 
 do tcount=0,0
+	exit
 	
 	r(0:2,0:n,1) = r(0:2,0:n,0) + (dt/24)*(-(9*v(0:2,0:n,-3))+(37*v(0:2,0:n,-2))-(59*v(0:2,0:n,-1))+(55*v(0:2,0:n,0)))
 	v(0:2,0:n,1) = v(0:2,0:n,0) + (dt/24)*(-(9*a(0:2,0:n,-3))+(37*a(0:2,0:n,-2))-(59*a(0:2,0:n,-1))+(55*a(0:2,0:n,0)))
