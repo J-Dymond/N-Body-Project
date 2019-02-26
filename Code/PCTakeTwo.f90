@@ -3,7 +3,7 @@ IMPLICIT NONE
 !-------------------------Declaring Variables----------------------------!
 
 !Integers for loops and recording time
-INTEGER :: i,j,n,x,y,z,tcount
+INTEGER :: i,j,n,x,y,z,tcount,tcountWrite
 
 DOUBLE PRECISION :: dt,t
 
@@ -37,7 +37,7 @@ n=7			!number of bodies in simulation
 
 !1000 seconds timestep
 t = 0.			!global time value
-dt = 10.		!10 second timesteps
+dt = 1.		!10 second timesteps
 tcount = 0 		!Timestep counter
 
 !Initialising Body parameters Sun to Neptune
@@ -191,8 +191,8 @@ do tcount=-1,-8,-1
 end do
 
 !----------------------Predictor-----------------------!
-
-do tcount=0,10
+tcountWrite=0
+do tcount=0,1000000
 
 	do i=1,n
 		r(1:3,i,1) = r(1:3,i,0) + (dt/24)*(-(9*v(1:3,i,-3))+(37*v(1:3,i,-2))-(59*v(1:3,i,-1))+(55*v(1:3,i,0)))
@@ -206,7 +206,11 @@ do tcount=0,10
 			end if 
 			D = r(1:3,i,1) - r(1:3,j,1)	!Get distance between two objects		
 			AbsD = SQRT(SUM(D**2))	!Get absolute distance
-			a(1:3,i,1) = a(1:3,i,1) - ((G*m(j))/((AbsD)**3))*(D) !Make calculation
+			
+			!!!!!!!!!!!!!!!!!!!!! THIS IS WHERE THE PROBLEM WAS !!!!!!!!!!!!!!!!!!
+			a(1:3,i,1) = a(1:3,i,0) - ((G*m(j))/((AbsD)**3))*(D) !Make calculation
+			!!!!!!!!!!!!!!!!!!!!!     SHAME! SHAME! SHAME!  	!!!!!!!!!!!!!!!!!!
+				
 		end do
 	end do
 	
@@ -216,7 +220,10 @@ do tcount=0,10
 		exit
 	end if
 	
-	write(3,*) (t/Yr), r(1:2,1:n,0)
+	if (tcountWrite == 1000) then
+		write(3,*) (t/Yr), r(1:2,1:n,0)/AU
+		tcountWrite = 0
+	end if
 	
 	do i=-8,0,1
 	    do j=1,n
@@ -227,7 +234,7 @@ do tcount=0,10
 	end do
 
 	t = t + dt
-
+	tcountWrite = tcountWrite + 1
 end do
 	
 	
