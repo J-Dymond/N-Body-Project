@@ -11,16 +11,16 @@ DOUBLE PRECISION :: dt,t
 DOUBLE PRECISION :: G,AU,AbsD,Yr,KE_i,PE_i,PE,KE,E_i,E 
 
 !Arrays for kinematic calculations
-DOUBLE PRECISION :: COM(1:3),COV(1:3),ai(1:3,1:9),da(1:3,1:9),m(1:9),D(1:3)
+DOUBLE PRECISION :: COM(0:2),COV(0:2),ai(0:2,0:9),da(0:2,0:9),m(0:9),D(0:2)
 
 !Position, velocity, and acceleration vectors, with time history
-DOUBLE PRECISION :: r(1:3,1:9,-8:1)
-DOUBLE PRECISION :: v(1:3,1:9,-8:1)
-DOUBLE PRECISION :: a(1:3,1:9,-8:1)
+DOUBLE PRECISION :: r(0:2,0:9,-8:1)
+DOUBLE PRECISION :: v(0:2,0:9,-8:1)
+DOUBLE PRECISION :: a(0:2,0:9,-8:1)
 
 !Variables for Randomising Initial Positions and Velocities
-DOUBLE PRECISION :: Abs(1:9),AbsVel(1:9),Val,RN
-INTEGER :: Parity(1:2),ParityVel(1:2)
+DOUBLE PRECISION :: Abs(0:9),AbsVel(0:9),Val,RN
+INTEGER :: Parity(0:1),ParityVel(0:1)
 
 !-------------------------------Set Up------------------------------------!
 
@@ -33,22 +33,22 @@ AU 	= 1.496e11	!AU in metres
 G 	= 6.67e-11	!G in SI
 Yr	= 3.154e7	!YR in seconds
 
-n=7			!number of bodies in simulation
+n=6			!number of planets in simulation
 
 !1000 seconds timestep
 t = 0.			!global time value
-dt = 10.		!10 second timesteps
+dt = 10		    !10 second timesteps
 tcount = 0 		!Timestep counter
 
 !Initialising Body parameters Sun to Neptune
 !Masses in SI
-m(1) = 1.99e30	!Sun
-m(2) = 5.97e24	!Earth
-m(3) = 0.642e24	!Mars
-m(4) = 1.898e27	!etc..
-m(5) = 568e24
-m(6) = 86.8e24
-m(7) = 102e24
+m(0) = 1.99e30	!Sun
+m(1) = 5.97e24	!Earth
+m(2) = 0.642e24	!Mars
+m(3) = 1.898e27	!etc..
+m(4) = 568e24
+m(5) = 86.8e24
+m(6) = 102e24
 
 !initialise vectors as 0
 v = 0.		
@@ -56,26 +56,26 @@ a = 0.
 r = 0.
 
 !Absolute Values of Orbital Radii in AU 
-abs(2) = 1. 	!Earth
-abs(3) = 1.524 	!Mars
-abs(4) = 5.203	!etc...
-abs(5) = 9.582
-abs(6) = 19.20 
-abs(7) = 30.05
+abs(1) = 1. 	!Earth
+abs(2) = 1.524 	!Mars
+abs(3) = 5.203	!etc...
+abs(4) = 9.582
+abs(5) = 19.20 
+abs(6) = 30.05
 
 !Absolute Values of Orbital Velocities
-absVel(2) = 29.78e3	!Earth
-absVel(3) = 24.1e3	!etc...
-absVel(4) = 13.07e3
-absVel(5) = 9.536e3
-absVel(6) = 6.687e3
-absVel(7) = 5.372e3
+absVel(1) = 29.78e3	!Earth
+absVel(2) = 24.1e3	!etc...
+absVel(3) = 13.07e3
+absVel(4) = 9.536e3
+absVel(5) = 6.687e3
+absVel(6) = 5.372e3
 
 !Producing random positions and velocities in orbit
 
-do j=2,n 		!Required For Earth to Final planet in system
+do j=1,n 		!Required For Earth to Final planet in system
 	!Parity
-	do i=1,2	!z axis ignored; all bodies on x-y plane initially
+	do i=0,1	!z axis ignored; all bodies on x-y plane initially
 		!Get random number to determine whether in positive or negative plane, for x and y axes
 		call random_number(val)
 		if (val > 0.5) then
@@ -88,18 +88,18 @@ do j=2,n 		!Required For Earth to Final planet in system
 	call random_number(RN)
 	
 	!Apply Random number along one axis - produces corresponding distance on other axis - using Trigonometry
-	r(1,j,0) = parity(1)*RN*abs(j)*AU
-	r(2,j,0) = parity(2)*abs(j)*SQRT(1 - RN)*AU
+	r(0,j,0) = parity(0)*RN*abs(j)*AU
+	r(1,j,0) = parity(1)*abs(j)*SQRT(1 - RN)*AU
 	
 	!Algorithm to work out what parities velocities should take in corresponding positions - uses parity vector used for position
-	if (parity(1)==parity(2)) then 
-		if (parity(1) == 1) then
+	if (parity(0)==parity(1)) then 
+		if (parity(0) == 1) then
 			ParityVel = [-1,1]
 		else
 			parityVel = [1,-1]
 		end if
 	else
-		if (parity(1) == 1) then
+		if (parity(0) == 1) then
 			ParityVel = [1,1]
 		else
 			ParityVel = [-1,-1]
@@ -107,123 +107,113 @@ do j=2,n 		!Required For Earth to Final planet in system
 	end if
 	
 	!Same multiplicative factor (RN) required for velocity vector, but on opposite axis
-	v(2,j,0) = parityVel(2)*RN*absvel(j)
-	v(1,j,0) = parityvel(1)*absvel(j)*SQRT(1 - RN)	!Trigonometry to calculate the other axis
+	v(1,j,0) = parityVel(1)*RN*absvel(j)
+	v(0,j,0) = parityvel(0)*absvel(j)*SQRT(1 - RN)	!Trigonometry to calculate the other axis
 	
 end do
 
 !Get CoM - Then centre system on CoM
-do i=1,3
-	do j=1,n
+do i=0,2
+	do j=0,n
 		COM(i) = COM(i) + m(j)*r(i,j,0)
 	end do
 end do 
-COM = COM/sum(m(1:n))
-do i=1,n
-	r(1:3,i,0) = r(1:3,i,0) - COM(1:3)
+COM = COM/sum(m(0:n))
+do i=0,n
+	r(0:2,i,0) = r(0:2,i,0) - COM(0:2)
 end do
 
 !Get CoV - Then centre velocities on CoV
-do i=1,3
-	do j=1,n
+do i=0,2
+	do j=0,n
 		COV(i) = COV(i) + m(j)*v(i,j,0)
 	end do
 end do 
-COV = COV/sum(m(1:n))
-do i=1,n
-	v(1:3,i,0) = v(1:3,i,0) - COV(1:3)
+COV = COV/sum(m(0:n))
+do i=0,n
+	v(0:2,i,0) = v(0:2,i,0) - COV(0:2)
 end do
-
 
 !-------------------Bootstrap-----------------!
 
 !Use second order method for 8 timesteps, so time history can be filled for acceleration and velocity
 
 !initial acceleration
-do i=1,n	!getting acceleration
-	do j=1,n
+do i=0,n	!getting acceleration
+	do j=0,n
 		if (i==j) then
 			cycle
 		end if 
-		D = r(1:3,i,0) - r(1:3,j,0)	!Get distance between two objects		
+		D = r(0:2,i,0) - r(0:2,j,0)	!Get distance between two objects		
 		AbsD = SQRT(SUM(D**2))	!Get absolute distance
-		a(1:3,i,0) = a(1:3,i,0) - ((G*m(j))/((AbsD)**3))*(D) !Make calculation
+		a(0:2,i,0) = a(0:2,i,0) - ((G*m(j))/((AbsD)**3))*(D) !Make calculation
 	end do
 end do  
 
-write(6,*) " " 
-write(6,*) tcount
-write(6,*) " " 	
-write(6,*) r(1:3,2,-8:1)/AU
-write(6,*) " " 	 
-write(6,*) v(1:3,2,-8:1) 
-write(6,*) " " 
-write(6,*) a(1:3,2,-8:1) 
-write(6,*) " " 
+do tcount=0,100000
 
-do tcount=-1,-8,-1
+	do i=-8,-1,1
+		r(0:2,0:n,i) = r(0:2,0:n,i+1)
+		v(0:2,0:n,i) = v(0:2,0:n,i+1)
+		a(0:2,0:n,i) = a(0:2,0:n,i+1)
+	end do
 
-	ai = a(1:3,1:n,tcount+1)
+	ai = a(0:2,0:n,0)
 
 	!Change in r
 	
-	do i=1,n
-		r(1:3,i,tcount) = r(1:3,i,tcount+1) + v(1:3,i,tcount+1)*(dt) + 0.5*a(1:3,i,tcount+1)*((dt)**2) 
-	end do
+	r(0:2,0:n,0) = r(0:2,0:n,0) + v(0:2,0:n,0)*(dt) + 0.5*a(0:2,0:n,0)*((dt)**2) 
 	
-	do i=1,n	!getting acceleration
-		do j=1,n
+	do i=0,n	!getting acceleration
+		do j=0,n
 			if (i==j) then
 				cycle
 			end if 
-			D = r(1:3,i,tcount) - r(1:3,j,tcount)	!Get distance between two objects		
+			D = r(0:2,i,0) - r(0:2,j,0)	!Get distance between two objects		
 			AbsD = SQRT(SUM(D**2))	!Get absolute distance
-			a(1:3,i,tcount) = a(1:3,i,tcount+1) - ((G*m(j))/((AbsD)**3))*(D) !Make calculation
+			a(0:2,i,0) = a(0:2,i,0) - ((G*m(j))/((AbsD)**3))*(D) !Make calculation
 		end do
 	end do
 	
-	do i=1,n
-		da(1:3,i)  = a(1:3,i,tcount) - ai(1:3,i) !Change in acceleration
-		v(1:3,i,tcount) = v(1:3,i,tcount+1) + a(1:3,i,tcount+1)*dt + 0.5*da(1:3,i)*dt
-	end do
+	da(0:2,0:n)  = a(0:2,0:n,0) - ai(0:2,0:n) !Change in acceleration
+	v(0:2,0:n,0) = v(0:2,0:n,0) + a(0:2,0:n,0)*dt + 0.5*da(0:2,0:n)*dt
+	
+	write(3,*) (t/Yr), r(0:1,0:n,0)/AU
 	
 	t = t + dt
 end do
 
 !----------------------Predictor-----------------------!
 
-do tcount=0,10
-
-	do i=1,n
-		r(1:3,i,1) = r(1:3,i,0) + (dt/24)*(-(9*v(1:3,i,-3))+(37*v(1:3,i,-2))-(59*v(1:3,i,-1))+(55*v(1:3,i,0)))
-		v(1:3,i,1) = v(1:3,i,0) + (dt/24)*(-(9*a(1:3,i,-3))+(37*a(1:3,i,-2))-(59*a(1:3,i,-1))+(55*a(1:3,i,0)))
-	end do
+do tcount=0,0
+	exit
 	
-	do i=1,n-1	!getting acceleration
-		do j=1,n-1
+	r(0:2,0:n,1) = r(0:2,0:n,0) + (dt/24)*(-(9*v(0:2,0:n,-3))+(37*v(0:2,0:n,-2))-(59*v(0:2,0:n,-1))+(55*v(0:2,0:n,0)))
+	v(0:2,0:n,1) = v(0:2,0:n,0) + (dt/24)*(-(9*a(0:2,0:n,-3))+(37*a(0:2,0:n,-2))-(59*a(0:2,0:n,-1))+(55*a(0:2,0:n,0)))
+	
+	do i=0,n	!getting acceleration
+		do j=0,n
 			if (i==j) then
 				cycle
 			end if 
-			D = r(1:3,i,1) - r(1:3,j,1)	!Get distance between two objects		
+			D = r(0:2,i,1) - r(0:2,j,1)	!Get distance between two objects		
 			AbsD = SQRT(SUM(D**2))	!Get absolute distance
-			a(1:3,i,1) = a(1:3,i,1) - ((G*m(j))/((AbsD)**3))*(D) !Make calculation
+			a(0:2,i,1) = a(0:2,i,1) - ((G*m(j))/((AbsD)**3))*(D) !Make calculation
 		end do
 	end do
 	
 	
-	if (a(1,1,1) == a(1,1,0)) then
+	if (a(0,1,1) == a(0,1,0)) then
 		write (6,*) tcount
 		exit
 	end if
 	
-	write(3,*) (t/Yr), r(1:2,1:n,0)
+	write(3,*) (t/Yr), r(0:1,0:n,0)
 	
 	do i=-8,0,1
-	    do j=1,n
-			r(1:3,j,i) = r(1:3,j,i+1)
-			v(1:3,j,i) = v(1:3,j,i+1)
-			a(1:3,j,i) = a(1:3,j,i+1)
-		end do
+		r(0:2,0:n,i) = r(0:2,0:n,i+1)
+		v(0:2,0:n,i) = v(0:2,0:n,i+1)
+		a(0:2,0:n,i) = a(0:2,0:n,i+1)
 	end do
 
 	t = t + dt
@@ -234,11 +224,11 @@ end do
 write(6,*) " " 
 write(6,*) tcount
 write(6,*) " " 	
-write(6,*) r(1:3,2,-8:1)/AU
+write(6,*) r(0:2,1,-8:1)/AU
 write(6,*) " " 	 
-write(6,*) v(1:3,2,-8:1) 
+write(6,*) v(0:2,1,-8:1) 
 write(6,*) " " 
-write(6,*) a(1:3,2,-8:1) 
+write(6,*) a(0:2,1,-8:1) 
 write(6,*) " " 	
 
 END PROGRAM PCAttempt2
