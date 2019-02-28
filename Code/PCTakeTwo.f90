@@ -3,12 +3,16 @@ IMPLICIT NONE
 !-------------------------Declaring Variables----------------------------!
 
 !Integers for loops and recording time
-INTEGER :: i,j,n,x,y,z,tcount,tcountWrite
+INTEGER :: i,j,n,x,y,z,tcount,tchange
 
-DOUBLE PRECISION :: dt,t
+DOUBLE PRECISION :: dt,t,tWrite
 
 !One Dimension Variables/Constants
 DOUBLE PRECISION :: G,AU,AbsD,Yr,KE_i,PE_i,PE,KE,E_i,E 
+
+!For getting error and difference between predicted values
+!first axis - position or velocity, second axis - position axis, third axis - body
+DOUBLE PRECISION :: Err(1:2), Small(1:2), RealErr(1:2,1:9) 
 
 !Arrays for kinematic calculations
 DOUBLE PRECISION :: COM(1:3),COV(1:3),ai(1:3,1:9),da(1:3,1:9),m(1:9),D(1:3)
@@ -18,6 +22,9 @@ DOUBLE PRECISION :: r(1:3,1:9,-8:1)
 DOUBLE PRECISION :: v(1:3,1:9,-8:1)
 DOUBLE PRECISION :: a(1:3,1:9,-8:1)
 
+DOUBLE PRECISION :: rc(1:3,1:9)
+DOUBLE PRECISION :: vc(1:3,1:9)
+
 !Variables for Randomising Initial Positions and Velocities
 DOUBLE PRECISION :: Abs(1:9),AbsVel(1:9),Val,RN
 INTEGER :: Parity(1:2),ParityVel(1:2)
@@ -26,6 +33,7 @@ INTEGER :: Parity(1:2),ParityVel(1:2)
 
 !Open data files
 OPEN(3,file="../Data/DataStable.txt",STATUS = 'REPLACE') !This is for the position vectors against time
+OPEN(4,file="../Data/EnergyStable.txt",STATUS = 'REPLACE')
 
 !Initialise Arrays, Constants etc..
 !Constants
@@ -33,12 +41,18 @@ AU = 1.496e11 !AU in metres
 G = 6.67e-11  !G in SI
 Yr = 3.154e7  !YR in seconds
 
+!error calculation
+RealErr = 0.
+Small = 1e-5
+Err = 5e-6
+
 n=7  !number of bodies in simulation
 
 !1000 seconds timestep
 t = 0.       !global time value
 dt = 100.    !10 second timesteps
 tcount = 0   !Timestep counter
+tchange = 8  !Counter for when timestep is permitted to change, initialise at 8
 
 !Initialising Body parameters Sun to Neptune
 !Masses in SI
@@ -72,24 +86,48 @@ absVel(5) = 9.536e3
 absVel(6) = 6.687e3
 absVel(7) = 5.372e3
 
-!Producing random positions and velocities in orbit -- Will reintroduce later
-
-!Orbital radii in AU 
-r(1,2,-8) = abs(2)*AU
-r(1,3,-8) = abs(3)*AU 
-r(1,4,-8) = abs(4)*AU
-r(1,5,-8) = abs(5)*AU
-r(1,6,-8) = abs(6)*AU
-r(1,7,-8) = abs(7)*AU
+!Producing random positions and velocities in orbit 
 
 
-!Orbital velocities - moving parallel to y axis initially
-v(2,2,-8) = absVel(2)
-v(2,3,-8) = absVel(3) 
-v(2,4,-8) = absVel(4)
-v(2,5,-8) = absVel(5)
-v(2,6,-8) = absVel(6)
-v(2,7,-8) = absVel(7)
+do j=2,n 		!Required For Earth to Final planet in system
+	
+	!Parity
+	do i=1,2	!z axis ignored; all bodies on x-y plane initially
+		!Get random number to determine whether in positive or negative plane, for x and y axes
+		call random_number(val)
+		if (val > 0.5) then
+			parity(i) = 1
+		else 
+			parity(i) = -1
+		end if
+	end do
+	!Get random number to determine multiplicative factor to orbital radius
+	call random_number(RN)
+	
+	!Apply Random number along one axis - produces corresponding distance on other axis - using Trigonometry
+	r(1,j,-8) = parity(1)*RN*abs(j)*AU
+	r(2,j,-8) = parity(2)*abs(j)*SQRT(1 - RN*RN)*AU
+	
+	!Algorithm to work out what parities velocities should take in corresponding positions - uses parity vector used for position
+	if (parity(1)==parity(2)) then 
+		if (parity(1) == 1) then
+			ParityVel = [-1,1]
+		else
+			parityVel = [1,-1]
+		end if
+	else
+		if (parity(1) == 1) then
+			ParityVel = [1,1]
+		else
+			ParityVel = [-1,-1]
+		end if
+	end if
+	
+	!Same multiplicative factor (RN) required for velocity vector, but on opposite axis
+	v(2,j,-8) = parityVel(2)*RN*absvel(j)
+	v(1,j,-8) = parityvel(1)*absvel(j)*SQRT(1 - RN*RN)	!Trigonometry to calculate the other axis
+	
+end do
 
 
 !Get CoM - Then centre system on CoM
@@ -114,6 +152,36 @@ do i=1,n
     v(1:3,i,0) = v(1:3,i,-8) - COV(1:3)
 end do
 
+
+!For Energy Conservation
+!Initial KE
+KE_i=0.
+do i=1,n
+	KE_i = KE_i + 0.5*m(i)*sum(v(1:3,i,-8)**2)
+end do
+
+
+!Initial PE
+PE_i = 0
+do i=1,n
+    do j=1,n
+		if (i==j) then
+			cycle
+		end if 
+		D = r(1:3,i,-8) - r(1:3,j,-8)	
+		AbsD = SQRT(SUM(D**2))
+		PE_i = PE_i - (G*m(i)*m(j))/(AbsD)
+	end do
+end do
+PE_i = 0.5*PE_i	
+
+!Total Initial Energy
+E_i = PE_i + KE_i
+
+
+!Makes output more readable
+print *, ''
+
 write(3,*) (t/Yr), r(1:2,1:n,-8)/AU
 
 !-------------------Bootstrap-----------------!
@@ -133,8 +201,6 @@ do i=1,n  !getting acceleration
 end do  
 
 do tcount=-7,0,1
-
-    write(6,*) tcount
 
     ai = a(1:3,1:n,tcount-1)
 
@@ -166,16 +232,18 @@ end do
 write(6,*) " "
 write(6,*) tcount
 write(6,*) " "
-write(6,*) r(1:3,7,-8:1)/AU
+write(6,*) r(1:3,2,-8:1)/AU
 write(6,*) " " 
-write(6,*) v(1:3,7,-8:1) 
+write(6,*) v(1:3,2,-8:1) 
 write(6,*) " "
-write(6,*) a(1:3,7,-8:1) 
+write(6,*) a(1:3,2,-8:1) 
 write(6,*) " "
 
-!----------------------Predictor-----------------------!
-tcountWrite=0
-do tcount=0,10000000
+!---------------------- Predictor-Corrector -----------------------!
+tWrite=0
+do tcount=0,100000000
+
+	!-------- Predicted Values --------!
 
     do i=1,n
         r(1:3,i,1) = r(1:3,i,0) + (dt/24)*( -(9*v(1:3,i,-3)) + (37*v(1:3,i,-2)) - (59*v(1:3,i,-1)) + (55*v(1:3,i,0)))
@@ -195,18 +263,48 @@ do tcount=0,10000000
 				
         end do
     end do
-	
-	
-    if (a(1,1,1) == a(1,1,0)) then
-        write (6,*) tcount
-        exit
+    
+    
+    !-------- corrector --------!
+    
+    do i=1,n
+    	rc(1:3,i) = r(1:3,i,0) + (dt/24)*( v(1:3,i,-2) - (5*v(1:3,i,-1)) + (19*v(1:3,i,0)) + (9*v(1:3,i,1)) )
+    	vc(1:3,i) = v(1:3,i,0) + (dt/24)*( a(1:3,i,-2) - (5*a(1:3,i,-1)) + (19*a(1:3,i,0)) + (9*a(1:3,i,1)) )
+    end do
+    
+    
+    if (tchange > 8) then
+    	
+    	!Position
+    	do i=1,n
+    		RealErr(1,i) = (19/270)*((sqrt(sum(rc(1:3,i)**2)-sum(r(1:3,i,1)**2)))/(sqrt(sum(rc(1:3,i)**2)) + Small(1)))
+    	end do
+    	
+    	!Velocity
+    	do i=1,n
+    		RealErr(2,i) = (19/270)*((sqrt(sum(vc(1:3,i)**2)-sum(v(1:3,i,1)**2)))/(sqrt(sum(vc(1:3,i)**2)) + Small(2)))
+    	end do
+    	
+    	do i=1,2
+    		do j=1,n
+    			if (RealErr(i,j) > Err(i)) then
+    				write(6,*) RealErr(i,j),i,j
+    			end if
+    		end do
+    	end do
+    	
+    	do i=1,2
+    		do j=1,n
+    			if (RealErr(i,j) < (Err(i)/100)) then
+    				write(6,*) RealErr(i,j),i,j
+    			end if
+    		end do
+    	end do
+    	
+    	tchange = 0
+    	
     end if
-	
-    if (tcountWrite == 10000) then
-        write(3,*) (t/Yr), r(1:2,1:n,0)/AU
-        tcountWrite = 0
-    end if
-	
+    
     do i=-8,0,1
         do j=1,n
             r(1:3,j,i) = r(1:3,j,i+1)
@@ -214,20 +312,53 @@ do tcount=0,10000000
             a(1:3,j,i) = a(1:3,j,i+1)
         end do
     end do
+	
+    if (tWrite == 604800) then !Write data once a week (in simulation) based on simulation time, since timestep is variable
+        ! For Energy Conservation
+		! KE
+		KE=0.
+		do i=1,n
+			KE = KE + 0.5*m(i)*sum(v(1:3,i,0)**2)
+		end do
 
+
+		! PE
+		PE = 0.
+		do i=1,n
+			do j=1,n
+				if (i==j) then
+					cycle
+				end if 
+				D = r(1:3,i,0) - r(1:3,j,0)	
+				AbsD = SQRT(SUM(D**2))
+				PE = PE - (G*m(i)*m(j))/(AbsD)
+			end do
+		end do
+		PE = 0.5*PE	
+		
+		!Total Energy
+		E = PE + KE	
+			
+        write(3,*) (t/Yr), r(1:2,1:n,0)/AU
+        write(4,*) (t/Yr), (E-E_i)/E_i,(KE-KE_i)/KE_i,(PE-PE_i)/PE_i
+        
+        tWrite = 0
+    end if
+
+	tChange = tchange + 1 
     t = t + dt
-    tcountWrite = tcountWrite + 1
+    tWrite = tWrite + dt
 end do
 	
 	
 write(6,*) " "
 write(6,*) tcount
 write(6,*) " "
-write(6,*) r(1:3,7,-8:1)/AU
+write(6,*) r(1:3,2,-8:1)/AU
 write(6,*) " "
-write(6,*) v(1:3,7,-8:1) 
+write(6,*) v(1:3,2,-8:1) 
 write(6,*) " "
-write(6,*) a(1:3,7,-8:1) 
+write(6,*) a(1:3,2,-8:1) 
 write(6,*) " "
 
 END PROGRAM PCAttempt2
