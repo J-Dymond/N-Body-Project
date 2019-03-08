@@ -12,7 +12,7 @@ DOUBLE PRECISION :: G,AU,AbsD,Yr,KE_i,PE_i,PE,KE,E_i,E
 
 !For getting error and difference between predicted values
 !first axis - position or velocity, second axis - position axis, third axis - body
-DOUBLE PRECISION :: Err(1:2), Small(1:2), RealErr(1:2,1:9) 
+DOUBLE PRECISION :: Err(1:2), Small(1:2), RealErr(1:2,1:3,1:9), AbsDifference(1:2,1:3,1:9)
 
 !Arrays for kinematic calculations
 DOUBLE PRECISION :: COM(1:3),COV(1:3),ai(1:3,1:9),da(1:3,1:9),m(1:9),D(1:3)
@@ -44,13 +44,13 @@ Yr = 3.154e7  !YR in seconds
 !error calculation
 RealErr = 0.
 Small = 1e-5
-Err = 5e-6
+Err = 5e-12
 
 n=7  !number of bodies in simulation
 
 !1000 seconds timestep
 t = 0.       !global time value
-dt = 100.    !10 second timesteps
+dt = 10.    !10 second timesteps
 tcount = 0   !Timestep counter
 tchange = 8  !Counter for when timestep is permitted to change, initialise at 8
 
@@ -273,33 +273,71 @@ do tcount=0,100000000
     end do
     
     
-    if (tchange > 8) then
+    if (tchange >= 8) then
     	
-    	!Position
     	do i=1,n
-    		RealErr(1,i) = (19/270)*((sqrt(sum(rc(1:3,i)**2)-sum(r(1:3,i,1)**2)))/(sqrt(sum(rc(1:3,i)**2)) + Small(1)))
-    	end do
-    	
-    	!Velocity
-    	do i=1,n
-    		RealErr(2,i) = (19/270)*((sqrt(sum(vc(1:3,i)**2)-sum(v(1:3,i,1)**2)))/(sqrt(sum(vc(1:3,i)**2)) + Small(2)))
-    	end do
-    	
-    	do i=1,2
-    		do j=1,n
-    			if (RealErr(i,j) > Err(i)) then
-    				write(6,*) RealErr(i,j),i,j
-    			end if
+    		do j=1,3
+    			AbsDifference(1,j,i) = rc(j,i) - r(j,i,1)
     		end do
     	end do
     	
-    	do i=1,2
-    		do j=1,n
-    			if (RealErr(i,j) < (Err(i)/100)) then
-    				write(6,*) RealErr(i,j),i,j
-    			end if
+    	do i=1,n
+    		do j=1,3
+    			AbsDifference(2,j,i) = vc(j,i) - v(j,i,1)
     		end do
     	end do
+		
+		do i=1,n
+			RealErr(1,1:3,i) = sqrt(AbsDifference(1,1:3,2)**2)/(sqrt(rc(1:3,2)**2) + small(1))
+		end do
+		
+		do i=1,n
+			RealErr(2,1:3,i) = sqrt(AbsDifference(2,1:3,2)**2)/(sqrt(vc(1:3,2)**2) + small(1))
+		end do
+        
+        !write(6,*) " "
+		!write(6,*) RealErr(1,1:3,2)
+		!write(6,*) RealErr(2,1:3,2)
+		
+		if (maxval(RealErr) < (Err(1)/100)) then
+		
+			dt = dt*2
+			
+			do i=1,n
+				do j=1,4
+					r(1:3,i,-j) = r(1:3,i,-j*2)
+					v(1:3,i,-j) = v(1:3,i,-j*2)
+					a(1:3,i,-j) = a(1:3,i,-j*2)
+				end do
+			end do
+			
+		end if
+		
+		if (maxval(RealErr) > (Err(1))) then
+		
+			dt = dt/2
+			
+			do i=1,n
+				r(1:3,i,-1) = (1/128)*( -5*r(1:3,i,-4) + 24*r(1:3,i,-3) - 70*r(1:3,i,-2) + 140*r(1:3,i,-1) + 35*r(1:3,i,0))
+				v(1:3,i,-1) = (1/128)*( -5*v(1:3,i,-4) + 24*v(1:3,i,-3) - 70*v(1:3,i,-2) + 140*v(1:3,i,-1) + 35*v(1:3,i,0))
+				a(1:3,i,-1) = (1/128)*( -5*a(1:3,i,-4) + 24*a(1:3,i,-3) - 70*a(1:3,i,-2) + 140*a(1:3,i,-1) + 35*a(1:3,i,0))
+				
+				r(1:3,i,-3) = (1/128)*( 3*r(1:3,i,-4) - 20*r(1:3,i,-3) + 90*r(1:3,i,-2) + 60*r(1:3,i,-1) - 5*r(1:3,i,0))
+				v(1:3,i,-3) = (1/128)*( 3*r(1:3,i,-4) - 20*r(1:3,i,-3) + 90*r(1:3,i,-2) + 60*r(1:3,i,-1) - 5*r(1:3,i,0))
+				a(1:3,i,-3) = (1/128)*( 3*r(1:3,i,-4) - 20*r(1:3,i,-3) + 90*r(1:3,i,-2) + 60*r(1:3,i,-1) - 5*r(1:3,i,0))
+				
+				do j=1,2
+					r(1:3,i,-j*2) = r(1:3,i,-j)
+					v(1:3,i,-j*2) = r(1:3,i,-j)
+					a(1:3,i,-j*2) = r(1:3,i,-j)
+				end do
+				
+			end do
+			
+		end if
+		
+		!write(6,*) " "
+		!write(6,*) dt
     	
     	tchange = 0
     	
@@ -307,13 +345,13 @@ do tcount=0,100000000
     
     do i=-8,0,1
         do j=1,n
-            r(1:3,j,i) = r(1:3,j,i+1)
-            v(1:3,j,i) = v(1:3,j,i+1)
-            a(1:3,j,i) = a(1:3,j,i+1)
+			r(1:3,j,i) = r(1:3,j,i+1)
+			v(1:3,j,i) = v(1:3,j,i+1)
+			a(1:3,j,i) = a(1:3,j,i+1)
         end do
     end do
 	
-    if (tWrite == 604800) then !Write data once a week (in simulation) based on simulation time, since timestep is variable
+    if (tWrite >= 604800*52) then !Write data once every 2 months (week = 604800s in simulation) based on simulation time, since timestep is variable
         ! For Energy Conservation
 		! KE
 		KE=0.
