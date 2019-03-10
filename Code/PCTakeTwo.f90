@@ -5,7 +5,7 @@ IMPLICIT NONE
 !Integers for loops and recording time
 INTEGER :: i,j,n,x,y,z,tcount,tchange
 
-DOUBLE PRECISION :: dt,t,tWrite
+DOUBLE PRECISION :: dt,t,tWrite,tPrint
 
 !One Dimension Variables/Constants
 DOUBLE PRECISION :: G,AU,AbsD,Yr,KE_i,PE_i,PE,KE,E_i,E 
@@ -44,15 +44,16 @@ Yr = 3.154e7  !YR in seconds
 !error calculation
 RealErr = 0.
 Small = 1e-5
-Err = 5e-12
+Err = 5e-13
 
 n=7  !number of bodies in simulation
 
 !1000 seconds timestep
 t = 0.       !global time value
-dt = 10.    !10 second timesteps
+dt = 10.     !10 second timesteps
 tcount = 0   !Timestep counter
 tchange = 8  !Counter for when timestep is permitted to change, initialise at 8
+tPrint = 1e4 !Time counter for print outs: Every 10,000 years 
 
 !Initialising Body parameters Sun to Neptune
 !Masses in SI
@@ -241,7 +242,21 @@ write(6,*) " "
 
 !---------------------- Predictor-Corrector -----------------------!
 tWrite=0
+do x=0,20
 do tcount=0,100000000
+
+	if (tPrint >= 1e4*Yr) then
+		write(6,*) " "
+ 		write(6,*) " Time: "
+ 		write(6,*) t/yr
+		write(6,*) " "
+ 		write(6,*) " Timestep: "
+ 		write(6,*) dt 
+ 		write(6,*) " "
+ 		write(6,*) " Current Error: "
+ 		write(6,*) (maxval(RealErr))
+ 		tPrint = 0
+	end if
 
 	!-------- Predicted Values --------!
 
@@ -272,32 +287,28 @@ do tcount=0,100000000
     	vc(1:3,i) = v(1:3,i,0) + (dt/24)*( a(1:3,i,-2) - (5*a(1:3,i,-1)) + (19*a(1:3,i,0)) + (9*a(1:3,i,1)) )
     end do
     
+	do i=1,n
+		do j=1,3
+			AbsDifference(1,j,i) = rc(j,i) - r(j,i,1)
+		end do
+	end do
+	
+	do i=1,n
+		do j=1,3
+			AbsDifference(2,j,i) = vc(j,i) - v(j,i,1)
+		end do
+	end do
+	
+	do i=1,n
+		RealErr(1,1:3,i) = sqrt(AbsDifference(1,1:3,2)**2)/(sqrt(rc(1:3,2)**2) + small(1))
+	end do
+	
+	do i=1,n
+		RealErr(2,1:3,i) = sqrt(AbsDifference(2,1:3,2)**2)/(sqrt(vc(1:3,2)**2) + small(1))
+	end do
     
-    if (tchange >= 8) then
-    	
-    	do i=1,n
-    		do j=1,3
-    			AbsDifference(1,j,i) = rc(j,i) - r(j,i,1)
-    		end do
-    	end do
-    	
-    	do i=1,n
-    		do j=1,3
-    			AbsDifference(2,j,i) = vc(j,i) - v(j,i,1)
-    		end do
-    	end do
-		
-		do i=1,n
-			RealErr(1,1:3,i) = sqrt(AbsDifference(1,1:3,2)**2)/(sqrt(rc(1:3,2)**2) + small(1))
-		end do
-		
-		do i=1,n
-			RealErr(2,1:3,i) = sqrt(AbsDifference(2,1:3,2)**2)/(sqrt(vc(1:3,2)**2) + small(1))
-		end do
-        
-        !write(6,*) " "
-		!write(6,*) RealErr(1,1:3,2)
-		!write(6,*) RealErr(2,1:3,2)
+    
+    if (tchange >= 8000) then
 		
 		if (maxval(RealErr) < (Err(1)/100)) then
 		
@@ -314,34 +325,39 @@ do tcount=0,100000000
 		end if
 		
 		if (maxval(RealErr) > (Err(1))) then
-		
+
 			dt = dt/2
-			
+	
 			do i=1,n
-				r(1:3,i,-1) = (1/128)*( -5*r(1:3,i,-4) + 24*r(1:3,i,-3) - 70*r(1:3,i,-2) + 140*r(1:3,i,-1) + 35*r(1:3,i,0))
-				v(1:3,i,-1) = (1/128)*( -5*v(1:3,i,-4) + 24*v(1:3,i,-3) - 70*v(1:3,i,-2) + 140*v(1:3,i,-1) + 35*v(1:3,i,0))
-				a(1:3,i,-1) = (1/128)*( -5*a(1:3,i,-4) + 24*a(1:3,i,-3) - 70*a(1:3,i,-2) + 140*a(1:3,i,-1) + 35*a(1:3,i,0))
-				
+				r(1:3,i,-1) = (1/128)*( -5*r(1:3,i,-4) + 28*r(1:3,i,-3) - 70*r(1:3,i,-2) + 140*r(1:3,i,-1) + 35*r(1:3,i,0))
+				v(1:3,i,-1) = (1/128)*( -5*v(1:3,i,-4) + 28*v(1:3,i,-3) - 70*v(1:3,i,-2) + 140*v(1:3,i,-1) + 35*v(1:3,i,0))
+				a(1:3,i,-1) = (1/128)*( -5*a(1:3,i,-4) + 28*a(1:3,i,-3) - 70*a(1:3,i,-2) + 140*a(1:3,i,-1) + 35*a(1:3,i,0))
+		
 				r(1:3,i,-3) = (1/128)*( 3*r(1:3,i,-4) - 20*r(1:3,i,-3) + 90*r(1:3,i,-2) + 60*r(1:3,i,-1) - 5*r(1:3,i,0))
 				v(1:3,i,-3) = (1/128)*( 3*r(1:3,i,-4) - 20*r(1:3,i,-3) + 90*r(1:3,i,-2) + 60*r(1:3,i,-1) - 5*r(1:3,i,0))
 				a(1:3,i,-3) = (1/128)*( 3*r(1:3,i,-4) - 20*r(1:3,i,-3) + 90*r(1:3,i,-2) + 60*r(1:3,i,-1) - 5*r(1:3,i,0))
-				
+		
 				do j=1,2
 					r(1:3,i,-j*2) = r(1:3,i,-j)
 					v(1:3,i,-j*2) = r(1:3,i,-j)
 					a(1:3,i,-j*2) = r(1:3,i,-j)
 				end do
-				
+		
 			end do
+			
+			! write(6,*) " "
+! 			write(6,*) RealErr(1,1:3,2)
+! 			write(6,*) RealErr(2,1:3,2)
+! 			write(6,*) " "
+! 			write(6,*) " Timestep halved: "
+! 			write(6,*) dt
 			
 		end if
 		
-		!write(6,*) " "
-		!write(6,*) dt
+		tchange = 0
+		
+	end if
     	
-    	tchange = 0
-    	
-    end if
     
     do i=-8,0,1
         do j=1,n
@@ -351,7 +367,7 @@ do tcount=0,100000000
         end do
     end do
 	
-    if (tWrite >= 604800*52) then !Write data once every 2 months (week = 604800s in simulation) based on simulation time, since timestep is variable
+    if (tWrite >= 5*604800*52) then !Write data once every 2 months (week = 604800s in simulation) based on simulation time, since timestep is variable
         ! For Energy Conservation
 		! KE
 		KE=0.
@@ -386,6 +402,8 @@ do tcount=0,100000000
 	tChange = tchange + 1 
     t = t + dt
     tWrite = tWrite + dt
+    tPrint = tPrint + dt
+end do
 end do
 	
 	
