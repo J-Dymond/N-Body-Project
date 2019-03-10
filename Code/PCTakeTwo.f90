@@ -46,11 +46,11 @@ RealErr = 0.
 Small = 1e-5
 Err = 5e-13
 
-n=7  !number of bodies in simulation
+n=8  !number of bodies in simulation
 
 !1000 seconds timestep
 t = 0.       !global time value
-dt = 10.     !10 second timesteps
+dt = 10     !10 second timesteps
 tcount = 0   !Timestep counter
 tchange = 8  !Counter for when timestep is permitted to change, initialise at 8
 tPrint = 1e4 !Time counter for print outs: Every 10,000 years 
@@ -65,6 +65,7 @@ m(4) = 1.898e27 !etc..
 m(5) = 568e24
 m(6) = 86.8e24
 m(7) = 102e24
+m(8) = 4.87e24  !Venus - put in last
 
 !initialise vectors as 0
 v = 0.
@@ -78,6 +79,7 @@ abs(4) = 5.203   !etc...
 abs(5) = 9.582
 abs(6) = 19.20 
 abs(7) = 30.05
+abs(8) = 0.723
 
 !Absolute Values of Orbital Velocities
 absVel(2) = 29.78e3 !Earth
@@ -86,6 +88,7 @@ absVel(4) = 13.07e3
 absVel(5) = 9.536e3
 absVel(6) = 6.687e3
 absVel(7) = 5.372e3
+absVel(8) = 35.0e3
 
 !Producing random positions and velocities in orbit 
 
@@ -308,7 +311,7 @@ do tcount=0,100000000
 	end do
     
     
-    if (tchange >= 8000) then
+    if (tchange >= 800) then
 		
 		if (maxval(RealErr) < (Err(1)/100)) then
 		
@@ -334,8 +337,8 @@ do tcount=0,100000000
 				a(1:3,i,-1) = (1/128)*( -5*a(1:3,i,-4) + 28*a(1:3,i,-3) - 70*a(1:3,i,-2) + 140*a(1:3,i,-1) + 35*a(1:3,i,0))
 		
 				r(1:3,i,-3) = (1/128)*( 3*r(1:3,i,-4) - 20*r(1:3,i,-3) + 90*r(1:3,i,-2) + 60*r(1:3,i,-1) - 5*r(1:3,i,0))
-				v(1:3,i,-3) = (1/128)*( 3*r(1:3,i,-4) - 20*r(1:3,i,-3) + 90*r(1:3,i,-2) + 60*r(1:3,i,-1) - 5*r(1:3,i,0))
-				a(1:3,i,-3) = (1/128)*( 3*r(1:3,i,-4) - 20*r(1:3,i,-3) + 90*r(1:3,i,-2) + 60*r(1:3,i,-1) - 5*r(1:3,i,0))
+				v(1:3,i,-3) = (1/128)*( 3*v(1:3,i,-4) - 20*v(1:3,i,-3) + 90*v(1:3,i,-2) + 60*v(1:3,i,-1) - 5*v(1:3,i,0))
+				a(1:3,i,-3) = (1/128)*( 3*a(1:3,i,-4) - 20*a(1:3,i,-3) + 90*a(1:3,i,-2) + 60*a(1:3,i,-1) - 5*a(1:3,i,0))
 		
 				do j=1,2
 					r(1:3,i,-j*2) = r(1:3,i,-j)
