@@ -18,9 +18,14 @@ DOUBLE PRECISION :: Err(1:2), Small(1:2), RealErr(1:2,1:3,1:9), AbsDifference(1:
 DOUBLE PRECISION :: COM(1:3),COV(1:3),ai(1:3,1:9),da(1:3,1:9),m(1:9),D(1:3)
 
 !Position, velocity, and acceleration vectors, with time history
-DOUBLE PRECISION :: r(1:3,1:9,-8:1)
+DOUBLE PRECISION :: r(1:3,1:9,-8:1) 
 DOUBLE PRECISION :: v(1:3,1:9,-8:1)
 DOUBLE PRECISION :: a(1:3,1:9,-8:1)
+
+!When halving the timestep it necessary to have placeholder values
+DOUBLE PRECISION :: a_place(1:3,1:9,-4:-1)
+DOUBLE PRECISION :: v_place(1:3,1:9,-4:-1)
+DOUBLE PRECISION :: r_place(1:3,1:9,-4:-1)
 
 DOUBLE PRECISION :: rc(1:3,1:9)
 DOUBLE PRECISION :: vc(1:3,1:9)
@@ -43,14 +48,14 @@ Yr = 3.154e7  !YR in seconds
 
 !error calculation
 RealErr = 0.
-Small = 1e-5
-Err = 5e-13
+Small = 1e-4
+Err = 5e-10
 
 n=8  !number of bodies in simulation
 
 !1000 seconds timestep
 t = 0.       !global time value
-dt = 10     !10 second timesteps
+dt = 1.      !10 second timesteps
 tcount = 0   !Timestep counter
 tchange = 8  !Counter for when timestep is permitted to change, initialise at 8
 tPrint = 1e4 !Time counter for print outs: Every 10,000 years 
@@ -245,7 +250,7 @@ write(6,*) " "
 
 !---------------------- Predictor-Corrector -----------------------!
 tWrite=0
-do x=0,20
+do x=0,100
 do tcount=0,100000000
 
 	if (tPrint >= 1e4*Yr) then
@@ -293,74 +298,75 @@ do tcount=0,100000000
 	do i=1,n
 		do j=1,3
 			AbsDifference(1,j,i) = rc(j,i) - r(j,i,1)
-		end do
-	end do
-	
-	do i=1,n
-		do j=1,3
 			AbsDifference(2,j,i) = vc(j,i) - v(j,i,1)
 		end do
 	end do
 	
 	do i=1,n
-		RealErr(1,1:3,i) = sqrt(AbsDifference(1,1:3,2)**2)/(sqrt(rc(1:3,2)**2) + small(1))
-	end do
-	
-	do i=1,n
-		RealErr(2,1:3,i) = sqrt(AbsDifference(2,1:3,2)**2)/(sqrt(vc(1:3,2)**2) + small(1))
+		RealErr(1,1:3,i) = sqrt(AbsDifference(1,1:3,i)**2)/(sqrt(rc(1:3,i)**2) + small(1))
+		RealErr(2,1:3,i) = sqrt(AbsDifference(2,1:3,i)**2)/(sqrt(vc(1:3,i)**2) + small(1))
 	end do
     
     
-    if (tchange >= 800) then
-		
-		if (maxval(RealErr) < (Err(1)/100)) then
+    if (maxval(RealErr) < err(1)/100) then
+        
+		if (tchange >= 8) then
+			!double timestep
 		
 			dt = dt*2
-			
+		
 			do i=1,n
-				do j=1,4
-					r(1:3,i,-j) = r(1:3,i,-j*2)
-					v(1:3,i,-j) = v(1:3,i,-j*2)
-					a(1:3,i,-j) = a(1:3,i,-j*2)
-				end do
+		
+				v(1:3,j,-1) = v(1:3,j,-2)
+				a(1:3,j,-1) = a(1:3,j,-2)
+		
+				v(1:3,j,-2) = v(1:3,j,-4)
+				a(1:3,j,-2) = a(1:3,j,-4)
+		
+				v(1:3,j,-3) = v(1:3,j,-6)
+				a(1:3,j,-3) = a(1:3,j,-6)
+		
+				v(1:3,j,-4) = v(1:3,j,-8)
+				a(1:3,j,-4) = a(1:3,j,-8)
+			
 			end do
 			
-		end if
+			tchange = 0
 		
-		if (maxval(RealErr) > (Err(1))) then
-
-			dt = dt/2
+		end if
+    
+    end if
+    
+    if ( maxval(RealErr) > err(1) ) then
+    
+		!write(6,*) maxval(RealErr), err(1), dt
 	
-			do i=1,n
-				r(1:3,i,-1) = (1/128)*( -5*r(1:3,i,-4) + 28*r(1:3,i,-3) - 70*r(1:3,i,-2) + 140*r(1:3,i,-1) + 35*r(1:3,i,0))
-				v(1:3,i,-1) = (1/128)*( -5*v(1:3,i,-4) + 28*v(1:3,i,-3) - 70*v(1:3,i,-2) + 140*v(1:3,i,-1) + 35*v(1:3,i,0))
-				a(1:3,i,-1) = (1/128)*( -5*a(1:3,i,-4) + 28*a(1:3,i,-3) - 70*a(1:3,i,-2) + 140*a(1:3,i,-1) + 35*a(1:3,i,0))
+		dt = dt/2
+
+		do i=1,n
+			v_place(1:3,i,-1) = (1./128.)*( -5*v(1:3,i,-4) + 28*v(1:3,i,-3) - 70*v(1:3,i,-2) + 140*v(1:3,i,-1) + 35*v(1:3,i,0) )
+			a_place(1:3,i,-1) = (1./128.)*( -5*a(1:3,i,-4) + 28*a(1:3,i,-3) - 70*a(1:3,i,-2) + 140*a(1:3,i,-1) + 35*a(1:3,i,0) )
+
+			v_place(1:3,i,-2) = v(1:3,i,-1)
+			a_place(1:3,i,-2) = a(1:3,i,-1)
 		
-				r(1:3,i,-3) = (1/128)*( 3*r(1:3,i,-4) - 20*r(1:3,i,-3) + 90*r(1:3,i,-2) + 60*r(1:3,i,-1) - 5*r(1:3,i,0))
-				v(1:3,i,-3) = (1/128)*( 3*v(1:3,i,-4) - 20*v(1:3,i,-3) + 90*v(1:3,i,-2) + 60*v(1:3,i,-1) - 5*v(1:3,i,0))
-				a(1:3,i,-3) = (1/128)*( 3*a(1:3,i,-4) - 20*a(1:3,i,-3) + 90*a(1:3,i,-2) + 60*a(1:3,i,-1) - 5*a(1:3,i,0))
+			v_place(1:3,i,-3) = (1./128.)*( 3*v(1:3,i,-4) - 20*v(1:3,i,-3) + 90*v(1:3,i,-2) + 60*v(1:3,i,-1) - 5*v(1:3,i,0) )
+			a_place(1:3,i,-3) = (1./128.)*( 3*a(1:3,i,-4) - 20*a(1:3,i,-3) + 90*a(1:3,i,-2) + 60*a(1:3,i,-1) - 5*a(1:3,i,0) )
+
+			v_place(1:3,i,-4) = v(1:3,i,-2)
+			a_place(1:3,i,-4) = a(1:3,i,-2)
 		
-				do j=1,2
-					r(1:3,i,-j*2) = r(1:3,i,-j)
-					v(1:3,i,-j*2) = r(1:3,i,-j)
-					a(1:3,i,-j*2) = r(1:3,i,-j)
-				end do
-		
+			do j=1,4
+				v(1:3,i,-j) = v_place(1:3,i,-j)
+				a(1:3,i,-j) = a_place(1:3,i,-j)
 			end do
 			
-			! write(6,*) " "
-! 			write(6,*) RealErr(1,1:3,2)
-! 			write(6,*) RealErr(2,1:3,2)
-! 			write(6,*) " "
-! 			write(6,*) " Timestep halved: "
-! 			write(6,*) dt
+			r(1:3,i,1) = r(1:3,i,0) + (dt/24)*( -(9*v(1:3,i,-3)) + (37*v(1:3,i,-2)) - (59*v(1:3,i,-1)) + (55*v(1:3,i,0)))
+         	v(1:3,i,1) = v(1:3,i,0) + (dt/24)*( -(9*a(1:3,i,-3)) + (37*a(1:3,i,-2)) - (59*a(1:3,i,-1)) + (55*a(1:3,i,0)))
 			
-		end if
-		
-		tchange = 0
-		
-	end if
-    	
+		 end do
+			
+	 end if
     
     do i=-8,0,1
         do j=1,n
@@ -370,7 +376,7 @@ do tcount=0,100000000
         end do
     end do
 	
-    if (tWrite >= 5*604800*52) then !Write data once every 2 months (week = 604800s in simulation) based on simulation time, since timestep is variable
+    if (tWrite >= 12*604800) then !Write data once every 2 months (week = 604800s in simulation) based on simulation time, since timestep is variable
         ! For Energy Conservation
 		! KE
 		KE=0.
