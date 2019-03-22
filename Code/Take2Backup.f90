@@ -12,23 +12,18 @@ DOUBLE PRECISION :: G,AU,AbsD,Yr,KE_i,PE_i,PE,KE,E_i,E
 
 !For getting error and difference between predicted values
 !first axis - position or velocity, second axis - position axis, third axis - body
-DOUBLE PRECISION :: Err, Small(1:2), RealErr(1:2,1:3,1:9), AbsDifference(1:2,1:3,1:9)
+DOUBLE PRECISION :: Err(1:2), Small(1:2), RealErr(1:2,1:3,1:9), AbsDifference(1:2,1:3,1:9)
 
 !Arrays for kinematic calculations
 DOUBLE PRECISION :: COM(1:3),COV(1:3),ai(1:3,1:9),da(1:3,1:9),m(1:9),D(1:3)
 
 !Position, velocity, and acceleration vectors, with time history
-DOUBLE PRECISION :: r(1:3,1:9,-8:0) 
-DOUBLE PRECISION :: v(1:3,1:9,-8:0)
-DOUBLE PRECISION :: a(1:3,1:9,-8:0)
+DOUBLE PRECISION :: r(1:3,1:9,-8:1)
+DOUBLE PRECISION :: v(1:3,1:9,-8:1)
+DOUBLE PRECISION :: a(1:3,1:9,-8:1)
 
-!When halving the timestep it necessary to have placeholder values
-DOUBLE PRECISION :: a_place(1:3,1:9,-4:-1)
-DOUBLE PRECISION :: v_place(1:3,1:9,-4:-1)
-DOUBLE PRECISION :: r_place(1:3,1:9,-4:-1)
-
-DOUBLE PRECISION :: rp(1:3,1:9)
-DOUBLE PRECISION :: vp(1:3,1:9)
+DOUBLE PRECISION :: rc(1:3,1:9)
+DOUBLE PRECISION :: vc(1:3,1:9)
 
 !Variables for Randomising Initial Positions and Velocities
 DOUBLE PRECISION :: Abs(1:9),AbsVel(1:9),Val,RN
@@ -48,14 +43,14 @@ Yr = 3.154e7  !YR in seconds
 
 !error calculation
 RealErr = 0.
-Small = 1e-4
-Err = 1e-11
+Small = 1e-5
+Err = 5e-13
 
 n=8  !number of bodies in simulation
 
 !1000 seconds timestep
 t = 0.       !global time value
-dt = 0.01   !10 second timesteps
+dt = 10     !10 second timesteps
 tcount = 0   !Timestep counter
 tchange = 8  !Counter for when timestep is permitted to change, initialise at 8
 tPrint = 1e4 !Time counter for print outs: Every 10,000 years 
@@ -69,7 +64,7 @@ m(3) = 0.642e24 !Mars
 m(4) = 1.898e27 !etc..
 m(5) = 568e24
 m(6) = 86.8e24
-m(7) = 102.0e24
+m(7) = 102e24
 m(8) = 4.87e24  !Venus - put in last
 
 !initialise vectors as 0
@@ -158,7 +153,7 @@ do i=1,3
 end do 
 COV = COV/sum(m(1:n))
 do i=1,n
-    v(1:3,i,-8) = v(1:3,i,-8) - COV(1:3)
+    v(1:3,i,0) = v(1:3,i,-8) - COV(1:3)
 end do
 
 
@@ -241,18 +236,17 @@ end do
 write(6,*) " "
 write(6,*) tcount
 write(6,*) " "
-write(6,*) r(1:3,1,-8:0)/AU
+write(6,*) r(1:3,2,-8:1)/AU
 write(6,*) " " 
-write(6,*) v(1:3,1,-8:0) 
+write(6,*) v(1:3,2,-8:1) 
 write(6,*) " "
-write(6,*) a(1:3,1,-8:0) 
+write(6,*) a(1:3,2,-8:1) 
 write(6,*) " "
 
 !---------------------- Predictor-Corrector -----------------------!
 tWrite=0
-!do x=0,1
-!do tcount=0,1000000
-do
+do x=0,20
+do tcount=0,100000000
 
 	if (tPrint >= 1e4*Yr) then
 		write(6,*) " "
@@ -270,20 +264,20 @@ do
 	!-------- Predicted Values --------!
 
     do i=1,n
-        rp(1:3,i) = r(1:3,i,0) + (dt/24)*( -(9*v(1:3,i,-4)) + (37*v(1:3,i,-3)) - (59*v(1:3,i,-2)) + (55*v(1:3,i,-1)))
-        vp(1:3,i) = v(1:3,i,-1) + (dt/24)*( -(9*a(1:3,i,-4)) + (37*a(1:3,i,-3)) - (59*a(1:3,i,-2)) + (55*a(1:3,i,-1)))
+        r(1:3,i,1) = r(1:3,i,0) + (dt/24)*( -(9*v(1:3,i,-3)) + (37*v(1:3,i,-2)) - (59*v(1:3,i,-1)) + (55*v(1:3,i,0)))
+        v(1:3,i,1) = v(1:3,i,0) + (dt/24)*( -(9*a(1:3,i,-3)) + (37*a(1:3,i,-2)) - (59*a(1:3,i,-1)) + (55*a(1:3,i,0)))
     end do
 	
-	a(1:3,1:n,0)=0.
+	a(1:3,1:n,1)=0.
     do i=1,n !getting acceleration
         do j=1,n
             if (i==j) then
                 cycle
             end if 
-            D = rp(1:3,i) - rp(1:3,j) !Get distance between two objects		
+            D = r(1:3,i,1) - r(1:3,j,1) !Get distance between two objects		
             AbsD = SQRT(SUM(D**2)) !Get absolute distance
 	
-            a(1:3,i,0) = a(1:3,i,0) - ((G*m(j))/((AbsD)**3))*(D) !Make calculation
+            a(1:3,i,1) = a(1:3,i,1) - ((G*m(j))/((AbsD)**3))*(D) !Make calculation
 				
         end do
     end do
@@ -292,131 +286,83 @@ do
     !-------- corrector --------!
     
     do i=1,n
-    	v(1:3,i,0) = v(1:3,i,-1) + (dt/24)*( a(1:3,i,-3) - (5*a(1:3,i,-2)) + (19*a(1:3,i,-1)) + (9*a(1:3,i,0)) )
-    	r(1:3,i,0) = r(1:3,i,0) +  (dt/24)*( v(1:3,i,-3) - (5*v(1:3,i,-2)) + (19*v(1:3,i,-1)) + (9*v(1:3,i,0)) )
-    end do
-    
-    a(1:3,1:n,0)=0.
-    do i=1,n !getting acceleration
-        do j=1,n
-            if (i==j) then
-                cycle
-            end if 
-            D = r(1:3,i,0) - r(1:3,j,0) !Get distance between two objects		
-            AbsD = SQRT(SUM(D**2)) !Get absolute distance
-	
-            a(1:3,i,0) = a(1:3,i,0) - ((G*m(j))/((AbsD)**3))*(D) !Make calculation
-				
-        end do
+    	rc(1:3,i) = r(1:3,i,0) + (dt/24)*( v(1:3,i,-2) - (5*v(1:3,i,-1)) + (19*v(1:3,i,0)) + (9*v(1:3,i,1)) )
+    	vc(1:3,i) = v(1:3,i,0) + (dt/24)*( a(1:3,i,-2) - (5*a(1:3,i,-1)) + (19*a(1:3,i,0)) + (9*a(1:3,i,1)) )
     end do
     
 	do i=1,n
 		do j=1,3
-			AbsDifference(1,j,i) =  r(j,i,0) - rp(j,i)
-			AbsDifference(2,j,i) =  v(j,i,0) - vp(j,i)
+			AbsDifference(1,j,i) = rc(j,i) - r(j,i,1)
 		end do
 	end do
 	
-	RealErr = 0.
 	do i=1,n
-		RealErr(1,1:3,i) = sqrt(AbsDifference(1,1:3,i)**2)/(sqrt(r(1:3,i,0)**2) + small(1))
-		RealErr(2,1:3,i) = sqrt(AbsDifference(2,1:3,i)**2)/(sqrt(v(1:3,i,0)**2) + small(1))
+		do j=1,3
+			AbsDifference(2,j,i) = vc(j,i) - v(j,i,1)
+		end do
+	end do
+	
+	do i=1,n
+		RealErr(1,1:3,i) = sqrt(AbsDifference(1,1:3,2)**2)/(sqrt(rc(1:3,2)**2) + small(1))
+	end do
+	
+	do i=1,n
+		RealErr(2,1:3,i) = sqrt(AbsDifference(2,1:3,2)**2)/(sqrt(vc(1:3,2)**2) + small(1))
 	end do
     
-    if ( maxval(RealErr(1:2,1:3,1:n)) > err ) then
     
-    	dt = dt*0.5
-    
-    	!write(6,*) "Halving:" , tcount, dt
-
-		do i=1,n
-			
-			v_place(1:3,i,-1) = (1./128.)*( -5.*v(1:3,i,-4) + 28.*v(1:3,i,-3) - 70.*v(1:3,i,-2) + 140.*v(1:3,i,-1) + 35.*v(1:3,i,0) )
-			a_place(1:3,i,-1) = (1./128.)*( -5.*a(1:3,i,-4) + 28.*a(1:3,i,-3) - 70.*a(1:3,i,-2) + 140.*a(1:3,i,-1) + 35.*a(1:3,i,0) )
-
-			v_place(1:3,i,-2) = v(1:3,i,-1)
-			a_place(1:3,i,-2) = a(1:3,i,-1)
-			
-			v_place(1:3,i,-3) = (1./128.)*( 3.*v(1:3,i,-4) - 20.*v(1:3,i,-3) + 90.*v(1:3,i,-2) + 60.*v(1:3,i,-1) - 5.*v(1:3,i,0) )
-			a_place(1:3,i,-3) = (1./128.)*( 3.*a(1:3,i,-4) - 20.*a(1:3,i,-3) + 90.*a(1:3,i,-2) + 60.*a(1:3,i,-1) - 5.*a(1:3,i,0) )
-			
-			v_place(1:3,i,-4) = v(1:3,i,-2)
-			a_place(1:3,i,-4) = a(1:3,i,-2)
-			
-			! if (i == 2) then
-! 				write(6,*) v(1,2,-4:0)
-! 				write(6,*) a(1,2,-4:0)
-! 			end if
-			
-			v(1:3,i,-1) = v_place(1:3,i,-1)
-			a(1:3,i,-1) = a_place(1:3,i,-1)
-			
-			v(1:3,i,-2) = v_place(1:3,i,-2)
-			a(1:3,i,-2) = a_place(1:3,i,-2)
-			
-			v(1:3,i,-3) = v_place(1:3,i,-3)
-			a(1:3,i,-3) = a_place(1:3,i,-3)
-			
-			v(1:3,i,-4) = v_place(1:3,i,-4)
-			a(1:3,i,-4) = a_place(1:3,i,-4)
-			
-		 end do
-		 
-		 ! write(6,*) " "
-! 	     write(6,*) maxval(RealErr(1:2,1:3,2:n)), dt
-! 		 write(6,*) " "
-
-	! write(6,*) " "
-! 	write(6,*) v(1,2,-4:0)
-! 	write(6,*) a(1,2,-4:0)
-! 	
-! 	pause
-		 
-	end if
-    
-    if (maxval(RealErr(1:2,1:3,1:n)) < err*0.001) then
-        
-		if (tchange > 8) then
-			!double timestep
-
-		dt = dt*2
-			
-		!write(6,*) "Doubling:" , tcount, dt
-
-		do i=1,n
-			
-			! if (i == 2) then
-! 				write(6,*) v(1,2,-4:0)
-! 				write(6,*) a(1,2,-4:0)
-! 			end if
-	
-			v(1:3,i,-1) = v(1:3,i,-2)
-			a(1:3,i,-1) = a(1:3,i,-2)
-	
-			v(1:3,i,-2) = v(1:3,i,-4)
-			a(1:3,i,-2) = a(1:3,i,-4)
-	
-			v(1:3,i,-3) = v(1:3,i,-6)
-			a(1:3,i,-3) = a(1:3,i,-6)
-	
-			v(1:3,i,-4) = v(1:3,i,-8)
-			a(1:3,i,-4) = a(1:3,i,-8)
+    if (tchange >= 800) then
 		
-		end do
+		if (maxval(RealErr) < (Err(1)/100)) then
 		
-		tchange = 4
-		
-		! write(6,*) " "
-! 		write(6,*) v(1,2,-4:0)
-! 		write(6,*) a(1,2,-4:0)
-! 	
-! 		pause
-		
+			dt = dt*2
+			
+			do i=1,n
+				do j=1,4
+					r(1:3,i,-j) = r(1:3,i,-j*2)
+					v(1:3,i,-j) = v(1:3,i,-j*2)
+					a(1:3,i,-j) = a(1:3,i,-j*2)
+				end do
+			end do
+			
 		end if
+		
+		if (maxval(RealErr) > (Err(1))) then
+
+			dt = dt/2
+	
+			do i=1,n
+				r(1:3,i,-1) = (1/128)*( -5*r(1:3,i,-4) + 28*r(1:3,i,-3) - 70*r(1:3,i,-2) + 140*r(1:3,i,-1) + 35*r(1:3,i,0))
+				v(1:3,i,-1) = (1/128)*( -5*v(1:3,i,-4) + 28*v(1:3,i,-3) - 70*v(1:3,i,-2) + 140*v(1:3,i,-1) + 35*v(1:3,i,0))
+				a(1:3,i,-1) = (1/128)*( -5*a(1:3,i,-4) + 28*a(1:3,i,-3) - 70*a(1:3,i,-2) + 140*a(1:3,i,-1) + 35*a(1:3,i,0))
+		
+				r(1:3,i,-3) = (1/128)*( 3*r(1:3,i,-4) - 20*r(1:3,i,-3) + 90*r(1:3,i,-2) + 60*r(1:3,i,-1) - 5*r(1:3,i,0))
+				v(1:3,i,-3) = (1/128)*( 3*v(1:3,i,-4) - 20*v(1:3,i,-3) + 90*v(1:3,i,-2) + 60*v(1:3,i,-1) - 5*v(1:3,i,0))
+				a(1:3,i,-3) = (1/128)*( 3*a(1:3,i,-4) - 20*a(1:3,i,-3) + 90*a(1:3,i,-2) + 60*a(1:3,i,-1) - 5*a(1:3,i,0))
+		
+				do j=1,2
+					r(1:3,i,-j*2) = r(1:3,i,-j)
+					v(1:3,i,-j*2) = r(1:3,i,-j)
+					a(1:3,i,-j*2) = r(1:3,i,-j)
+				end do
+		
+			end do
+			
+			! write(6,*) " "
+! 			write(6,*) RealErr(1,1:3,2)
+! 			write(6,*) RealErr(2,1:3,2)
+! 			write(6,*) " "
+! 			write(6,*) " Timestep halved: "
+! 			write(6,*) dt
+			
+		end if
+		
+		tchange = 0
+		
+	end if
+    	
     
-    end if
-    
-    do i=-8,-1,1
+    do i=-8,0,1
         do j=1,n
 			r(1:3,j,i) = r(1:3,j,i+1)
 			v(1:3,j,i) = v(1:3,j,i+1)
@@ -424,7 +370,7 @@ do
         end do
     end do
 	
-    if (tWrite >= 26*604800) then !Write data once every 2 months (week = 604800s in simulation) based on simulation time, since timestep is variable
+    if (tWrite >= 5*604800*52) then !Write data once every 2 months (week = 604800s in simulation) based on simulation time, since timestep is variable
         ! For Energy Conservation
 		! KE
 		KE=0.
@@ -456,28 +402,22 @@ do
         tWrite = 0
     end if
 
-	tcount = tcount + 1
 	tChange = tchange + 1 
     t = t + dt
     tWrite = tWrite + dt
     tPrint = tPrint + dt
-
-if (t/yr >= 1000000) then
-	exit
-end if
-
 end do
-!end do
+end do
 	
 	
 write(6,*) " "
-write(6,*) tcount, dt
+write(6,*) tcount
 write(6,*) " "
-write(6,*) r(1:3,2,-8:0)/AU
+write(6,*) r(1:3,2,-8:1)/AU
 write(6,*) " "
-write(6,*) v(1:3,2,-8:0) 
+write(6,*) v(1:3,2,-8:1) 
 write(6,*) " "
-write(6,*) a(1:3,2,-8:0) 
+write(6,*) a(1:3,2,-8:1) 
 write(6,*) " "
 
 END PROGRAM PCAttempt2
